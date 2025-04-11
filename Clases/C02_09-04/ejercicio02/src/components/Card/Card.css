@@ -1,0 +1,10 @@
+.card{
+    padding: 1rem;
+    border-radius: .5rem;
+    background-color: var(--dark-bg-solid);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: .5rem;
+}
