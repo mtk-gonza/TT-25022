@@ -1,0 +1,40 @@
+.header{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: var(--secondary-solid);
+    color: var(--dark-font-solid);
+    width: 100%;
+    height: 15%;
+}
+
+.header .container{
+    display: flex;
+    align-items: center;
+    height: 100%;
+}
+
+.navbar {
+    min-width: 100%;
+    margin: 0 ;
+    font-size: x-large;
+}
+  
+.container__navbar {
+    display: flex;    
+    height: 60px;
+    align-items: center;
+}
+
+.logo__navbar{
+    min-width: 20%;
+    text-align: center;
+}
+.title__navbar{
+    min-width: 60%;
+    text-align: center;
+}
+
+.container__navbar img {
+    width: 200px;
+}
