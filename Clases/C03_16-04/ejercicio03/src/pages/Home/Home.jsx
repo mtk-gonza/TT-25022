@@ -17,7 +17,7 @@ export const Home = () => {
         { titulo: 'E-Commerce', descripcion: 'Una herramienta para tienda online', botonTexto: 'ver más' },
     ]
 
-    const intereses = ['React', 'JavaScript', 'APIs', 'Diseño UX', 'Node.js'];
+    const intereses = ['React', 'JavaScript', 'Python', 'Diseño UX', 'Nodejs'];
     
     return (
         <div className='home'>

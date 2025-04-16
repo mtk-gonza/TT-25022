@@ -1,0 +1,62 @@
+.container_tecno {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 2rem;
+}
+
+.container_tecno .btn_tecnology {
+    cursor: pointer;
+    border-radius: .5rem;
+    padding: 1rem;
+    background-color: var(--success-bg-btn);
+}
+
+.container_tecno .btn_tecnology:hover {
+    background-color: var(--success-hover-btn);
+}
+
+.technologies {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 1rem;
+    justify-items: center;
+    font-size: var(--font-medium);
+}
+
+.technologies li {
+    margin-bottom: var(--spacing-4);
+    cursor: pointer;
+    background-color: #f9f9f9;
+    border-radius: 4px;
+    padding: var(--spacing-4);
+}
+
+.technologies li:hover {
+    background-color: #e0e0e0;
+}
+
+.content__modal.react {
+    background-color: #1BA1CC;
+}
+.content__modal.javascript {
+    background-color: #F7E025;
+}
+.content__modal.typescript {
+    background-color: #377CC8;
+}
+.content__modal.python {
+    background-color: #3C73A2;
+}
+.content__modal.nodejs {
+    background-color: #7AB168;
+}
+.content__modal.diseño {
+    background-color: #EE227A;
+}
+.content__modal.apis {
+    background-color: #E7E9F7;
+}

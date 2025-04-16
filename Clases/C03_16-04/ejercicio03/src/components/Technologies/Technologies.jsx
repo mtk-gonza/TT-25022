@@ -4,31 +4,36 @@ import './Technologies.css'
 
 export const Technologies = ({technologies}) => {
     const [isOpen, setIsOpen] = useState(false);
-    const [selectedTechnology, setSelectedTechnology] = useState(null);
+    const [modalStyle, setModalStyle] = useState(null); 
 
     const handleIsOpen = () => {
         setIsOpen(true)
     }
 
-    const handleTechnology = () => {
-        setSelectedTechnology(technologies)
-        setIsOpen(true)
-        console.log(selectedTechnology)
-    }
+    const handleModalStyle = (technology) => {
+        setModalStyle(technology.toLowerCase()); 
+    };
 
     const handleCloseModal = () => {
         setIsOpen(false);
-        setSelectedTechnology(null);
+        setModalStyle(null);
     }
 
     return (
         <>
-            <button onClick={handleIsOpen}>Tecnologias</button>
-            <Modal isOpen={isOpen} onClose={handleCloseModal} title='Tecnologias'>
-                <ul>
+            <div className='container_tecno'>
+                <button className='btn_tecnology' onClick={handleIsOpen}>Tecnologias</button>
+            </div>
+            <Modal 
+                isOpen={isOpen} 
+                onClose={handleCloseModal} 
+                title='Tecnologias'
+                style={modalStyle}
+            >
+                <ul className='technologies'>
                     {
-                        technologies.map(tecnology => (
-                            <li>{tecnology}</li>
+                        technologies.map((technology, index) => (
+                            <li key={index} onClick={() => handleModalStyle(technology)}>{technology}</li>
                         ))
                     }
                 </ul>
