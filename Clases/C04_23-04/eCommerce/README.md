@@ -1,0 +1,44 @@
+# Ejercicios Prácticos
+
+## Tu Primer Trabajo en TalentoLab
+
+¡Felicidades! Tras haber realizado los ejercicios prácticos, has sido seleccionado para unirte a TalentoLab.
+Serás parte del equipo responsable de crear un eCommerce para un cliente.
+
+Descripción de tu tarea inicial:
+    Tu tarea inicia crear una aplicación que permita a los usuarios agregar productos a un carrito de compras y visualizar la lista de productos seleccionados.
+
+Requisitos del Proyecto:
+
+    Listar Productos
+    Crear un componente para mostrar los productos disponibles.
+
+    Estado del Carrito
+    Usar useState para manejar el estado del carrito de compras.
+
+    Agregar Productos
+    Implementar un evento de clic para añadir productos al carrito.
+
+    Mostrar Carrito
+    Crear un componente para visualizar los productos seleccionados.
+
+    Crear un Layout del eCommerce
+    (Header, Footer, Main, Nav)
+
+
+Pautas Generales
+
+    Información de Productos
+    La lista debe incluir al menos nombre y precio de cada producto.
+
+    Actualización Dinámica
+    El estado del carrito debe actualizarse al agregar cada producto.
+
+    Carrito Vacío
+    Mostrar un mensaje cuando no haya productos seleccionados.
+
+
+Desafío Adicional
+
+    Botón "Vaciar Carrito"
+    Implementar una función para eliminar todos los productos seleccionados del carrito.

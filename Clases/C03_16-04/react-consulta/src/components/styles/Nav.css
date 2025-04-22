@@ -1,0 +1,11 @@
+nav ul {
+    display: flex;
+    list-style-type: none;
+    justify-content: space-around;
+    
+}
+
+nav ul a {
+    color: white;    
+    text-decoration: none;
+}
