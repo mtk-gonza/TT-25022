@@ -1,0 +1,22 @@
+.container_form {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 2rem;
+}
+
+.container_form .btn_form {
+    cursor: pointer;
+    border-radius: .5rem;
+    padding: 1rem;
+    background-color: var(--success-bg-btn);
+}
+
+.container_form .btn_form:hover {
+    background-color: var(--success-hover-btn);
+}
+
+.formulario {
+    display: flex;
+    flex-direction: column;
+}

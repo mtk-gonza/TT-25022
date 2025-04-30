@@ -1,0 +1,23 @@
+.member_card{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: var(--spacing-128);
+    border-radius: var(--spacing-8);
+    background-color: #FFFFFF;
+    padding: var(--spacing-16);
+    color: var(--dark-font-solid);
+}
+
+.member_card img{
+    width: 100px;
+}
+
+.member_card h2{
+    font-size: var(--font-large);
+}
+
+.member_card span{
+    font-size: var(--font-medium);
+}

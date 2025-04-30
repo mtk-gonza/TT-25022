@@ -1,0 +1,25 @@
+.product-card {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.5rem;
+    border-bottom: 1px solid #eee;
+}
+
+.product-card:last-child {
+    border-bottom: none;
+}
+
+.btn_add-item {
+    padding: 0.5rem 1rem;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.btn_add-item:hover {
+    background-color: #0056b3;
+}

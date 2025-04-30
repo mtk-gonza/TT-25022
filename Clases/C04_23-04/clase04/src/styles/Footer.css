@@ -1,0 +1,14 @@
+.footer{    
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+    height: 5%;
+    background-color: var(--primary-solid);
+}
+
+.footer__copy{    
+    text-align: center;
+    font-family: var(--alternative-font);
+    font-size: var(--font-xsmall);
+    color: var(--dark-font-solid);
+}
