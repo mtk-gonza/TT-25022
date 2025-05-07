@@ -1,0 +1,17 @@
+.cart-list {
+    border: 1px solid #ddd;
+    padding: 1rem;
+    border-radius: 8px;
+}
+
+.cart-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.5rem;
+    border-bottom: 1px solid #eee;
+}
+
+.cart-item:last-child {
+    border-bottom: none;
+}
