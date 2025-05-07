@@ -1,6 +1,8 @@
+import { Cart } from './Cart.jsx'
+
 import './../styles/Header.css'
 
-export const Header = () => {
+export const Header = ({cartItems, setCartItems, removeCartItem, clearCart}) => {
     return (
         <div className='header'>
             <div className='container'>
@@ -11,6 +13,9 @@ export const Header = () => {
                         </div>
                         <div className='title__navbar'>
                             <h2>eCommerce</h2>
+                        </div>
+                        <div className='cart__navbar'>
+                            <Cart cartItems={cartItems} setCartItems={setCartItems} removeCartItem={removeCartItem} clearCart={clearCart}/>
                         </div>
                     </div>
                 </div>

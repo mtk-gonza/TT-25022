@@ -1,18 +1,16 @@
 import { ProductList } from './../components/ProductList.jsx'
-import { CartList } from './../components/CartList.jsx'
 
 import { products } from './../utils/data.js'
 
 import './../styles/Home.css'
 
-export const Home = ({cart, handlerAddToCart, handlerClearCart}) => {  
+export const Home = ({ AddToCart }) => {  
 
     return (
         <div className='home'>
             <div className='container'>
                 <h1>Bienvenido a eCommerce</h1>
-                <ProductList products={products} addToCart={handlerAddToCart}/>
-                <CartList cartItems={cart} clearCart={handlerClearCart}/>
+                <ProductList products={products} addToCart={AddToCart}/>
             </div>
         </div>
     )
