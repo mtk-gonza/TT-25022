@@ -4,21 +4,36 @@ import { Footer } from './components/Footer.jsx'
 import { Home } from './layouts/Home.jsx'
 
 export const App = () => {
-    const [cart, setCart] = useState([])
+    const [cartItems, setCartItems] = useState([])
 
-    const handlerAddToCart = (product) => {
-        const existingItem = cart.find(item => item.id === product.id)
-
+    const handlerAddToCart = (productToAdd) => {
+        const { id, quantity } = productToAdd
+        const existingItem = cartItems.find(item => item.id === id)    
         if (existingItem) {
-            setCart(cart.map(item => item.id === product.id ? { ...item, quantity: item.quantity + 1 } : item))
+            const newTotalQuantity = existingItem.quantity + quantity    
+            if (newTotalQuantity > existingItem.stock) {
+                alert(`No puedes agregar ${quantity} unidades. Solo quedan ${existingItem.stock - existingItem.quantity} disponibles.`)
+                return
+            }
+            setCartItems(
+                cartItems.map(item =>
+                    item.id === id
+                        ? { ...item, quantity: newTotalQuantity }
+                        : item
+                )
+            )
         } else {
-            setCart([...cart, { ...product, quantity: 1 }])
+            if (quantity > productToAdd.stock) {
+                alert(`No puedes agregar tantas unidades. Solo hay ${productToAdd.stock} disponibles.`)
+                return
+            }
+            setCartItems([...cartItems, productToAdd])
         }
     }
 
     const handlerRemoveCartItem = (product) => {
-        setCart(cart => {
-            return cart.map(item => {                
+        setCartItems(cartItems => {
+            return cartItems.map(item => {                
                 if (item.id === product.id) {       
                     if (item.quantity > 1){
                         return {...item, quantity: item.quantity - 1}
@@ -32,13 +47,9 @@ export const App = () => {
         })
     }
 
-    const handlerClearCart = () => {
-        setCart([])
-    }
-
     return (
         <>
-            <Header cartItems={cart} setCartItems={setCart} clearCart={handlerClearCart} removeCartItem={handlerRemoveCartItem} />
+            <Header cartItems={cartItems} setCartItems={setCartItems} removeCartItem={handlerRemoveCartItem} />
             <Home AddToCart={handlerAddToCart}/>
             <Footer />
         </>

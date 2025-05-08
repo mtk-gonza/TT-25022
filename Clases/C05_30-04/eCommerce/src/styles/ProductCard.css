@@ -10,17 +10,43 @@
     color: var(--primary-solid);
     gap: .5rem;
     padding: 1rem;
+    min-width: 200px;
+}
+
+.img_product {
+    width: 100px;
 }
 
 .product-card strong {
     font-size: 1.5rem;
 }
+
 .product-card span {
     font-size: 1rem;
 }
 
 .product-card:last-child {
     border-bottom: none;
+}
+
+.btn_decrease, .btn_increase {
+    background-color: #e0e0e0;
+    border: none;
+    padding: 4px 8px;
+    border-radius: 4px;
+    cursor: pointer;
+    width: 25px;
+}
+
+.actions_card {
+    display: flex;
+    justify-content: center;
+    text-align: center;
+    align-items: center;
+}
+
+.quantity {
+    min-width: 30px;
 }
 
 .btn_add-item {

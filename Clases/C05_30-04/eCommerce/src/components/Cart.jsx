@@ -3,7 +3,7 @@ import { CartList } from './CartList.jsx'
 
 import './../styles/Cart.css'
 
-export const Cart = ({ cartItems, removeCartItem, clearCart }) => {
+export const Cart = ({ cartItems, setCartItems, removeCartItem }) => {
     const [isOpen, setIsOpen] = useState(false)
     const totalPrice = cartItems.reduce((total, item) => total + item.price * item.quantity, 0)
     const totalQuantity = cartItems.reduce((sum, item) => sum + item.quantity, 0)
@@ -11,7 +11,10 @@ export const Cart = ({ cartItems, removeCartItem, clearCart }) => {
     const handlerCloseOnMouseLeave = () => {
         setIsOpen(false)
     }
-
+    const handlerClearCart = () => {
+        setCartItems([])
+        setIsOpen(false)
+    }
     return (
         <div className='cart'>
             <button className='cart-icon' onClick={() => setIsOpen(!isOpen)}>
@@ -33,7 +36,7 @@ export const Cart = ({ cartItems, removeCartItem, clearCart }) => {
                             <div className='cart-total'>
                                 <span>Cantidad: {totalQuantity} producto(s)</span>
                                 <strong>Precio Total: ${totalPrice.toFixed(2)}</strong>
-                                <button onClick={clearCart}>Vaciar Carrito</button>
+                                <button onClick={handlerClearCart}>Vaciar Carrito</button>
                             </div>
                         </>
                     )}

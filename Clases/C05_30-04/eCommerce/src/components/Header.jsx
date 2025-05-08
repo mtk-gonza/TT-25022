@@ -2,7 +2,7 @@ import { Cart } from './Cart.jsx'
 
 import './../styles/Header.css'
 
-export const Header = ({cartItems, setCartItems, removeCartItem, clearCart}) => {
+export const Header = ({ cartItems, setCartItems, removeCartItem }) => {
     return (
         <div className='header'>
             <div className='container'>
@@ -15,7 +15,7 @@ export const Header = ({cartItems, setCartItems, removeCartItem, clearCart}) => 
                             <h2>eCommerce</h2>
                         </div>
                         <div className='cart__navbar'>
-                            <Cart cartItems={cartItems} setCartItems={setCartItems} removeCartItem={removeCartItem} clearCart={clearCart}/>
+                            <Cart cartItems={cartItems} setCartItems={setCartItems} removeCartItem={removeCartItem} />
                         </div>
                     </div>
                 </div>
