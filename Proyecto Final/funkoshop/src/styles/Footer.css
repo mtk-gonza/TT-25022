@@ -1,0 +1,11 @@
+.footer {
+    font-family: var(--alternative-font);
+    color: var(--light-font-solid);
+    background-color: var(--dark-bg-solid);
+    padding: var(--spacing-68) var(--spacing-68) var(--spacing-8) var(--spacing-68);
+    width: 100%;         
+}
+.footer__copy {
+    margin-top: var(--spacing-36);
+    text-align: center;
+}
