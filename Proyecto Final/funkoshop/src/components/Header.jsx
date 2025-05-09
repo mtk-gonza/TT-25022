@@ -1,29 +1,25 @@
 import { useState } from 'react'
 import { faBars, faChevronDown, faCartShopping } from '@fortawesome/free-solid-svg-icons';
 import { Link } from 'react-router-dom'
-import { useCombinedContexts } from './../../hooks/useCombineContexs.js'
-
-import { Icon } from './Icon.js'
-import { Auth } from './Auth.js'
+import { Icon } from './Icon.jsx'
 
 import './../styles/Header.css'
 
-export const Header = () => {
-    const { isAuthenticated, categories } = useCombinedContexts();
+export const Header = ({categories}) => {
     const [isOpen, setIsOpen] = useState(false);  
     const toggleMenu = () => {
         console.log('click');
         setIsOpen(!isOpen);
     };
+    const isAuthenticated = false
 
     return (
         <header className="page-header">
             <div className="container">
-                <nav className="navbar">
-                    
+                <nav className="navbar">                    
                     <picture className="navbar__logo">
                         <Link to="/">                    
-                            <img src="/img/branding/logo_light_horizontal.svg" alt="FunkoShop Logotipo"/>
+                            <img src="/images/branding/logo_light_horizontal.svg" alt="FunkoShop Logotipo"/>
                         </Link>
                     </picture>
                     <div className="navbar-toggle" id="navbarToggle" onClick={() => toggleMenu()}>
@@ -58,7 +54,7 @@ export const Header = () => {
                                     <Link className="navbar__link" to="/dashboard">DASHBOARD</Link>
                                 </li>
                                 <li className="navbar__item">
-                                    <Auth/>
+                                    <button>auth</button>
                                 </li>
                             </>  
                         }                  

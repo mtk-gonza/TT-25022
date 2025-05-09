@@ -1,12 +1,17 @@
-import { useCombinedContexts } from './../../hooks/useCombineContexs.js'
-import { Hero, Collection, Slider } from './../../components/index.js';
-import { news } from './../../utils/news.js';
+import React from 'react'
+import { Hero } from './../components/Hero.jsx'
+import { Collection } from './../components/Collection.jsx'
+import { Slider } from './../components/Slider.jsx'
 
 import './../styles/Home.css'
 
-export const Home = () => {
-    const { products, licences } = useCombinedContexts()
-    const latestReleases = products?.filter(product => news(product.createdAt)) || [];
+export const Home = ({ products, licences }) => {
+
+    const latestReleases = products.filter(product => {
+        const createdAt = new Date(product.createdAt)
+        const thirtyDaysAgo = new Date(Date.now() - 30 * 24 * 60 * 60 * 1000)
+        return createdAt > thirtyDaysAgo
+    })
 
     return (
         <>         
@@ -24,5 +29,5 @@ export const Home = () => {
                 <Slider products={latestReleases} />
             </main>      
         </>
-    );
-};
+    )
+}

@@ -3,8 +3,17 @@
     align-items: center;
     gap: var(--spacing-24);
 }
-.item__img {
-    flex: 1 1 100%;
+.detail-item__cover img {    
+    animation: fade .7s;
+}
+.detail-item__img--back {
+    display: none;
+}
+.detail-item__cover:hover .detail-item__img--back {
+    display: block;
+}
+.detail-item__cover:hover .detail-item__img--front {
+    display: none;
 }
 .item__info {
     flex: 1 1 100%;

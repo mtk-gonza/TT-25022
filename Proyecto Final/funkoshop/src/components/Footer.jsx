@@ -1,10 +1,9 @@
 import { Link } from 'react-router-dom'
-import { useCombinedContexts } from './../../hooks/useCombineContexs.js'
 
 import './../styles/Footer.css'
 
 export const Footer = () => { 
-    const { isAuthenticated } = useCombinedContexts()
+    const isAuthenticated  = false
     return (
         <footer className="footer">
             <nav className="navbar container">
@@ -33,10 +32,10 @@ export const Footer = () => {
                     </li>
                 </ul>
                 <picture>
-                    <img src="/img/branding/isotype.svg" alt="Isotipo de la marca FunkoShop"/>    
+                    <img src="/images/branding/isotype.svg" alt="Isotipo de la marca FunkoShop"/>    
                 </picture>
             </nav>
-            <p className="footer__copy">All rights reserved 2023 - FunkoShop of Gonzalo Gonzalez &copy;</p>      
+            <p className="footer__copy">All rights reserved 2025 - FunkoShop of Gonzalo Gonzalez &copy;</p>      
         </footer>
     )
 }

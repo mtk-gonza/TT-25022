@@ -1,10 +1,8 @@
-import { useCombinedContexts } from './../../hooks/useCombineContexs.js';
-import { TabContainer } from './../../components/TabContainer/TabContainer.jsx';
+import { TabContainer } from './../components/TabContainer.jsx'
 
 import './../styles/Dashboard.css'
 
-export const Dashboard = () => {  
-    const { categories } = useCombinedContexts() 
+export const Dashboard = ({categories}) => {  
     return (
         <div className='dashboard'>            
             <div className='container'>

@@ -1,5 +1,4 @@
 import { useState, useEffect } from 'react'
-import { getCategories } from './../../services/categoryService.js';
 import { Button } from './Button.jsx'
 
 import './../styles/ItemForm.css'
@@ -13,22 +12,12 @@ const initialItemState = {
     current_stock: 0,
 };
 
-export const ItemForm = ({ selectedItem = {}, onSave, token }) => {
-    const [categories, setCategories] = useState([]);
+export const ItemForm = ({ selectedItem = {}, onSave, categories }) => {
     const [item, setItem] = useState(initialItemState);
 
     useEffect(() => {
         selectedItem ? setItem({...selectedItem}) : setItem(initialItemState);
-        const fetchCategories = async () => {
-            try {
-                const response = await getCategories(token);
-                setCategories(response)
-            } catch (error) {
-                console.error('Error al cargar las categorias:', error);
-            }
-        };
-        fetchCategories();
-    }, [selectedItem, token]);
+    }, [selectedItem]);
 
     const handleChange = (e) => {
         const { name, value } = e.target;

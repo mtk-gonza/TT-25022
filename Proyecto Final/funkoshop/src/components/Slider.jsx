@@ -7,6 +7,7 @@ import { Icon } from './Icon.jsx'
 import './../styles/Slider.css'
 
 export const Slider = ({ products }) => {
+    console.log(products)
     const [currentPage, setCurrentPage] = useState(0);
     const itemsPerPage = 3;
     const totalPages = Math.ceil(products.length / itemsPerPage);

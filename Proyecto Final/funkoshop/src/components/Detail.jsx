@@ -1,12 +1,10 @@
-import { useParams } from 'react-router-dom';
-import { faSpinner } from '@fortawesome/free-solid-svg-icons';
-import { Icon } from './../../components/index.js';
+import { useParams } from 'react-router-dom'
+import { faSpinner } from '@fortawesome/free-solid-svg-icons'
+import { Icon } from './Icon.jsx'
 
 import './../styles/Detail.css'
 
-export const Detail = ({products}) => {
-    const { id } = useParams();
-    const product = products.find(product => product.id === parseInt(id));
+export const Detail = ({ product }) => {
 
     if (!product) {
         return (
@@ -19,9 +17,9 @@ export const Detail = ({products}) => {
     return (
         <main className="container">            
             <section className="item">
-                <picture className="item__img card-item__cover">
-                    <img className="card-item__img--front" src={`/img/${product.image_front}`} alt={`Figura coleccionable Funko de un ${product.name}`} />
-                    <img className="card-item__img--back" src={`/img/${product.image_back}`} alt={`Figura coleccionable Funko de un ${product.name} en caja`}/>
+                <picture className="detail-item__cover">
+                    <img className="detail-item__img--front" src={product.image_front} alt={`Figura coleccionable Funko de un ${product.name}`} />
+                    <img className="detail-item__img--back" src={product.image_back} alt={`Figura coleccionable Funko de un ${product.name} en caja`}/>
                 </picture>
                 <article className="item__info">
                     <p className="item__licence">{ product.licence.name }</p>

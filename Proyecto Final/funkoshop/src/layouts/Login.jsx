@@ -1,54 +1,21 @@
 import { useState } from 'react';
-import { useLocation } from 'react-router-dom';
-import Swal from 'sweetalert2';
-import withReactContent from 'sweetalert2-react-content';
-const mySwal = withReactContent(Swal);
-import { useCombinedContexts } from './../../hooks/useCombineContexs.js';
-import { loginAPI, setAuthToken } from './../../services/authService.js';
-
 import './../styles/Login.css'
 
 export const Login = () => { 
-    const { setIsAuthenticated, login } = useCombinedContexts();
+
     const [credentials, setCredentials] = useState({ username: '', password: '' });
     const [error, setError] = useState('');
     const [loading, setLoading] = useState(false);
-    const location = useLocation();
-
-    const from = location.state?.from || '/dashboard';
 
     const handleLogin = async (e) => {
         e.preventDefault();
         if (!credentials.username || !credentials.password) {
-            setError('Por favor, ingresa tu usuario y contraseña.');
-            mySwal.fire({
-                title: 'Error',
-                text: 'Por favor, ingresa tu usuario y contraseña.',
-                icon: 'warning',
-                confirmButtonText: 'Aceptar',
-            });
+            setError('Por favor, ingresa tu usuario y contraseña.')
+            console.error(error)
+            alert('Por favor, ingresa tu usuario y contraseña.')
             return;
         }
         setLoading(true);
-        setError('');
-        try {
-            const { access_token } = await loginAPI(credentials);
-            setAuthToken(access_token);
-            localStorage.setItem('access_token', access_token);
-            setIsAuthenticated(true);
-            login(access_token, from)
-            
-        } catch (err) {
-            setError(`Error en el inicio de sesión: ${err.message || 'Inténtalo nuevamente.'}`);
-            console.error(error);
-            setLoading(false);
-            mySwal.fire({
-                title: 'Error',
-                text: err.message || 'Ocurrió un error al iniciar sesión. Inténtalo nuevamente.',
-                icon: 'error',
-                confirmButtonText: 'Aceptar',
-            });
-        }
     };
 
     return (

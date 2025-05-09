@@ -13,10 +13,11 @@ export const ProductCard = ({product, addToCart}) => {
         setQuantity(prev => (prev > 1 ? prev - 1 : 1))
     }
 
+    console.log(product.image)
     return (
         <div className='product-card'>
             <strong>{product.name}</strong>
-            <img src={product.image} alt={product.name} className='img_product' />
+            <img src={product.image_front} alt={product.name} className='img_product' />
             <span>${product.price}</span>
             <span>Stock: {product.stock}</span>
             <div className='actions_card'>
