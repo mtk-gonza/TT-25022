@@ -1,10 +1,19 @@
-import { useParams } from 'react-router-dom'
+import React, { useState } from 'react'
 import { faSpinner } from '@fortawesome/free-solid-svg-icons'
 import { Icon } from './Icon.jsx'
 
 import './../styles/Detail.css'
 
-export const Detail = ({ product }) => {
+export const Detail = ({ product, addToCart }) => {
+    const [quantity, setQuantity] = useState(1)
+    
+    const increase = () => {
+        setQuantity(prev => (prev != product.stock ? prev + 1 : prev))
+    }
+    
+    const decrease = () => {
+        setQuantity(prev => (prev > 1 ? prev - 1 : 1))
+    }
 
     if (!product) {
         return (
@@ -26,12 +35,18 @@ export const Detail = ({ product }) => {
                     <h3 className="item__name">{ product.name }</h3>
                     <p className="item__description">{ product.description }</p>
                     <p className="item__price">{product.price}</p>
-                    <form className="item__cart">
-                        <button id="subtract" className="item__quantity" type="button">-</button>
-                        <input id="quantity" className="item__input" type="text" name="quantity" placeholder="0" />
-                        <button id="add" className="item__quantity" type="button">+</button>
-                        <button className="item__submit btn btn--primary btn--medium" type="submit">Agregar al carrito</button>
-                    </form>
+                    <div className="item__cart">
+                        <button id="subtract" className="item__quantity" onClick={decrease}>
+                            -
+                        </button>
+                        <span className="item__input">{quantity}</span>
+                        <button id="add" className="item__quantity" onClick={increase}>
+                            +
+                        </button>
+                        <button className="item__submit btn btn--primary btn--medium" onClick={() => addToCart({...product, quantity: quantity})}>
+                            Agregar al carrito
+                        </button>
+                    </div>
                     <p className="item__promo"><a href="">Ver métodos de pago</a> - {product.dues} CUOTAS SIN INTERÉS</p>
                 </article>
             </section>

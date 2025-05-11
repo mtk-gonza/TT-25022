@@ -10,5 +10,5 @@ export const Dashboard = ({categories}) => {
                 <TabContainer categories={categories}></TabContainer>
             </div>
         </div>
-    );
-};
+    )
+}

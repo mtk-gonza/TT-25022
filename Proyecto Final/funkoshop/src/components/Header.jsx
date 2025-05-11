@@ -1,11 +1,12 @@
 import { useState } from 'react'
-import { faBars, faChevronDown, faCartShopping } from '@fortawesome/free-solid-svg-icons';
+import { faBars, faChevronDown, faCartShopping } from '@fortawesome/free-solid-svg-icons'
 import { Link } from 'react-router-dom'
 import { Icon } from './Icon.jsx'
+import { Cart } from './Cart.jsx'
 
 import './../styles/Header.css'
 
-export const Header = ({categories}) => {
+export const Header = ({categories, cartItems, setCartItems, removeCartItem }) => {
     const [isOpen, setIsOpen] = useState(false);  
     const toggleMenu = () => {
         console.log('click');
@@ -59,7 +60,7 @@ export const Header = ({categories}) => {
                             </>  
                         }                  
                         <li className="navbar__item">
-                            <Link className="navbar__item__cart" to="/cart"> <Icon css='icon' icon={faCartShopping} /></Link>                    
+                            <Cart cartItems={cartItems} setCartItems={setCartItems} removeCartItem={removeCartItem} />                                              
                         </li>
                     </ul>
                 </nav>

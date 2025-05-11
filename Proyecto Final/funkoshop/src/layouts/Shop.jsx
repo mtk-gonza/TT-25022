@@ -6,17 +6,17 @@ import { Icon } from './../components/Icon.jsx'
 import { news } from './../utils/news.js'
 import './../styles/Shop.css'
 
-export const Shop = ({products}) => {
-    const { category, licence_id } = useParams();
-    const [currentPage, setCurrentPage] = useState(1);
-    const [productsPerPage] = useState(6);
-    const [filteredProducts, setFilteredProducts] = useState(products);
+export const Shop = ({ products, addToCart }) => {
+    const { category, licence_id } = useParams()
+    const [currentPage, setCurrentPage] = useState(1)
+    const [productsPerPage] = useState(6)
+    const [filteredProducts, setFilteredProducts] = useState(products)
     const [filters, setFilters] = useState({
         news: false,
         offers: false,
         specials: false,
         favs: false
-    });
+    })
     let filtered = products;
 
     const setProducts = () => {
@@ -24,19 +24,19 @@ export const Shop = ({products}) => {
             filtered = products.filter(
                 product => licence_id ? product.category.name === category & product.licence_id === parseInt(licence_id) :
                     product.category.name === category
-            );
+            )
         }
         if (filters.news) {            
-            filtered = filtered.filter(product => news(product.createdAt));
+            filtered = filtered.filter(product => news(product.createdAt))
         }
         if (filters.offers) {
-            filtered = filtered.filter(product => product.discount > 10);
+            filtered = filtered.filter(product => product.discount > 10)
         }
         if (filters.specials) {            
-            filtered = filtered.filter(product => product.special == 1);
+            filtered = filtered.filter(product => product.special == 1)
         }
         if (filters.favs) {
-            filtered = filtered.filter(product => product);
+            filtered = filtered.filter(product => product)
         }        
         setFilteredProducts(filtered)
     }
@@ -45,21 +45,21 @@ export const Shop = ({products}) => {
         setProducts()
     }, [category, filters, licence_id])
 
-    const indexOfLastProduct = currentPage * productsPerPage;
-    const indexOfFirstProduct = indexOfLastProduct - productsPerPage;
-    const currentProducts = filteredProducts.slice(indexOfFirstProduct, indexOfLastProduct);
+    const indexOfLastProduct = currentPage * productsPerPage
+    const indexOfFirstProduct = indexOfLastProduct - productsPerPage
+    const currentProducts = filteredProducts.slice(indexOfFirstProduct, indexOfLastProduct)
 
-    const pageNumbers = [];
+    const pageNumbers = []
     for (let i = 1; i <= Math.ceil(filteredProducts.length / productsPerPage); i++) {
-        pageNumbers.push(i);
+        pageNumbers.push(i)
     }
 
     const handleFilterChange = (filter) => {
         setFilters(prevFilters => ({
             ...prevFilters,
             [filter]: !prevFilters[filter]
-        }));
-    };
+        }))
+    }
 
     return (
         <main id="shop" className="container">
@@ -143,7 +143,7 @@ export const Shop = ({products}) => {
                     <ul className="shop__items">                
                         {currentProducts.map((product) => (
                             <li key={product.id}>
-                                <Card product={product}></Card>
+                                <Card product={product} addToCart={addToCart}></Card>
                             </li>
                         ))}
                     </ul>

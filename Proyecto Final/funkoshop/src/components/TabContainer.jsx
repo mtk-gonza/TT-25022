@@ -4,7 +4,7 @@ import { Category } from './Category.jsx'
 import './../styles/TabContainer.css'
 
 export const TabContainer = ({categories}) => {
-    const [activeTab, setActiveTab] = useState(0);
+    const [activeTab, setActiveTab] = useState(0)
 
     const tabs = [
         {
@@ -30,7 +30,7 @@ export const TabContainer = ({categories}) => {
                 {tabs[activeTab].content}
             </div>
         </div>
-    );
-};
+    )
+}
 
-export default TabContainer;
+export default TabContainer

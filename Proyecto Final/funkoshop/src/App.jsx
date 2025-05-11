@@ -1,4 +1,4 @@
-import React,{ useState, useEffect } from 'react'
+import React, { useState, useEffect } from 'react'
 import { BrowserRouter } from 'react-router-dom'
 import { Router } from './routes/Router.jsx'
 import { Header } from './components/Header.jsx'
@@ -9,9 +9,51 @@ export const App = () => {
     const [products, setProducts] = useState([])
     const [licences, setLicences] = useState([])
     const [categories, setCategories] = useState([])
+    const [cartItems, setCartItems] = useState([])
     const [isLoading, setIsLoading] = useState(true)
     const [error, setError] = useState([])
-    
+
+    const handlerAddToCart = (productToAdd) => {
+        const { id, quantity } = productToAdd
+        const existingItem = cartItems.find(item => item.id === id)
+        if (existingItem) {
+            const newTotalQuantity = existingItem.quantity + quantity
+            if (newTotalQuantity > existingItem.stock) {
+                alert(`No puedes agregar ${quantity} unidades. Solo quedan ${existingItem.stock - existingItem.quantity} disponibles.`)
+                return
+            }
+            setCartItems(
+                cartItems.map(item =>
+                    item.id === id
+                        ? { ...item, quantity: newTotalQuantity }
+                        : item
+                )
+            )
+        } else {
+            if (quantity > productToAdd.stock) {
+                alert(`No puedes agregar tantas unidades. Solo hay ${productToAdd.stock} disponibles.`)
+                return
+            }
+            setCartItems([...cartItems, productToAdd])
+        }
+    }
+
+    const handlerRemoveCartItem = (product) => {
+        setCartItems(cartItems => {
+            return cartItems.map(item => {
+                if (item.id === product.id) {
+                    if (item.quantity > 1) {
+                        return { ...item, quantity: item.quantity - 1 }
+                    } else {
+                        return null
+                    }
+                } else {
+                    return item
+                }
+            }).filter(item => item != null)
+        })
+    }
+
     useEffect(() => {
         const loadData = async () => {
             setIsLoading(true)
@@ -49,11 +91,21 @@ export const App = () => {
     }, [])
 
     return (
-        isLoading ? <Loading /> : 
-        <BrowserRouter>
-            <Header categories={categories}/>
-                <Router products={products} licences={licences} categories={categories} />
-            <Footer />
-        </BrowserRouter>
+        isLoading ? <Loading /> :
+            <BrowserRouter>
+                <Header 
+                    categories={categories} 
+                    cartItems={cartItems} 
+                    setCartItems={setCartItems} 
+                    removeCartItem={handlerRemoveCartItem}
+                />
+                <Router 
+                    products={products} 
+                    licences={licences} 
+                    categories={categories} 
+                    addToCart={handlerAddToCart}
+                />
+                <Footer />
+            </BrowserRouter>
     )
 }

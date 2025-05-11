@@ -6,7 +6,7 @@ import { Detail } from './Detail.jsx'
 
 import './../styles/Card.css'
 
-export const Card = ({ product }) => {
+export const Card = ({ product, addToCart }) => {
     const [isOpen, setIsOpen] = useState(false)
 
     const currentDate = new Date()
@@ -46,9 +46,8 @@ export const Card = ({ product }) => {
                     <p className="card-item__promo">{product.dues} CUOTAS SIN INTERÉS</p>
                 </div>
             </article>
-            <Modal isOpen={isOpen} onClose={handlerCloseModal}
-            >
-                <Detail product={product} />
+            <Modal isOpen={isOpen} onClose={handlerCloseModal}>
+                <Detail product={product} addToCart={addToCart}/>
             </Modal>
         </>
     )

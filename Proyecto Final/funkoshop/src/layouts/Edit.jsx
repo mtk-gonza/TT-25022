@@ -17,9 +17,9 @@ export const Edit = () => {
             case 'users':
                 return <div>users</div>  
             default:
-                return <div className='container'>No se encontró un componente para {table}</div>;
+                return <div className='container'>No se encontró un componente para {table}</div>
         }
-    };
+    }
     return (
         <div className="container">  
             <Item>            

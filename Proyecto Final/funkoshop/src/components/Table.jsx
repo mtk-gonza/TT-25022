@@ -46,5 +46,5 @@ export const Table = ({ title, columns, onAdd = null, data, onMove = null, onEdi
                 </div>
             )}
         </div>
-    );
-};
+    )
+}

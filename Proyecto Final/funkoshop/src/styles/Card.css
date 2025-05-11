@@ -1,3 +1,6 @@
+.card-item {
+    cursor: pointer;
+}
 .card-item__cover {
     display: flex;
     position: relative;    

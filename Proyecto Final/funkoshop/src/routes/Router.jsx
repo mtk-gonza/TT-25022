@@ -10,15 +10,15 @@ import { Register } from './../layouts/Register.jsx'
 import { Shop } from './../layouts/Shop.jsx'
 import { ProtectedRoute } from './ProtectedRoute.jsx'
 
-export const Router = ({ products, licences, categories }) => {	
+export const Router = ({ products, licences, categories, addToCart }) => {		
 	const isAuthenticated = false
 	return (
 		<Routes>
-			<Route path='/' element={<Home products={products} licences={licences}/>} />
+			<Route path='/' element={<Home products={products} licences={licences} addToCart={addToCart}/>} />
 			<Route path='/login' element={<Login />} />
 			<Route path='/register' element={<Register />} />
-			<Route path='/shop' element={<Shop products={products}/>} />
-			<Route path='/shop/:category/:licence_id?' element={<Shop products={products}/>} />
+			<Route path='/shop' element={<Shop products={products} addToCart={addToCart}/>} />
+			<Route path='/shop/:category/:licence_id?' element={<Shop products={products} addToCart={addToCart} />} />
 			<Route path='/contact' element={<Contact />} />
 			<Route path='/admin' element={
 					isAuthenticated ? (

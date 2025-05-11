@@ -49,7 +49,11 @@ export const App = () => {
 
     return (
         <>
-            <Header cartItems={cartItems} setCartItems={setCartItems} removeCartItem={handlerRemoveCartItem} />
+            <Header 
+                cartItems={cartItems} 
+                setCartItems={setCartItems} 
+                removeCartItem={handlerRemoveCartItem} 
+            />
             <Home AddToCart={handlerAddToCart}/>
             <Footer />
         </>

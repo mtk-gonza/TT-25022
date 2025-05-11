@@ -1,22 +1,23 @@
-import { useState } from 'react';
+import { useState } from 'react'
+
 import './../styles/Login.css'
 
 export const Login = () => { 
 
-    const [credentials, setCredentials] = useState({ username: '', password: '' });
-    const [error, setError] = useState('');
-    const [loading, setLoading] = useState(false);
+    const [credentials, setCredentials] = useState({ username: '', password: '' })
+    const [error, setError] = useState('')
+    const [loading, setLoading] = useState(false)
 
     const handleLogin = async (e) => {
-        e.preventDefault();
+        e.preventDefault()
         if (!credentials.username || !credentials.password) {
             setError('Por favor, ingresa tu usuario y contraseña.')
             console.error(error)
             alert('Por favor, ingresa tu usuario y contraseña.')
-            return;
+            return
         }
-        setLoading(true);
-    };
+        setLoading(true)
+    }
 
     return (
         <main id="login" className="container">
@@ -70,5 +71,5 @@ export const Login = () => {
                 </a>
             </form>
         </main>
-    );
-};
+    )
+}

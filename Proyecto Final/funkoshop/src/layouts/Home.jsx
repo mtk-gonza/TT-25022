@@ -5,8 +5,8 @@ import { Slider } from './../components/Slider.jsx'
 
 import './../styles/Home.css'
 
-export const Home = ({ products, licences }) => {
-
+export const Home = ({ products, licences, addToCart }) => {
+    console.log(addToCart)
     const latestReleases = products.filter(product => {
         const createdAt = new Date(product.createdAt)
         const thirtyDaysAgo = new Date(Date.now() - 30 * 24 * 60 * 60 * 1000)
@@ -26,7 +26,7 @@ export const Home = ({ products, licences }) => {
                         />
                     ))}
                 </div>
-                <Slider products={latestReleases} />
+                <Slider products={latestReleases} addToCart={addToCart}/>
             </main>      
         </>
     )

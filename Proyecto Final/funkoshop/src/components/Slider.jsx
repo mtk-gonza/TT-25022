@@ -6,7 +6,7 @@ import { Icon } from './Icon.jsx'
 
 import './../styles/Slider.css'
 
-export const Slider = ({ products }) => {
+export const Slider = ({ products, addToCart }) => {
     console.log(products)
     const [currentPage, setCurrentPage] = useState(0);
     const itemsPerPage = 3;
@@ -29,7 +29,7 @@ export const Slider = ({ products }) => {
                 <h2 className="slider__title">ÚLTIMOS LANZAMIENTOS</h2>
                 <div className="slider__cards">
                     {visibleProducts.map((product) => (
-                        <Card product={product} key={product.id}></Card>
+                        <Card product={product} key={product.id} addToCart={addToCart}></Card>
                     ))}
                 </div>
                 <div className="slider__arrows">

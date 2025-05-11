@@ -1,7 +1,7 @@
 import './../styles/Modal.css'
 
 export const Modal = ({ isOpen, onClose, title = null, children }) => {
-    if (!isOpen) return null;
+    if (!isOpen) return null
 
     return (
         <div className='modal-overlay' onClick={onClose}>
@@ -15,5 +15,5 @@ export const Modal = ({ isOpen, onClose, title = null, children }) => {
                 </div>
             </div>
         </div>
-    );
-};
+    )
+}

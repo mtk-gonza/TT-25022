@@ -6,5 +6,5 @@ export const Button = ({ children, onClick, type = 'button', className = '' }) =
         <button className={`${className}`} onClick={onClick} type={type}>
             {children}
         </button>
-    );
-};
+    )
+}

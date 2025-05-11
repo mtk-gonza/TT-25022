@@ -5,13 +5,13 @@ const apiUrl = 'http://localhost:3000/api'
 import './../styles/Register.css'
 
 export const Register = () => {
-    const [name, setName] = useState('');
-    const [lastname, setLastname] = useState('');
-    const [email, setEmail] = useState('');
-    const [password, setPassword] = useState('');
+    const [name, setName] = useState('')
+    const [lastname, setLastname] = useState('')
+    const [email, setEmail] = useState('')
+    const [password, setPassword] = useState('')
 
     const handleSubmit = async (e) => {
-        e.preventDefault();
+        e.preventDefault()
         try {
             const response = await fetch(`${apiUrl}/auth/register`, {
                 method: 'POST',
@@ -19,16 +19,16 @@ export const Register = () => {
                     'Content-Type': 'application/json',
                 },
                 body: JSON.stringify({ name, lastname, email, password }),
-            });
+            })
             if (response.ok) {
                 console.log('usuario creado correctamente');
             } else {
                 console.error('Error de inicio de sesión');
             }
         } catch (error) {
-            console.error('Error de red:', error);
+            console.error('Error de red:', error)
         }
-    };
+    }
 
     return (
         <main id="register" className="container">
