@@ -1,42 +1,49 @@
 import { useState } from 'react'
 import { faChevronRight, faChevronLeft } from '@fortawesome/free-solid-svg-icons'
 
+import { Container } from './Container.jsx'
 import { Card } from './Card.jsx'
 import { Icon } from './Icon.jsx'
 
 import './../styles/Slider.css'
 
 export const Slider = ({ products, addToCart }) => {
-    console.log(products)
-    const [currentPage, setCurrentPage] = useState(0);
-    const itemsPerPage = 3;
-    const totalPages = Math.ceil(products.length / itemsPerPage);
+    const [currentPage, setCurrentPage] = useState(0)
+    const itemsPerPage = 3
+    const totalPages = Math.ceil(products.length / itemsPerPage)
 
     const nextSlide = () => {
-        setCurrentPage((prevPage) => (prevPage + 1) % totalPages);
-    };
+        setCurrentPage((prevPage) => (prevPage + 1) % totalPages)
+    }
 
     const prevSlide = () => {
-        setCurrentPage((prevPage) => (prevPage - 1 + totalPages) % totalPages);
-    };
+        setCurrentPage((prevPage) => (prevPage - 1 + totalPages) % totalPages)
+    }
 
-    const startIndex = currentPage * itemsPerPage;
-    const endIndex = startIndex + itemsPerPage;
-    const visibleProducts = products.slice(startIndex, endIndex);
+    const startIndex = currentPage * itemsPerPage
+    const endIndex = startIndex + itemsPerPage
+    const visibleProducts = products.slice(startIndex, endIndex)
+
      return (
-        <section className="container">
-            <div className="slider">
-                <h2 className="slider__title">ÚLTIMOS LANZAMIENTOS</h2>
-                <div className="slider__cards">
-                    {visibleProducts.map((product) => (
-                        <Card product={product} key={product.id} addToCart={addToCart}></Card>
-                    ))}
+        <section>
+            <Container>
+                <div className='slider'>
+                    <h2 className='slider__title'>ÚLTIMOS LANZAMIENTOS</h2>
+                    <div className='slider__cards'>
+                        {visibleProducts.map((product) => (
+                            <Card product={product} key={product.id} addToCart={addToCart}></Card>
+                        ))}
+                    </div>
+                    <div className='slider__arrows'>
+                        <button className='pagination__link arrows__left' onClick={prevSlide}>
+                            <Icon css='icon' icon={faChevronLeft} />
+                        </button>
+                        <button className='pagination__link arrows__right' onClick={nextSlide}>
+                            <Icon css='icon' icon={faChevronRight} />
+                        </button>
+                    </div>
                 </div>
-                <div className="slider__arrows">
-                    <button className="pagination__link arrows__left" onClick={prevSlide}><Icon css='icon' icon={faChevronLeft} /></button>
-                    <button className="pagination__link arrows__right" onClick={nextSlide}><Icon css='icon' icon={faChevronRight} /></button>
-                </div>
-            </div>
+            </Container>
         </section>
     )
 }

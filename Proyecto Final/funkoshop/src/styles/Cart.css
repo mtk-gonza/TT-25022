@@ -3,7 +3,7 @@
     display: inline-block;
 }
 
-.cart-icon {
+.cart__icon {
     position: relative;
     background: none;
     border: none;
@@ -13,7 +13,7 @@
     color: aliceblue;
 }
 
-.cart-badge {
+.cart__badge {
     position: absolute;
     top: 0;
     right: 0;
@@ -28,7 +28,7 @@
     font-size: 0.75rem;
 }
 
-.dropdown-content {
+.cart__content {
     position: absolute;
     top: 50px;
     right: 0;
@@ -43,12 +43,12 @@
     color: black;
 }
 
-.dropdown-content h3 {
+.cart__content h3 {
     margin-top: 0;
     font-size: 1.2rem;
 }
 
-.cart-total {
+.cart__total {
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -56,7 +56,7 @@
     font-size: 1rem;
 }
 
-.cart-total button {
+.cart__total button {
     padding: 0.5rem 1rem;
     background-color: #dc3545;
     color: white;
@@ -66,6 +66,6 @@
     font-size: 1rem;
 }
 
-.cart-total button:hover {
+.cart__total button:hover {
     background-color: #a71d2a;
 }

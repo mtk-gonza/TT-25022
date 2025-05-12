@@ -1,4 +1,4 @@
-.cart-card {
+.cart-item {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
@@ -6,18 +6,19 @@
     width: 100%;
 }
 
-.item_name {
+.cart-item__name {
     min-width: 120px;
 }
 
-.item_price {
+.cart-item__price {
     width: 30px;
 }
 
-.item_quantity {
+.cart-item__quantity {
     text-align: end;
     width: 30px;
 }
+
 .btn-remove-item {
     border: none;
     cursor: pointer;
@@ -31,5 +32,4 @@
     outline: none;          
     box-shadow: none;       
     appearance: none;
-
 }

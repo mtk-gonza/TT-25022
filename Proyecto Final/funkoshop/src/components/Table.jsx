@@ -4,8 +4,8 @@ import './../styles/Table.css'
 
 export const Table = ({ title, columns, onAdd = null, data, onMove = null, onEdit = null, onDelete = null }) => {
     return (
-        <div className='table-container'>
-            <h2 className='title__table-container'>{title}</h2>
+        <div className='table'>
+            <h2 className='table__title'>{title}</h2>
             <table>
                 <thead>
                     <tr>
@@ -41,7 +41,7 @@ export const Table = ({ title, columns, onAdd = null, data, onMove = null, onEdi
                 </tbody>
             </table>
             {onAdd && (
-                <div className='actions__table-container'>
+                <div className='table__actions'>
                     <Button onClick={onAdd} className='btn btn-add'>Agregar Nuevo</Button>
                 </div>
             )}

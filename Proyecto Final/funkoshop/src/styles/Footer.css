@@ -2,10 +2,38 @@
     font-family: var(--alternative-font);
     color: var(--light-font-solid);
     background-color: var(--dark-bg-solid);
-    padding: var(--spacing-68) var(--spacing-68) var(--spacing-8) var(--spacing-68);
+    padding-top: var(--spacing-24);
     width: 100%;         
 }
+
+.footer__container {
+    display: flex;
+    justify-content: space-between;
+}
+
+.footer__links {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-8);
+}
+
+.footer__logo {
+    max-width: 20em;
+}
+
 .footer__copy {
-    margin-top: var(--spacing-36);
+    margin-top: var(--spacing-8);
     text-align: center;
+}
+
+.footer__link {
+    font-size: var(--font-xsmall);
+
+    display: inline-block;
+    transition: background .3s ease-in-out;
+    position: relative;
+}
+
+.footer__link:hover {
+    background-color: var(--primary-900);
 }

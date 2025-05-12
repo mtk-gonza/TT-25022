@@ -4,7 +4,7 @@
     border-radius: 8px;
 }
 
-.cart-item {
+.cart-list__item {
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -12,6 +12,6 @@
     border-bottom: 1px solid #eee;
 }
 
-.cart-item:last-child {
+.cart-list__item:last-child {
     border-bottom: none;
 }

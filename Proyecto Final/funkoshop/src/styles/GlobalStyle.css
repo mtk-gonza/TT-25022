@@ -46,6 +46,7 @@
     --spacing-12: 1.2rem;
     --spacing-8: 0.8rem;
 }
+
 /* NORMALIZE */
 *,
 *::before,
@@ -86,35 +87,10 @@ input[type="text"]::placeholder {
     font-weight: 500;
 }
 
-.container {
-    min-width: 1200px;
-    max-width: 1200px;
-    margin: 0 auto;
-}
 .grid-fixed {
     display: grid;
     grid-template-rows: auto 1fr auto;
     min-height: 100vh;
-}
-
-/* COMPONENT BUTTON */
-.btn {
-    border: none;
-    cursor: pointer;
-}
-.btn--primary {
-    background-color: var(--primary-solid);
-    color: var(--light-font-solid);
-    transition: background 0.2s ease-in-out;
-}
-.btn--primary:hover {
-    background-color: var(--secondary-solid);
-}
-.btn--medium {
-    padding: var(--spacing-8) var(--spacing-16);
-}
-.btn--large {
-    padding: var(--spacing-12) var(--spacing-28);
 }
 
 /* ANIMATIONNS */
@@ -125,24 +101,5 @@ input[type="text"]::placeholder {
 
     100% {
         opacity: 1;
-    }
-}
-
-@media screen and (max-width: 1280px) {
-    .container{
-        min-width: 1000px;
-        max-width: 1000px;
-    }
-}
-@media screen and (max-width: 1024px) {
-    .container{
-        min-width: 768px;
-        max-width: 768px;
-    }
-}
-@media screen and (max-width: 880px) {
-    .container{
-        min-width: 580px;
-        max-width: 580px;
     }
 }

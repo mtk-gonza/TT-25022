@@ -1,25 +1,65 @@
+import { useState } from 'react'
+import { faBars, faChevronDown } from '@fortawesome/free-solid-svg-icons'
+import { Link } from 'react-router-dom'
+import { Icon } from './Icon.jsx'
+import { Cart } from './Cart.jsx'
 
 import './../styles/Navbar.css'
 
-export const Navbar = ({ isAuthenticated, logout }) => {
+export const Navbar = ({ categories, cartItems, setCartItems, removeCartItem, isAuthenticated, logout }) => {
+    const [isOpen, setIsOpen] = useState(false)
+
+    const toggleMenu = () => {
+        setIsOpen(!isOpen)
+    }
 
     return (
-        <div className='navbar'>
-            <div className='container__navbar'>
-                <div className='logo__navbar'>
-                    <img src='/images/logoblanco.png' alt='logo de la provincia' />
-                </div>
-                <div className='title__navbar'>
-                    <h2>SG Inventory</h2>
-                </div>
-                <div className='auth__navbar'>
-                    {isAuthenticated ? (
-                        <Button className='btn_cerrar navbar__link' onClick={logout}>CERRAR SESIÓN</Button>
-                    ) : (
-                        <div></div>
-                    )}
-                </div>
+        <nav className='navbar'>
+            <picture className='navbar__logo'>
+                <Link to='/'>
+                    <img src='/images/branding/logo_light_horizontal.svg' alt='FunkoShop Logotipo' />
+                </Link>
+            </picture>
+            <div className='navbar-toggle' id='navbarToggle' onClick={() => toggleMenu()}>
+                <Icon css='icon' icon={faBars} />
             </div>
-        </div>
-    );
+            <ul className={isOpen ? 'navbar__menu active' : 'navbar__menu'}>
+                <li className='navbar__item with-submenu'>
+                    <Link className='navbar__link with-icon'>SHOP<Icon css='icon' icon={faChevronDown} /></Link>
+                    <ul className='submenu'>
+                        {categories.map((category) => (
+                            <li className='submenu__item' key={category.id}>
+                                <Link className='submenu__link' to={`/shop/${category.name}`}>{category.name}</Link>
+                            </li>
+                        ))}
+                    </ul>
+                </li>
+                <li className='navbar__item'>
+                    <Link className='navbar__link' to='/contact'>CONTACTO</Link>
+                </li>
+                {!isAuthenticated ?
+                    <>
+                        <li className='navbar__item'>
+                            <Link className='navbar__link' to='/login'>LOGIN</Link>
+                        </li>
+                        <li className='navbar__item'>
+                            <Link className='navbar__link' to='/register'>REGISTER</Link>
+                        </li>
+                    </>
+                    :
+                    <>
+                        <li className='navbar__item'>
+                            <Link className='navbar__link' to='/dashboard'>DASHBOARD</Link>
+                        </li>
+                        <li className='navbar__item'>
+                            <button>auth</button>
+                        </li>
+                    </>
+                }
+                <li className='navbar__item'>
+                    <Cart cartItems={cartItems} setCartItems={setCartItems} removeCartItem={removeCartItem} />
+                </li>
+            </ul>
+        </nav>
+    )
 }

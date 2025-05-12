@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
 import { faSpinner } from '@fortawesome/free-solid-svg-icons'
+import { Container } from './Container.jsx'
 import { Icon } from './Icon.jsx'
 
 import './../styles/Detail.css'
@@ -24,32 +25,32 @@ export const Detail = ({ product, addToCart }) => {
     }
 
     return (
-        <main className="container">            
-            <section className="item">
-                <picture className="detail-item__cover">
-                    <img className="detail-item__img--front" src={product.image_front} alt={`Figura coleccionable Funko de un ${product.name}`} />
-                    <img className="detail-item__img--back" src={product.image_back} alt={`Figura coleccionable Funko de un ${product.name} en caja`}/>
+        <Container>            
+            <section className='detail-item'>
+                <picture className='detail-item__cover'>
+                    <img className='detail-item__img--front' src={product.image_front} alt={`Figura coleccionable Funko de un ${product.name}`} />
+                    <img className='detail-item__img--back' src={product.image_back} alt={`Figura coleccionable Funko de un ${product.name} en caja`}/>
                 </picture>
-                <article className="item__info">
-                    <p className="item__licence">{ product.licence.name }</p>
-                    <h3 className="item__name">{ product.name }</h3>
-                    <p className="item__description">{ product.description }</p>
-                    <p className="item__price">{product.price}</p>
-                    <div className="item__cart">
-                        <button id="subtract" className="item__quantity" onClick={decrease}>
+                <article className='detail-item__info'>
+                    <p className='detail-item__licence'>{ product.licence.name }</p>
+                    <h3 className='detail-item__name'>{ product.name }</h3>
+                    <p className='detail-item__description'>{ product.description }</p>
+                    <p className='detail-item__price'>{product.price}</p>
+                    <div className='detail-item__cart'>
+                        <button id='subtract' className='detail-item__quantity' onClick={decrease}>
                             -
                         </button>
-                        <span className="item__input">{quantity}</span>
-                        <button id="add" className="item__quantity" onClick={increase}>
+                        <span className='detail-item__input'>{quantity}</span>
+                        <button className='detail-item__quantity' onClick={increase}>
                             +
                         </button>
-                        <button className="item__submit btn btn--primary btn--medium" onClick={() => addToCart({...product, quantity: quantity})}>
+                        <button className='detail-item__submit btn btn--primary btn--medium' onClick={() => addToCart({...product, quantity: quantity})}>
                             Agregar al carrito
                         </button>
                     </div>
-                    <p className="item__promo"><a href="">Ver métodos de pago</a> - {product.dues} CUOTAS SIN INTERÉS</p>
+                    <p className='detail-item__promo'><a href="">Ver métodos de pago</a> - {product.dues} CUOTAS SIN INTERÉS</p>
                 </article>
             </section>
-        </main>
+        </Container>
     )
 }

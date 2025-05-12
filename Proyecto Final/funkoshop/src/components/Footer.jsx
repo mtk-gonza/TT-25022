@@ -1,41 +1,26 @@
 import { Link } from 'react-router-dom'
+import { Container } from './Container.jsx'
 
 import './../styles/Footer.css'
 
 export const Footer = () => { 
-    const isAuthenticated  = false
     return (
-        <footer className="footer">
-            <nav className="navbar container">
-                <ul className="navbar__item">
-                    <li className="navbar__item">
-                        <Link className="navbar__link" to="/pages/shop">SHOP</Link>
-                    </li> 
-                    {!isAuthenticated ? 
-                        <>
-                            <li className="navbar__item">
-                                <Link className="navbar__link" to="/login">LOGIN</Link>
-                            </li>
-                            <li className="navbar__item">
-                                <Link className="navbar__link" to="/register">REGISTER</Link>
-                            </li>                 
-                        </>
-                    :   
-                        <>
-                            <li className="navbar__item">
-                                <Link className="navbar__link" to="/dashboard">DASHBOARD</Link>
-                            </li> 
-                        </>        
-                    }                   
-                    <li className="navbar__item">
-                        <Link className="navbar__link" to="/pages/contact">CONTACTO</Link>
-                    </li>
-                </ul>
-                <picture>
-                    <img src="/images/branding/isotype.svg" alt="Isotipo de la marca FunkoShop"/>    
-                </picture>
-            </nav>
-            <p className="footer__copy">All rights reserved 2025 - FunkoShop of Gonzalo Gonzalez &copy;</p>      
+        <footer className='footer'>
+            <Container>
+                <div className='footer__container'>
+                    <ul className='footer__links'>
+                        <li><Link className='footer__link' to="/faq">Preguntas Frecuentes</Link></li>
+                        <li><Link className='footer__link' to="/shipping">Envíos y Entregas</Link></li>
+                        <li><Link className='footer__link' to="/returns">Devoluciones</Link></li>
+                        <li><Link className='footer__link' to="/terms">Términos y Condiciones</Link></li>
+                        <li><Link className='footer__link' to="/privacy">Política de Privacidad</Link></li>
+                    </ul>    
+                    <picture className='footer__logo'>
+                        <img src='/images/branding/isotype.svg' alt='Isotipo de la marca FunkoShop'/>    
+                    </picture>
+                </div>
+                <p className='footer__copy'>All rights reserved 2025 - FunkoShop of Gonzalo Gonzalez &copy;</p>
+            </Container>
         </footer>
     )
 }

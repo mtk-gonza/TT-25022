@@ -80,10 +80,13 @@ export const App = () => {
                 setLicences(licencesData)
                 setCategories(categoriesData)
                 setProducts(enrichedProducts)
+                console.log(enrichedProducts)
 
             } catch (err) {
                 console.error('Error al cargar los datos:', err)
             } finally {
+                
+                
                 setIsLoading(false)
             }
         }

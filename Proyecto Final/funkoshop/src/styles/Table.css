@@ -18,7 +18,7 @@ tr {
     text-align: center;
 }
 
-.title__table-container {
+.table__title {
     font-size: var(--font-large);
     padding: var(--spacing-8);
 }

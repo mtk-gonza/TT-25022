@@ -236,5 +236,22 @@
         "category_id": 2,
         "createdAt": "2025-04-30T12:23:54",
         "updatedAt": "2025-04-30T12:23:54"
+    },
+    {
+        "id": 15,
+        "name": "Goku With Kamehameha",
+        "sku": "DBZ008001",
+        "description": "LLavero coleccionable de Dragon Ball.",
+        "price": 100,
+        "stock": 999,
+        "discount": 10,
+        "dues": 6,
+        "special": true,
+        "image_front": "/images/dragon-ball/keychains/goku-with-kamehameha_front.webp",
+        "image_back": "/images/dragon-ball/keychains/goku-with-kamehameha_back.webp",
+        "licence_id": 5,
+        "category_id": 3,
+        "createdAt": "2025-05-10T12:23:54",
+        "updatedAt": "2025-05-10T12:23:54"
     }
 ]

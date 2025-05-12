@@ -19,14 +19,14 @@ export const Cart = ({ cartItems, setCartItems, removeCartItem }) => {
     }
     return (
         <div className='cart'>
-            <button className='cart-icon' onClick={() => setIsOpen(!isOpen)}>
+            <button className='cart__icon' onClick={() => setIsOpen(!isOpen)}>
                 <Icon css='icon' icon={faCartShopping} />
                 {totalQuantity > 0 && (
-                    <span className='cart-badge'>{totalQuantity}</span>
+                    <span className='cart__badge'>{totalQuantity}</span>
                 )}
             </button>
             {isOpen && (
-                <div className='dropdown-content'
+                <div className='cart__content'
                     onMouseLeave={handlerCloseOnMouseLeave}
                 >
                     <h3>Carrito de Compras</h3>
@@ -35,7 +35,7 @@ export const Cart = ({ cartItems, setCartItems, removeCartItem }) => {
                     ) : (
                         <>
                             <CartList cartItems={cartItems} removeCartItem={removeCartItem}/>
-                            <div className='cart-total'>
+                            <div className='cart__total'>
                                 <span>Cantidad: {totalQuantity} producto(s)</span>
                                 <strong>Precio Total: ${totalPrice.toFixed(2)}</strong>
                                 <button onClick={handlerClearCart}>Vaciar Carrito</button>
