@@ -1,49 +1,62 @@
 import { useState, useEffect } from 'react'
-import { useParams, Link } from 'react-router-dom'
+import { useSearchParams, useParams, Link } from 'react-router-dom'
 import { faSpinner, faChevronRight, faChevronLeft } from '@fortawesome/free-solid-svg-icons'
 import { Card } from './../components/Card.jsx'
 import { Icon } from './../components/Icon.jsx'
 import { news } from './../utils/news.js'
 import './../styles/Shop.css'
 
-export const Shop = ({ products, addToCart }) => {
-    const { category, licence_id } = useParams()
+export const Shop = ({ products: allProducts, addToCart }) => {
+    const [searchParams] = useSearchParams()
+    const { licence, licence_id, category, category_id } = useParams()
     const [currentPage, setCurrentPage] = useState(1)
+    const [products, setProducts] = useState([])
     const [productsPerPage] = useState(6)
     const [filteredProducts, setFilteredProducts] = useState(products)
+    const licenceParam = searchParams.get('licence') 
+
     const [filters, setFilters] = useState({
         news: false,
         offers: false,
         specials: false,
         favs: false
     })
-    let filtered = products;
-
-    const setProducts = () => {
+    
+    useEffect(() => {
+        let filtered = [...allProducts]
+    
         if (category) {
-            filtered = products.filter(
-                product => licence_id ? product.category.name === category & product.licence_id === parseInt(licence_id) :
-                    product.category.name === category
-            )
+            filtered = filtered.filter(product => product.category.name === category)
         }
-        if (filters.news) {            
-            filtered = filtered.filter(product => news(product.createdAt))
+    
+        if (licenceParam) {
+            filtered = filtered.filter(product => product.licence_id === parseInt(licenceParam, 10))
         }
-        if (filters.offers) {
-            filtered = filtered.filter(product => product.discount > 10)
-        }
-        if (filters.specials) {            
-            filtered = filtered.filter(product => product.special == 1)
-        }
-        if (filters.favs) {
-            filtered = filtered.filter(product => product)
-        }        
-        setFilteredProducts(filtered)
-    }
+    
+        setProducts(filtered)
+        setCurrentPage(1)
+    }, [allProducts, category, licenceParam])
 
     useEffect(() => {
-        setProducts()
-    }, [category, filters, licence_id])
+        let result = [...products]
+
+        if (filters.news) {
+            result = result.filter(product => news(product.createdAt))
+        }
+
+        if (filters.offers) {
+            result = result.filter(product => product.discount > 0)
+        }
+
+        if (filters.specials) {
+            result = result.filter(product => product.special)
+        }
+
+        if (filters.favs) {
+            result = result.filter(product => product.isFav)
+        }
+        setFilteredProducts(result)
+    }, [products, filters])
 
     const indexOfLastProduct = currentPage * productsPerPage
     const indexOfFirstProduct = indexOfLastProduct - productsPerPage
