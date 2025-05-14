@@ -1,9 +1,12 @@
 import React, { useState, useEffect } from 'react'
 import { BrowserRouter } from 'react-router-dom'
 import { Router } from './routes/Router.jsx'
+
+import { API_URL } from './utils/config.js'
+
+import { Loading } from './components/Loading.jsx'
 import { Header } from './components/Header.jsx'
 import { Footer } from './components/Footer.jsx'
-import { Loading } from './components/Loading.jsx'
 
 export const App = () => {
     const [products, setProducts] = useState([])
@@ -59,7 +62,7 @@ export const App = () => {
             setIsLoading(true)
             try {
                 const [productsRes, licencesRes, categoriesRes] = await Promise.all([
-                    fetch('/data/products.json'),
+                    fetch(`${API_URL}/products`),
                     fetch('/data/licences.json'),
                     fetch('/data/categories.json')
                 ])
@@ -80,13 +83,11 @@ export const App = () => {
                 setLicences(licencesData)
                 setCategories(categoriesData)
                 setProducts(enrichedProducts)
-                console.log(enrichedProducts)
-
             } catch (err) {
+                setError(err)
                 console.error('Error al cargar los datos:', err)
+                console.log(error)
             } finally {
-                
-                
                 setIsLoading(false)
             }
         }
@@ -94,7 +95,11 @@ export const App = () => {
     }, [])
 
     return (
-        isLoading ? <Loading /> :
+        isLoading ? (
+            <div className='loading-data'>
+                <Loading />
+            </div>
+        ) : (
             <BrowserRouter>
                 <Header 
                     categories={categories} 
@@ -110,5 +115,6 @@ export const App = () => {
                 />
                 <Footer />
             </BrowserRouter>
+        )
     )
 }

@@ -93,6 +93,16 @@ input[type="text"]::placeholder {
     min-height: 100vh;
 }
 
+.loading-data {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    background-color: #fff; /* O el color de fondo que uses */
+}
 /* ANIMATIONNS */
 @keyframes fade {
     0% {

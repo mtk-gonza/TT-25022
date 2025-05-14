@@ -1,0 +1,9 @@
+.products {
+    display: flex;
+    justify-content: center;
+    text-align: center;
+    margin: 1rem 0;
+}
+.products h1 {
+    margin-bottom: 1rem;
+}

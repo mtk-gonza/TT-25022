@@ -1,0 +1,28 @@
+.navbar {
+    display: flex;   
+    align-items: center;
+    justify-content: center;
+    font-size: x-large;
+    margin: 2rem 0;
+}
+
+.navbar__logo {
+    display: flex;
+    justify-content: flex-start;
+    min-width: 20%;
+    text-align: center;
+}
+.navbar__logo img {
+    height: 50px;
+    width: 50px;
+}
+.navbar__tittle {
+    min-width: 60%;
+    text-align: center;
+}
+.navbar__cart {
+    display: flex;
+    justify-content: flex-end;
+    min-width: 20%;
+    text-align: center;
+}
