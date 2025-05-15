@@ -1,5 +1,5 @@
-#login {
-    margin: var(--spacing-68) auto;
+.login {
+    margin-top: 1rem;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -10,8 +10,7 @@
 
 .login__header {
     display: flex;
-    flex-direction: column;
-    gap: var(--spacing-16);
+    flex-direction: column;    
     align-items: center;
     justify-content: center;
 }
@@ -27,7 +26,7 @@
     justify-content: center;    
     align-items: stretch;
     gap: var(--spacing-36);
-    margin: var(--spacing-68);
+    margin-top: 2rem;
 }
 .form__box--grid {
     display: grid;

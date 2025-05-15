@@ -3,19 +3,11 @@ import { Navbar } from './Navbar.jsx'
 
 import './../styles/Header.css'
 
-export const Header = ({categories, cartItems, setCartItems, removeCartItem }) => {
-    const isAuthenticated = false
-
+export const Header = () => {
     return (
         <header className='header'>
             <Container>
-            <Navbar 
-                categories={categories}
-                cartItems={cartItems}
-                setCartItems={setCartItems}
-                removeCartItem={removeCartItem}
-                isAuthenticated={isAuthenticated}
-            />
+                <Navbar />
             </Container>
         </header>
     )

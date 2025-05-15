@@ -1,8 +1,13 @@
-import React, { useState } from 'react'
+import React, { useState, useContext } from 'react'
+import { Link } from 'react-router-dom'
+
+import { CartContext } from './../context/CartContext.jsx'
 
 import './../styles/ProductCard.css'
 
-export const ProductCard = ({product, addToCart}) => {
+export const ProductCard = ({product}) => {
+    const { addToCart } = useContext(CartContext)
+
     const [quantity, setQuantity] = useState(1)
 
     const increase = () => {
@@ -29,6 +34,7 @@ export const ProductCard = ({product, addToCart}) => {
                 </button>
             </div>
             <button className='btn_add-item' onClick={() => addToCart({...product, quantity: quantity})}>Agregar al Carrito</button>
+            <Link to={`/products/${product.id}`}>Ver mas</Link>
         </div>
     )
 }

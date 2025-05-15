@@ -1,12 +1,18 @@
-import { useState } from 'react'
+import React,{ useState, useContext } from 'react'
 import { faBars, faChevronDown } from '@fortawesome/free-solid-svg-icons'
 import { Link } from 'react-router-dom'
 import { Icon } from './Icon.jsx'
 import { Cart } from './Cart.jsx'
 
+import { ProductsContext } from './../context/ProductsContext.jsx'
+import { AuthContext } from './../context/AuthContext.jsx'
+
 import './../styles/Navbar.css'
 
-export const Navbar = ({ categories, cartItems, setCartItems, removeCartItem, isAuthenticated, logout }) => {
+export const Navbar = () => {
+    const { categories } = useContext(ProductsContext)
+    const { isAuthenticated, logout } = useContext(AuthContext)
+
     const [isOpen, setIsOpen] = useState(false)
 
     const toggleMenu = () => {
@@ -52,12 +58,12 @@ export const Navbar = ({ categories, cartItems, setCartItems, removeCartItem, is
                             <Link className='navbar__link' to='/dashboard'>DASHBOARD</Link>
                         </li>
                         <li className='navbar__item'>
-                            <button>auth</button>
+                            <button className='btn_cerrar navbar__link' onClick={logout}>CERRAR SESIÓN</button>
                         </li>
                     </>
                 }
                 <li className='navbar__item'>
-                    <Cart cartItems={cartItems} setCartItems={setCartItems} removeCartItem={removeCartItem} />
+                    <Cart />
                 </li>
             </ul>
         </nav>

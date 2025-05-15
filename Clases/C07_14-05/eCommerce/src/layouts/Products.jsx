@@ -1,11 +1,14 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import { Container } from './../components/Container.jsx'
 import { Loading } from './../components/Loading.jsx'
 import { ProductList } from './../components/ProductList.jsx'
 
+import { ProductsContext } from './../context/ProductsContext.jsx'
+
 import './../styles/products.css'
 
-export const Products = ({ products, isLoading, addToCart }) => {
+export const Products = () => {
+    const { products, isLoading } = useContext(ProductsContext)
     return (
         <div className='products'>
             <Container>
@@ -13,7 +16,7 @@ export const Products = ({ products, isLoading, addToCart }) => {
                     isLoading ? (
                         <Loading />
                     ) : (
-                        <ProductList products={products} addToCart={addToCart} />
+                        <ProductList products={products}/>
                     )
                 }
             </Container>

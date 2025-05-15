@@ -1,12 +1,16 @@
-import { useState, useEffect } from 'react'
+import React, { useState, useEffect, useContext } from 'react'
 import { useSearchParams, useParams, Link } from 'react-router-dom'
 import { faSpinner, faChevronRight, faChevronLeft } from '@fortawesome/free-solid-svg-icons'
 import { Card } from './../components/Card.jsx'
 import { Icon } from './../components/Icon.jsx'
 import { news } from './../utils/news.js'
+
+import { CartContext } from './../context/CartContext.jsx'
+
 import './../styles/Shop.css'
 
-export const Shop = ({ products: allProducts, addToCart }) => {
+export const Shop = ({ products: allProducts }) => {
+    const { addToCart } = useContext(CartContext) 
     const [searchParams] = useSearchParams()
     const { licence, licence_id, category, category_id } = useParams()
     const [currentPage, setCurrentPage] = useState(1)

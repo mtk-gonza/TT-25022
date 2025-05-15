@@ -3,7 +3,7 @@ import { ProductCard } from './ProductCard.jsx'
 
 import './../styles/ProductList.css'
 
-export const ProductList = ({ products, addToCart }) => {
+export const ProductList = ({ products }) => {
 
     return (
         <>
@@ -12,7 +12,7 @@ export const ProductList = ({ products, addToCart }) => {
                 {
                     products.map(product => (
                         <li key={product.id} className='product-item'>
-                            <ProductCard product={product} addToCart={addToCart} />
+                            <ProductCard product={product} />
                         </li>
                     ))
                 }

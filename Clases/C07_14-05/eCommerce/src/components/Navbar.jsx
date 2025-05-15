@@ -6,7 +6,7 @@ import { Cart } from './Cart.jsx'
 import logo from './../assets/eCommerce.png'
 import './../styles/Navbar.css'
 
-export const Navbar = ({ cartItems, clearCart, removeFromCart }) => {
+export const Navbar = () => {
     return (
         <Container>
             <div className='navbar'>
@@ -17,7 +17,7 @@ export const Navbar = ({ cartItems, clearCart, removeFromCart }) => {
                     <h2>eCommerce</h2>
                 </div>
                 <div className='navbar__cart'>
-                    <Cart cartItems={cartItems} clearCart={clearCart} removeFromCart={removeFromCart} />
+                    <Cart/>
                 </div>
             </div>
         </Container>

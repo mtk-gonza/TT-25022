@@ -3,13 +3,13 @@ import { Category } from './Category.jsx'
 
 import './../styles/TabContainer.css'
 
-export const TabContainer = ({categories}) => {
+export const TabContainer = () => {
     const [activeTab, setActiveTab] = useState(0)
 
     const tabs = [
         {
             label: 'Categorias',
-            content: <Category categories={categories}></Category>
+            content: <Category />
         }
     ];
 

@@ -1,14 +1,17 @@
+import React, { useContext } from 'react'
 import { Table } from './Table.jsx'
+import { ProductsContext } from './../context/ProductsContext.jsx'
 
 import './../styles/Category.css'
 
-export const Category = ({categories}) => {
-
+export const Category = () => {
+    const { categories } = useContext(ProductsContext)
     const columns = [
         { key: 'id', label: 'ID' },
         { key: 'name', label: 'Nombre' },
-        { key: 'parent', label: 'Categoría Padre' },
-        { key: 'created_at', label: 'Fecha de Creación' }
+        { key: 'description', label: 'Descripción' },
+        { key: 'createdAt', label: 'Fecha de Creación' },
+        { key: 'updatedAt', label: 'Fecha de Actualización' }
     ];
 
     const handleEdit = (item) => {

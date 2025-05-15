@@ -1,9 +1,12 @@
-import React, { useState } from 'react'
+import React, { useState, useContext } from 'react'
 import { CartList } from './CartList.jsx'
+
+import { CartContext } from './../context/CartContext.jsx'
 
 import './../styles/Cart.css'
 
-export const Cart = ({ cartItems, clearCart, removeFromCart }) => {
+export const Cart = () => {
+    const { cartItems, clearCart, removeFromCart } = useContext(CartContext)
     const [isOpen, setIsOpen] = useState(false)
     const totalPrice = cartItems.reduce((total, item) => total + item.price * item.quantity, 0)
     const totalQuantity = cartItems.reduce((sum, item) => sum + item.quantity, 0)
