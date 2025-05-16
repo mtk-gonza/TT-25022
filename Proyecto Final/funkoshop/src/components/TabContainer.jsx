@@ -1,5 +1,8 @@
 import { useState } from 'react'
-import { Category } from './Category.jsx'
+import { Products } from './Products.jsx'
+import { Licences } from './Licences.jsx'
+import { Categories } from './Categories.jsx'
+import { Users } from './Users.jsx'
 
 import './../styles/TabContainer.css'
 
@@ -8,10 +11,21 @@ export const TabContainer = () => {
 
     const tabs = [
         {
+            label: 'Productos',
+            content: <Products />
+        },        {
+            label: 'Licencias',
+            content: <Licences />
+        },
+        {
             label: 'Categorias',
-            content: <Category />
+            content: <Categories />
+        },
+        {
+            label: 'Usuarios',
+            content: <Users />
         }
-    ];
+    ]
 
     return (
         <div className='tab-container'>

@@ -1,5 +1,4 @@
-import React, { useContext } from 'react'
-
+import React from 'react'
 import { Routes, Route, Navigate } from 'react-router-dom'
 import { Admin } from '../layouts/Admin.jsx'
 import { Contact } from '../layouts/Contact.jsx'
@@ -12,11 +11,10 @@ import { Register } from '../layouts/Register.jsx'
 import { Shop } from '../layouts/Shop.jsx'
 import { ProtectedRoute } from './ProtectedRoute.jsx'
 
-import { ProductsContext } from './../context/ProductsContext.jsx'
+import { useProducts } from './../hooks/useProducts.jsx'		
 
 export const AppRoutes = () => {
-	const { products } = useContext(ProductsContext)
-			
+	const { products } = useProducts()
 	return (
 		<Routes>
 			<Route path='/' element={<Home />} />

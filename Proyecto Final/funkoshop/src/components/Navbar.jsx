@@ -1,17 +1,17 @@
-import React,{ useState, useContext } from 'react'
+import React, { useState } from 'react'
 import { faBars, faChevronDown } from '@fortawesome/free-solid-svg-icons'
 import { Link } from 'react-router-dom'
 import { Icon } from './Icon.jsx'
 import { Cart } from './Cart.jsx'
 
-import { ProductsContext } from './../context/ProductsContext.jsx'
-import { AuthContext } from './../context/AuthContext.jsx'
+import { useProducts } from './../hooks/useProducts.jsx'
+import { useAuth } from './../hooks/useAuth.jsx'
 
 import './../styles/Navbar.css'
 
 export const Navbar = () => {
-    const { categories } = useContext(ProductsContext)
-    const { isAuthenticated, logout } = useContext(AuthContext)
+    const { categories } = useProducts()
+    const { isAuthenticated, logout } = useAuth()
 
     const [isOpen, setIsOpen] = useState(false)
 

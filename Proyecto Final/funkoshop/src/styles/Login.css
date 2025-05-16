@@ -28,6 +28,11 @@
     gap: var(--spacing-36);
     margin-top: 2rem;
 }
+.login__error {
+    color: var(--primary-solid);
+    min-height: 1.2rem;
+    text-align: center;
+}
 .form__box--grid {
     display: grid;
     grid-template-columns: 1fr 3fr;

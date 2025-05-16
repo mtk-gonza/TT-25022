@@ -22,3 +22,13 @@ tr {
     font-size: var(--font-large);
     padding: var(--spacing-8);
 }
+
+.table__pagination {
+    display: flex;
+    justify-content: center;
+    margin-top: var(--spacing-24);
+}
+
+.table__pagination .pagination {
+    gap: var(--spacing-8);
+}

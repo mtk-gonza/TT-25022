@@ -12,27 +12,38 @@ export const AuthProvider = ({ children }) => {
     useEffect(() => {
         const storedUser = localStorage.getItem('user')
         if (storedUser) {
-            setUser(JSON.parse(storedUser))
+            const parsedUser = JSON.parse(storedUser)
+            setUser(parsedUser)
             setIsAuthenticated(true)
         }
         setIsLoadingUser(false)
     }, [])
 
     const login = async (email, password) => {
+        if (!email || !password) {
+            setError('Por favor, ingresa correo y contraseña')
+            return
+        }
         try {
             setIsLoadingUser(true)
             setError(null)
-            const response = await fetch(`${API_URL}/users?email=${email}&password=${password}`)
-            if (response.status == 200) {
-                setUser(response)
-                setIsAuthenticated(true)
-                localStorage.setItem('user', JSON.stringify(response))
-                return response
+            const response = await fetch(`${API_URL}/users?email=${encodeURIComponent(email)}&password=${encodeURIComponent(password)}`)
+            if (!response.ok) {
+                throw new Error('Error en la conexión')
             }
+            const users = await response.json()
+            if (users.length === 0) {
+                setError('Correo o contraseña incorrectos')
+                return
+            }
+            const loggedInUser = users[0]
+            setUser(loggedInUser)
+            setIsAuthenticated(true)
+            localStorage.setItem('user', JSON.stringify(loggedInUser))
         } catch (err) {
-            setError(err.message || 'Error al iniciar sesión')
+            setError(err.message || 'Hubo un problema al iniciar sesión')
         } finally {
-            setIsLoadingUser(false)            
+            setIsLoadingUser(false)
         }
     }
 
@@ -43,7 +54,7 @@ export const AuthProvider = ({ children }) => {
     }
 
     return (
-        <AuthContext.Provider value={{ user, isAuthenticated, isLoadingUser, error, login, logout }}>
+        <AuthContext.Provider value={{ user, isAuthenticated, isLoadingUser, error, setError, login, logout }}>
             {children}
         </AuthContext.Provider>
     )

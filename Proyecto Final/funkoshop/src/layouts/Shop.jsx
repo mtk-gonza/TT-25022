@@ -1,8 +1,11 @@
 import React, { useState, useEffect, useContext } from 'react'
 import { useSearchParams, useParams, Link } from 'react-router-dom'
 import { faSpinner, faChevronRight, faChevronLeft } from '@fortawesome/free-solid-svg-icons'
+
 import { Card } from './../components/Card.jsx'
 import { Icon } from './../components/Icon.jsx'
+import { Paginator } from './../components/Paginator.jsx'
+
 import { news } from './../utils/news.js'
 
 import { CartContext } from './../context/CartContext.jsx'
@@ -10,14 +13,14 @@ import { CartContext } from './../context/CartContext.jsx'
 import './../styles/Shop.css'
 
 export const Shop = ({ products: allProducts }) => {
-    const { addToCart } = useContext(CartContext) 
+    const { addToCart } = useContext(CartContext)
     const [searchParams] = useSearchParams()
     const { licence, licence_id, category, category_id } = useParams()
     const [currentPage, setCurrentPage] = useState(1)
     const [products, setProducts] = useState([])
     const [productsPerPage] = useState(6)
     const [filteredProducts, setFilteredProducts] = useState(products)
-    const licenceParam = searchParams.get('licence') 
+    const licenceParam = searchParams.get('licence')
 
     const [filters, setFilters] = useState({
         news: false,
@@ -25,18 +28,18 @@ export const Shop = ({ products: allProducts }) => {
         specials: false,
         favs: false
     })
-    
+
     useEffect(() => {
         let filtered = [...allProducts]
-    
+
         if (category) {
             filtered = filtered.filter(product => product.category.name === category)
         }
-    
+
         if (licenceParam) {
             filtered = filtered.filter(product => product.licence_id === parseInt(licenceParam, 10))
         }
-    
+
         setProducts(filtered)
         setCurrentPage(1)
     }, [allProducts, category, licenceParam])
@@ -65,11 +68,7 @@ export const Shop = ({ products: allProducts }) => {
     const indexOfLastProduct = currentPage * productsPerPage
     const indexOfFirstProduct = indexOfLastProduct - productsPerPage
     const currentProducts = filteredProducts.slice(indexOfFirstProduct, indexOfLastProduct)
-
-    const pageNumbers = []
-    for (let i = 1; i <= Math.ceil(filteredProducts.length / productsPerPage); i++) {
-        pageNumbers.push(i)
-    }
+    const totalPages = Math.ceil(filteredProducts.length / productsPerPage)
 
     const handleFilterChange = (filter) => {
         setFilters(prevFilters => ({
@@ -152,49 +151,29 @@ export const Shop = ({ products: allProducts }) => {
                 </div>
             </aside>
             <section className="shop__content">
-                {!currentProducts.length ? 
+                {!currentProducts.length ? (
                     <div className="container">
                         <Icon css='icon' icon={faSpinner} />
                     </div>
-                    :
-                    <ul className="shop__items">                
-                        {currentProducts.map((product) => (
-                            <li key={product.id}>
-                                <Card product={product} addToCart={addToCart}></Card>
-                            </li>
-                        ))}
-                    </ul>
-                }                
-                <div className="pagination">
-                    {filteredProducts.length > 6 &&
-                        <>
-                            <Link
-                                to={`#${currentPage > 1 ? currentPage - 1 : 1}`}
-                                className={`pagination__link ${currentPage === 1 ? 'disabled' : 'pagination__link--selected'}`}
-                                onClick={() => setCurrentPage(currentPage > 1 ? currentPage - 1 : 1)}
-                            >
-                                <Icon css='icon' icon={faChevronLeft} /> 
-                            </Link>
-                            {pageNumbers.map((number) => (
-                                <Link
-                                    key={number}
-                                    to={`#${number}`}
-                                    className={`pagination__link ${currentPage === number ? 'pagination__link--selected' : ''}`}
-                                    onClick={() => setCurrentPage(number)}
-                                >
-                                    {number}
-                                </Link>
+                ) : (
+                    <>
+                        <ul className="shop__items">
+                            {currentProducts.map((product) => (
+                                <li key={product.id}>
+                                    <Card product={product} addToCart={addToCart}></Card>
+                                </li>
                             ))}
-                            <Link
-                                to={`#${currentPage < pageNumbers.length ? currentPage + 1 : pageNumbers.length}`}
-                                className={`pagination__link ${currentPage === pageNumbers.length ? 'disabled' : 'pagination__link--selected'}`}
-                                onClick={() => setCurrentPage(currentPage < pageNumbers.length ? currentPage + 1 : pageNumbers.length)}
-                            >
-                                <Icon css='icon' icon={faChevronRight} />                                
-                            </Link>
-                        </>
-                    }
-                </div>
+                        </ul>
+
+                        {totalPages > 1 && (
+                            <Paginator
+                                currentPage={currentPage}
+                                totalPages={totalPages}
+                                onPageChange={(newPage) => setCurrentPage(newPage)}
+                            />
+                        )}
+                    </>
+                )}
             </section>
         </main>
     )
