@@ -33,6 +33,21 @@
     min-height: 1.2rem;
     text-align: center;
 }
+.form__actions {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+}
+.form__link {
+    margin-bottom: 1rem;
+    color: var(--secondary-solid);
+}
+.form__link:hover {
+    color: var(--secodary-300);
+}
+
 .form__box--grid {
     display: grid;
     grid-template-columns: 1fr 3fr;
@@ -86,10 +101,4 @@
 }
 .form__btn {
     font-size: var(--font-xsmall);
-}
-.form__link {
-    color: var(--secondary-solid);
-}
-.form__link:hover {
-    color: var(--secodary-300);
 }

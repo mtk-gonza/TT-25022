@@ -1,0 +1,9 @@
+.not-found {
+    display: flex;
+    justify-content: center;
+    text-align: center;
+    
+}
+.not-found .container a {
+    margin-top: 2rem;
+}

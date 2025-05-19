@@ -1,4 +1,4 @@
-#shop {
+.shop .container {
     display: flex;
     flex-direction: row;
     width: 100%;
@@ -15,12 +15,16 @@
     font-size: var(--font-medium);
     font-weight: 500;
 }
-.filters__search, .filters__order {
+.filters__search, 
+.filters__order, 
+.filters__type {
     display: flex;
     flex-direction: column;
     gap: var(--spacing-12);
 }
-.filters__search input, .filters__order select {
+.filters__search input, 
+.filters__order select,
+.filters__type select {
     border-radius: 6px;
     border: 2px solid var(--dark-solid);
     font-size: var(--font-medium);
@@ -103,4 +107,31 @@
 .pagination .pagination__link--selected {
     border-color: var(--primary-solid);
     color: var(--primary-solid);
+}
+
+.no-results {
+    width: 100%;
+    text-align: center;
+    padding: var(--spacing-24);
+}
+
+.no-results p {
+    font-size: var(--font-medium);
+    margin-bottom: var(--spacing-16);
+}
+
+.filters__btn {
+    display: inline-block;
+    font-size: var(--font-medium);
+    background-color: var(--dark-bg-solid);
+    color: var(--light-font-solid);
+    padding: var(--spacing-16) var(--spacing-36);
+    border-radius: 50px;
+    font-weight: 500;
+    transition: background .3s ease-in-out;
+    border: none; 
+    cursor: pointer;
+}
+.filters__btn:hover {
+    background-color: var(--primary-900);
 }

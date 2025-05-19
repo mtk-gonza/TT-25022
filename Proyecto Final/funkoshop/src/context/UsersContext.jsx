@@ -1,5 +1,5 @@
 import { createContext, useState, useEffect } from 'react'
-import { API_URL } from './../config.js'
+import { getUsers } from './../services/usersService.js'
 
 export const UsersContext = createContext()
 
@@ -13,23 +13,9 @@ export const UsersProvider = ({ children }) => {
         const loadData = async () => {
             setIsLoading(true)
             try {
-                const [usersRes, rolesRes] = await Promise.all([
-                    fetch(`${API_URL}/users`),
-                    fetch('/data/roles.json')
-                ])
-
-                const usersData = await usersRes.json()
-                const rolesData = await rolesRes.json()
-
-                const rolesMap = Object.fromEntries(rolesData.map(r => [r.id, r]))
-
-                const enrichedUsers = usersData.map(user => ({
-                    ...user,
-                    rol: rolesMap[user.rol_id],
-                }))
-
-                setRoles(rolesMap)
-                setUsers(enrichedUsers)
+                const data = await getUsers()
+                setRoles(data.roles)
+                setUsers(data.users)
             } catch (err) {
                 setError(err)
                 console.error('Error al cargar los datos:', err)
@@ -42,7 +28,12 @@ export const UsersProvider = ({ children }) => {
     }, [])
 
     return (
-        <UsersContext.Provider value={{ users, roles, error, isLoading }}>
+        <UsersContext.Provider value={{ 
+            users, 
+            roles, 
+            error, 
+            isLoading 
+        }}>
             {children}
         </UsersContext.Provider>
     )

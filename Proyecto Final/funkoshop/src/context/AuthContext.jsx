@@ -1,5 +1,5 @@
 import React, { createContext, useState, useEffect } from 'react'
-import { API_URL } from './../config.js'
+import { login, logout } from './../services/authService.js'
 
 export const AuthContext = createContext()
 
@@ -12,49 +12,48 @@ export const AuthProvider = ({ children }) => {
     useEffect(() => {
         const storedUser = localStorage.getItem('user')
         if (storedUser) {
-            const parsedUser = JSON.parse(storedUser)
-            setUser(parsedUser)
-            setIsAuthenticated(true)
+            try {
+                const parsedUser = JSON.parse(storedUser)
+                setUser(parsedUser)
+                setIsAuthenticated(true)
+            } catch (err) {
+                console.error('Error al parsear usuario almacenado', err)
+            }
         }
         setIsLoadingUser(false)
     }, [])
 
-    const login = async (email, password) => {
-        if (!email || !password) {
-            setError('Por favor, ingresa correo y contraseña')
-            return
-        }
+    const handleLogin = async (email, password) => {
         try {
-            setIsLoadingUser(true)
             setError(null)
-            const response = await fetch(`${API_URL}/users?email=${encodeURIComponent(email)}&password=${encodeURIComponent(password)}`)
-            if (!response.ok) {
-                throw new Error('Error en la conexión')
-            }
-            const users = await response.json()
-            if (users.length === 0) {
-                setError('Correo o contraseña incorrectos')
-                return
-            }
-            const loggedInUser = users[0]
+            setIsLoadingUser(true)
+            const loggedInUser = await login(email, password)            
             setUser(loggedInUser)
             setIsAuthenticated(true)
             localStorage.setItem('user', JSON.stringify(loggedInUser))
         } catch (err) {
             setError(err.message || 'Hubo un problema al iniciar sesión')
+            throw err
         } finally {
             setIsLoadingUser(false)
         }
     }
 
-    const logout = () => {
+    const handleLogout = () => {
         setUser(null)
         setIsAuthenticated(false)
-        localStorage.removeItem('user')
+        logout()
     }
 
     return (
-        <AuthContext.Provider value={{ user, isAuthenticated, isLoadingUser, error, setError, login, logout }}>
+        <AuthContext.Provider value={{ 
+            user, 
+            isAuthenticated, 
+            isLoadingUser, error, 
+            setError, 
+            login: handleLogin,
+            logout: handleLogout 
+        }}>
             {children}
         </AuthContext.Provider>
     )

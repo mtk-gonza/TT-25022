@@ -58,21 +58,23 @@ export const Login = () => {
                     <div className='login__error'>
                         {error && (<p>{error}</p>)}                            
                     </div>
-                    <div className='form__submission'>
-                        <input
-                            className='form__btn btn btn--primary btn--large'
-                            type='submit'
-                            value={isLoadingUser ? 'Ingresando...' : 'Ingresar'}
-                            disabled={isLoadingUser}
-                        />
-                        <div className='form__remember'>
-                            <input type='checkbox' name='remember' />
-                            <label htmlFor=''>Recordarme</label>
+                    <div className='form__actions'>
+                        <a className='form__link' href=''>
+                            Olvidé mi contraseña
+                        </a>
+                        <div className='form__submission'>
+                            <input
+                                className='form__btn btn btn--primary btn--large'
+                                type='submit'
+                                value={isLoadingUser ? 'Ingresando...' : 'Ingresar'}
+                                disabled={isLoadingUser}
+                            />
+                            <div className='form__remember'>
+                                <input type='checkbox' name='remember' />
+                                <label htmlFor=''>Recordarme</label>
+                            </div>
                         </div>
                     </div>
-                    <a className='form__link' href=''>
-                        Olvidé mi contraseña
-                    </a>
                 </form>
             </Container>
         </main>

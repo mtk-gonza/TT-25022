@@ -10,7 +10,7 @@
   {
     "name": "Guest",
     "lastName": "Guest",
-    "email": "guest@funkoshop@.com",
+    "email": "guest@funkoshop.com",
     "password": "guest",
     "rol_id": 2,
     "id": "2"

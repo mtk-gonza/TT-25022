@@ -9,8 +9,6 @@ export const Footer = () => {
             <Container>
                 <div className='footer__container'>
                     <ul className='footer__links'>
-                        <li><Link className='footer__link' to="/faq">Preguntas Frecuentes</Link></li>
-                        <li><Link className='footer__link' to="/shipping">Envíos y Entregas</Link></li>
                         <li><Link className='footer__link' to="/returns">Devoluciones</Link></li>
                         <li><Link className='footer__link' to="/terms">Términos y Condiciones</Link></li>
                         <li><Link className='footer__link' to="/privacy">Política de Privacidad</Link></li>
