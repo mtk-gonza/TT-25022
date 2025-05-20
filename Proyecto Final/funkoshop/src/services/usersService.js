@@ -1,5 +1,5 @@
 import { API_URL } from './../config.js'
-import { fetchData } from './../utils/FetchData.js'
+import { fetchData } from './fetchData.js'
 
 export const getUsers = async () => {
     try {

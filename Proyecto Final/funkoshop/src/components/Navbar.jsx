@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import { faBars, faChevronDown } from '@fortawesome/free-solid-svg-icons'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import { Icon } from './Icon.jsx'
 import { Cart } from './Cart.jsx'
 
@@ -11,12 +11,18 @@ import './../styles/Navbar.css'
 
 export const Navbar = () => {
     const { categories } = useProducts()
-    const { isAuthenticated, logout } = useAuth()
+    const { isAuthenticated, logout, user } = useAuth()
 
     const [isOpen, setIsOpen] = useState(false)
+    const navigate = useNavigate()
 
     const toggleMenu = () => {
         setIsOpen(!isOpen)
+    }
+
+    const handleLoguot = () => {
+        logout()
+        navigate('/login')
     }
 
     return (
@@ -54,11 +60,22 @@ export const Navbar = () => {
                     </>
                     :
                     <>
+                        {user?.role.name == 'admin' ? 
+                            <li className='navbar__item'>
+                                <Link className='navbar__link' to='/dashboard'>DASHBOARD</Link>
+                            </li>
+                            :
+                            <>
+                                <li className='navbar__item'>
+                                    <Link className='navbar__link' to='/favorites'>MIS FAVORITOS</Link>
+                                </li>
+                                <li className='navbar__item'>
+                                    <Link className='navbar__link' to='/purchases'>MIS COMPRAS</Link>
+                                </li>
+                            </>
+                        }
                         <li className='navbar__item'>
-                            <Link className='navbar__link' to='/dashboard'>DASHBOARD</Link>
-                        </li>
-                        <li className='navbar__item'>
-                            <button className='btn_cerrar navbar__link' onClick={logout}>CERRAR SESIÓN</button>
+                            <button className='btn_cerrar navbar__link' onClick={handleLoguot}>CERRAR SESIÓN</button>
                         </li>
                     </>
                 }

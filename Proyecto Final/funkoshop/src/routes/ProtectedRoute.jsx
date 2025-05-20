@@ -6,6 +6,7 @@ import { useAuth } from './../hooks/useAuth.jsx'
 
 export const ProtectedRoute = ({ children, allowedRoles }) => {
     const { isAuthenticated, isLoadingUser, user } = useAuth()
+    const currentPath = window.location.pathname
 
     if (isLoadingUser) {
         return (
@@ -16,7 +17,7 @@ export const ProtectedRoute = ({ children, allowedRoles }) => {
     }
 
     if (!isAuthenticated) {
-        return <Navigate to="/login" />
+        return <Navigate to='/login' state={{ from: currentPath }} replace />
     }
 
     if (!allowedRoles || !Array.isArray(allowedRoles)) {

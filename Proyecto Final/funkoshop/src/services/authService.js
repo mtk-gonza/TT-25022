@@ -1,5 +1,5 @@
 import { API_URL } from './../config.js'
-import { fetchData } from './../utils/FetchData.js'
+import { fetchData } from './fetchData.js'
 
 const isValidEmail = (email) => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)
 
@@ -20,12 +20,11 @@ export const login = async (email, password) => {
             throw new Error('Correo o contraseña incorrectos')
         }
     
-        const users = await response.json()
-    
         if (!response.ok) {
             throw new Error(`Error en la conexión: ${response.status} - ${response.statusText}`)
         }
-    
+        
+        const users = await response.json()
         const roles = await fetchData('/data/roles.json')
         const rolesMap = Object.fromEntries(roles.map(r => [r.id, r]))
         const user = users[0]
@@ -44,4 +43,5 @@ export const login = async (email, password) => {
 
 export const logout = () => {
     localStorage.removeItem('user')
+    sessionStorage.removeItem('user')
 }

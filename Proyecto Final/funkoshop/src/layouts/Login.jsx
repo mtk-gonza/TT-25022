@@ -1,5 +1,5 @@
-import React, { useState, useEffect } from 'react'
-import { useNavigate } from 'react-router-dom'
+import React, { useState } from 'react'
+import { useNavigate, useLocation } from 'react-router-dom'
 import { Container } from './../components/Container.jsx'
 
 import { useAuth } from './../hooks/useAuth.jsx'
@@ -8,9 +8,11 @@ import './../styles/Login.css'
 
 export const Login = () => {
     const [credentials, setCredentials] = useState({ email: '', password: '' })
+    const [remember, setRemember] = useState(false)
 
-    const { login, isLoadingUser, error, setError, user, isAuthenticated } = useAuth()
+    const { login, isLoadingUser, error, setError } = useAuth()
     const navigate = useNavigate()
+    const location = useLocation()
 
     const handleChange = (e) => {
         const { name, value } = e.target
@@ -21,17 +23,20 @@ export const Login = () => {
         }
     }
 
-    const handleLogin = async (e) => {
-        e.preventDefault()
-        await login(credentials.email, credentials.password)
+    const handleRememberChange = (e) => {
+        setRemember(e.target.checked)
     }
 
-    useEffect(() => {
-        if (isAuthenticated) {
-            setCredentials({ email: '', password: '' })
-            navigate('/dashboard')
+    const handleLogin = async (e) => {
+        e.preventDefault()
+        try {
+            await login(credentials.email, credentials.password, remember)
+            const from = location.state?.from || '/'
+            navigate(from, { replace: true })
+        } catch (err) {
+            console.error('Error al iniciar sesión', err)
         }
-    }, [isAuthenticated, navigate])
+    }
 
     return (
         <main className='login'>
@@ -70,7 +75,7 @@ export const Login = () => {
                                 disabled={isLoadingUser}
                             />
                             <div className='form__remember'>
-                                <input type='checkbox' name='remember' />
+                                <input type='checkbox' name='remember' checked={remember} onChange={handleRememberChange}/>
                                 <label htmlFor=''>Recordarme</label>
                             </div>
                         </div>

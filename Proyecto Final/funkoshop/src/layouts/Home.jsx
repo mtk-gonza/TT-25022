@@ -10,7 +10,7 @@ import { CartContext } from './../context/CartContext.jsx'
 import './../styles/Home.css'
 
 export const Home = () => {
-    const { products, licences, isLoading } = useContext(ProductsContext)
+    const { products, licences } = useContext(ProductsContext)
     const { addToCart } = useContext(CartContext)
     
     const latestReleases = products.filter(product => {
@@ -22,7 +22,7 @@ export const Home = () => {
     return (
         <>         
             <Hero />
-            <main className="main-container">
+            <main className='main-container'>
                 <Container>
                     {licences.map((licence, index) => (
                         <Collection 

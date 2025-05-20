@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react'
-import { useSearchParams, useParams, Link, useNavigate } from 'react-router-dom'
-import { faSpinner, faChevronRight, faChevronLeft } from '@fortawesome/free-solid-svg-icons'
+import { useSearchParams, useParams, useNavigate } from 'react-router-dom'
+import { faSpinner } from '@fortawesome/free-solid-svg-icons'
 
 import { Container } from './../components/Container.jsx'
 import { Card } from './../components/Card.jsx'
