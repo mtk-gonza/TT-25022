@@ -1,17 +1,16 @@
-.detail-item {
+.detail-item .container{
     display: flex;
+    flex-direction: row;
+    justify-content: center;
     align-items: center;
     gap: var(--spacing-24);
     min-height: 46rem;
 }
 
-.detail-item__cover{
-    min-width: 30rem;
-    max-width: 30rem;
-}
-
 .detail-item__cover img {    
     animation: fade .7s;
+    min-width: 50rem;
+    max-width: 50rem;
 }
 
 .detail-item__img--back {
@@ -30,6 +29,7 @@
     flex: 1 1 100%;
     display: flex;
     flex-direction: column;
+    align-items: center;
     gap: var(--spacing-16);
 }
 
@@ -51,7 +51,7 @@
 .detail-item__price {
     display: flex;
     flex-direction: column;
-    align-items: flex-start;
+    align-items: center;
     gap: var(--spacing-12);
     font-size: var(--font-jumbo);
     font-weight: 400;

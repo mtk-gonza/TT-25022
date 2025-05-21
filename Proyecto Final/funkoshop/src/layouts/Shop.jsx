@@ -8,21 +8,17 @@ import { Icon } from './../components/Icon.jsx'
 import { Paginator } from './../components/Paginator.jsx'
 
 import { news } from './../utils/news.js'
+
 import { useProducts } from './../hooks/useProducts.jsx'
-import { useCart } from './../hooks/useCart.jsx'
 
 import './../styles/Shop.css'
 
 export const Shop = () => {
     const { products, categories, licences } = useProducts()
-    const { addToCart } = useCart()
-
-    const navigate = useNavigate()
-
     const [searchParams] = useSearchParams()
     const { category_name, licence_id } = useParams()
-    const licenceParam = searchParams.get('licence') || licence_id
-
+    const licenceParam = searchParams.get('licence_id') || licence_id
+    const categoryParam = searchParams.get('category_name') || category_name
     const [currentPage, setCurrentPage] = useState(1)
     const [productsPerPage] = useState(6)
     const [sortOrder, setSortOrder] = useState('az')
@@ -35,6 +31,8 @@ export const Shop = () => {
         favs: false
     })
     const [finalProducts, setFinalProducts] = useState([])
+
+    const navigate = useNavigate()
 
     const indexOfLastProduct = currentPage * productsPerPage
     const indexOfFirstProduct = indexOfLastProduct - productsPerPage
@@ -51,7 +49,7 @@ export const Shop = () => {
     const handleLicenceChange = (e) => {
         const selectedLicenceId = e.target.value
         if (selectedLicenceId) {
-            navigate(`/shop/${category_name || ''}?licence=${selectedLicenceId}`)
+            navigate(`/shop/${category_name || ''}?licence_id=${selectedLicenceId}`)
         } else {
             navigate(`/shop/${category_name || ''}`)
         }
@@ -84,7 +82,7 @@ export const Shop = () => {
 
         let result = [...products]
 
-        if (category_name) {
+        if (categoryParam) {
             result = result.filter(product => product.category?.name === category_name)
         }
 
@@ -102,7 +100,7 @@ export const Shop = () => {
         }
 
         if (filters.offers) {
-            result = result.filter(product => product.discount > 0)
+            result = result.filter(product => product.discount > 10)
         }
 
         if (filters.specials) {
@@ -283,7 +281,7 @@ export const Shop = () => {
                             <ul className='shop__items'>
                                 {currentProducts.map((product) => (
                                     <li key={product.id}>
-                                        <Card product={product} addToCart={addToCart} />
+                                        <Card product={product}/>
                                     </li>
                                 ))}
                             </ul>

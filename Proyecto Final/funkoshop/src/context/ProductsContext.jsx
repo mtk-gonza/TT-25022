@@ -1,10 +1,12 @@
 import { createContext, useState, useEffect } from 'react'
 import { getProducts } from './../services/productsService.js'
+import { news } from './../utils/news.js'
 
 export const ProductsContext = createContext()
 
 export const ProductsProvider = ({ children }) => {
     const [products, setProducts] = useState([])
+    const [latestReleases, setLatestReleases]= useState([])
     const [licences, setLicences] = useState([])
     const [categories, setCategories] = useState([])
     const [error, setError] = useState(null)
@@ -18,6 +20,8 @@ export const ProductsProvider = ({ children }) => {
                 setLicences(data.licences)
                 setCategories(data.categories)
                 setProducts(data.products)
+                const releases = data.products.filter(product => news(product.createdAt, 30))
+                setLatestReleases(releases)
             } catch (err) {
                 setError(err.message || 'No se pudieron cargar los productos')
                 console.error('Error al cargar los datos:', err)
@@ -31,7 +35,8 @@ export const ProductsProvider = ({ children }) => {
 
     return (
         <ProductsContext.Provider value={{ 
-            products, 
+            products,
+            latestReleases, 
             licences, 
             categories, 
             error, 

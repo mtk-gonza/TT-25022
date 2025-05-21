@@ -7,17 +7,16 @@ import { Loading } from './../components/Loading.jsx'
 import { CartContext } from './../context/CartContext.jsx'
 import { ProductsContext } from './../context/ProductsContext.jsx'
 
+
 import './../styles/Detail.css'
 
 export const Detail = () => {
     const { product_id } = useParams()
-    const { products, isLoading } = useContext(ProductsContext)
+    const { products } = useContext(ProductsContext)
     const { addToCart } = useContext(CartContext)
 
     const product = products.find(producto => producto.id == product_id)
 
-    console.log(products)
-    console.log(product)
     const [quantity, setQuantity] = useState(1)
 
     const increase = () => {
@@ -35,7 +34,7 @@ export const Detail = () => {
         <div className='detail'>
             <Container>
                 {
-                    isLoading ? (
+                    !product ? (
                         <Loading />
                     ) : (
                         <section className='detail-item'>
@@ -73,7 +72,6 @@ export const Detail = () => {
                                 </div>
                                 <p className='detail-item__promo'><a href="">Ver métodos de pago</a> - {product.dues} CUOTAS SIN INTERÉS</p>
                             </article>
-
                         </section>
                     )
                 }

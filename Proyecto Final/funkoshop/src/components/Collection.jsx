@@ -8,7 +8,7 @@ export const Collection = ({licence, nameClass}) => {
             <article className='collection__content'>
                 <h3 className='collection__title'>{licence.name}</h3>
                 <p className='collection__text'>{licence.description}</p>
-                <Link className='collection__link' to={`/shop?licence=${licence.id}`} >VER COLECCIÓN</Link>                              
+                <Link className='collection__link' to={`/shop?licence_id=${licence.id}`} >VER COLECCIÓN</Link>                              
             </article>
             <picture className={nameClass}>
                 <img className='collection__img' src={licence.image} alt={`Figura de ${licence.name}`}/>

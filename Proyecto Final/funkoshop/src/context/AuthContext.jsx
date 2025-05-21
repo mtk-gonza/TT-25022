@@ -25,15 +25,18 @@ export const AuthProvider = ({ children }) => {
 
     const handleLogin = async (email, password, remember = false) => {
         try {
-            const loggedInUser = await login(email, password)          
+            setIsLoadingUser(true)
             setError(null)
+            const loggedInUser = await login(email, password)          
             setUser(loggedInUser)
             setIsAuthenticated(true)
             if (remember) {
                 localStorage.setItem('user', JSON.stringify(loggedInUser))
+
             } else {
                 sessionStorage.setItem('user', JSON.stringify(loggedInUser))
             }
+            return loggedInUser
         } catch (err) {
             setError(err.message || 'Hubo un problema al iniciar sesión')
             throw err
@@ -47,7 +50,7 @@ export const AuthProvider = ({ children }) => {
         setIsAuthenticated(false)
         logout()
     }
-
+    
     return (
         <AuthContext.Provider value={{ 
             user, 
@@ -56,7 +59,7 @@ export const AuthProvider = ({ children }) => {
             error, 
             setError, 
             login: handleLogin,
-            logout: handleLogout 
+            logout: handleLogout
         }}>
             {children}
         </AuthContext.Provider>

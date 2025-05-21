@@ -1,14 +1,14 @@
-import React, { useState, useContext } from 'react'
+import React, { useState } from 'react'
 import { faCartShopping } from '@fortawesome/free-solid-svg-icons'
 import { Icon } from './Icon.jsx'
 import { CartList } from './CartList.jsx'
 
-import { CartContext } from './../context/CartContext.jsx'
+import { useCart } from './../hooks/useCart.jsx'
 
 import './../styles/Cart.css'
 
 export const Cart = () => {
-    const { cartItems, setCartItems, removeFromCart } = useContext(CartContext)
+    const { cartItems, removeFromCart, clearCart} = useCart()
     const [isOpen, setIsOpen] = useState(false)
     const totalPrice = cartItems.reduce((total, item) => total + item.price * item.quantity, 0)
     const totalQuantity = cartItems.reduce((sum, item) => sum + item.quantity, 0)
@@ -17,7 +17,7 @@ export const Cart = () => {
         setIsOpen(false)
     }
     const handlerClearCart = () => {
-        setCartItems([])
+        clearCart()
         setIsOpen(false)
     }
     return (

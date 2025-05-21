@@ -5,6 +5,7 @@ import { Home } from './../layouts/Home.jsx'
 import { Login } from './../layouts/Login.jsx'
 import { Register } from './../layouts/Register.jsx'
 import { Shop } from './../layouts/Shop.jsx'
+import { Detail } from './../layouts/Detail.jsx'
 import { Contact } from './../layouts/Contact.jsx'
 import { Favorites } from '../layouts/Favorites.jsx'
 import { Purchases } from './../layouts/Purchases.jsx'
@@ -27,7 +28,8 @@ export const AppRoutes = () => {
 			<Route path='/login' element={<Login />} />
 			<Route path='/register' element={<Register />} />
 			<Route path='/shop' element={<Shop />} />
-			<Route path='/shop/:category_name/:licence_id?' element={<Shop  />} />
+			<Route path='/shop/:category_name?/:licence_id?' element={<Shop  />} />
+			<Route path='/detail/:product_id?' element={<Detail/>} />
 			<Route path='/contact' element={<Contact />} />
 			<Route path='/favorites' element={<ProtectedRoute allowedRoles={['guest', 'admin']}> <Favorites/> </ProtectedRoute>} />
 			<Route path='/purchases' element={<ProtectedRoute allowedRoles={['guest', 'admin']}> <Purchases/> </ProtectedRoute>} />

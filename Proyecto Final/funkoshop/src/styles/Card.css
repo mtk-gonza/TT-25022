@@ -1,6 +1,3 @@
-.card-item {
-    cursor: pointer;
-}
 .card-item__cover {
     display: flex;
     position: relative;
@@ -65,4 +62,7 @@
     font-size: var(--font-xsmall);
     color: var(--secondary-solid);
     font-weight: 700;
+}
+.card-item__see-more {
+    cursor: pointer;
 }

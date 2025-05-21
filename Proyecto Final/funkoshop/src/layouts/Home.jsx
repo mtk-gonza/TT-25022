@@ -4,21 +4,15 @@ import { Container } from './../components/Container.jsx'
 import { Collection } from './../components/Collection.jsx'
 import { Slider } from './../components/Slider.jsx'
 
-import { ProductsContext } from './../context/ProductsContext.jsx'
+import { useProducts } from './../hooks/useProducts.jsx'
 import { CartContext } from './../context/CartContext.jsx'
 
 import './../styles/Home.css'
 
 export const Home = () => {
-    const { products, licences } = useContext(ProductsContext)
+    const { licences, latestReleases } = useProducts()
     const { addToCart } = useContext(CartContext)
     
-    const latestReleases = products.filter(product => {
-        const createdAt = new Date(product.createdAt)
-        const thirtyDaysAgo = new Date(Date.now() - 30 * 24 * 60 * 60 * 1000)
-        return createdAt > thirtyDaysAgo
-    })
-
     return (
         <>         
             <Hero />
