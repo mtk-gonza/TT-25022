@@ -22,11 +22,12 @@ Clona el repositorio:
 git clone https://github.com/mtk-gonza/TT-25022.git
 Proyecto Final/funkoshop
 cd '.\Proyecto Final\funkoshop\'
+renombra el .env.example a .env
+
 Instala las dependencias:
-
 npm install
-Inicia el servidor de desarrollo:
 
+Inicia el servidor de desarrollo:
 npm run dev
 Accede a la aplicación en tu navegador: http://localhost:5173
 
