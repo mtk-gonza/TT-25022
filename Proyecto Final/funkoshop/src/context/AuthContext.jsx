@@ -25,8 +25,8 @@ export const AuthProvider = ({ children }) => {
 
     const handleLogin = async (email, password, remember = false) => {
         try {
-            setIsLoadingUser(true)
             setError(null)
+            setIsLoadingUser(true)
             const loggedInUser = await login(email, password)          
             setUser(loggedInUser)
             setIsAuthenticated(true)
@@ -34,7 +34,7 @@ export const AuthProvider = ({ children }) => {
                 localStorage.setItem('user', JSON.stringify(loggedInUser))
 
             } else {
-                sessionStorage.setItem('user', JSON.stringify(loggedInUser))
+                sessionStorage.setItem('user', JSON.stringify(loggedInUser))                
             }
             return loggedInUser
         } catch (err) {

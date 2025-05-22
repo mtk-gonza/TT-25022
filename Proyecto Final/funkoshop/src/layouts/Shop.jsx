@@ -10,11 +10,13 @@ import { Paginator } from './../components/Paginator.jsx'
 import { news } from './../utils/news.js'
 
 import { useProducts } from './../hooks/useProducts.jsx'
+import { useFavorites } from '../hooks/useFavorites'
 
 import './../styles/Shop.css'
 
 export const Shop = () => {
     const { products, categories, licences } = useProducts()
+    const { isFavorite } = useFavorites()
     const [searchParams] = useSearchParams()
     const { category_name, licence_id } = useParams()
     const licenceParam = searchParams.get('licence_id') || licence_id
@@ -108,7 +110,7 @@ export const Shop = () => {
         }
 
         if (filters.favs) {
-            result = result.filter(product => product.isFav)
+            result = result.filter(product => isFavorite(product.id))
         }
 
         result = result.filter(p => p.price >= priceRange.min && p.price <= priceRange.max)

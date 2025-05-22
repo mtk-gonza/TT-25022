@@ -3,6 +3,7 @@ import { AuthProvider } from './AuthContext.jsx'
 import { CartProvider } from './CartContext.jsx'
 import { ProductsProvider } from './ProductsContext.jsx'
 import { UsersProvider } from './UsersContext.jsx'
+import { FavoritesProvider } from './FavoritesContext.jsx'
 
 export const AppProvider = ({ children }) => {
     return (
@@ -10,7 +11,9 @@ export const AppProvider = ({ children }) => {
             <CartProvider>
                 <ProductsProvider>
                     <UsersProvider>
-                        {children}
+                        <FavoritesProvider>
+                            {children}
+                        </FavoritesProvider>
                     </UsersProvider>
                 </ProductsProvider>
             </CartProvider>

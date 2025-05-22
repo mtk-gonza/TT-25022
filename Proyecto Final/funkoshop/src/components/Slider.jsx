@@ -29,19 +29,21 @@ export const Slider = ({ products, title = 'ÚLTIMOS LANZAMIENTOS' }) => {
             <Container>
                 <div className='slider'>
                     <h2 className='slider__title'>{title}</h2>
-                    <div className='slider__cards'>
+                    <div className={products.length < 3 ? 'slider__cards simple': 'slider__cards compound'}>
                         {visibleProducts.map((product) => (
                             <Card product={product} key={product.id}></Card>
                         ))}
                     </div>
-                    <div className='slider__arrows'>
-                        <button className='pagination__link arrows__left' onClick={prevSlide}>
-                            <Icon css='icon' icon={faChevronLeft} />
-                        </button>
-                        <button className='pagination__link arrows__right' onClick={nextSlide}>
-                            <Icon css='icon' icon={faChevronRight} />
-                        </button>
-                    </div>
+                    {products.length > 3 &&
+                        <div className='slider__arrows'>
+                            <button className='pagination__link arrows__left' onClick={prevSlide}>
+                                <Icon css='icon' icon={faChevronLeft} />
+                            </button>
+                            <button className='pagination__link arrows__right' onClick={nextSlide}>
+                                <Icon css='icon' icon={faChevronRight} />
+                            </button>
+                        </div>
+                    }
                 </div>
             </Container>
         </section>

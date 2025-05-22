@@ -1,4 +1,4 @@
-import { createContext, useState, useEffect } from 'react'
+import React, { createContext, useState, useEffect } from 'react'
 import { getProducts } from './../services/productsService.js'
 import { news } from './../utils/news.js'
 

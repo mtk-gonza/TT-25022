@@ -1,7 +1,8 @@
 .slider {    
     position: relative;
     width: 100%;
-    gap: var(--spacing-36);    
+    gap: var(--spacing-36);  
+    margin-bottom: 2rem;  
 }
 .slider__title {
     font-family: var(--alternative-font);
@@ -12,10 +13,16 @@
 .slider__cards{
     display: flex;  
     overflow-x: hidden;    
-    justify-content: space-between;
+    
     margin-top: var(--spacing-16);    
     width: 100%; 
     gap: var(--spacing-36);    
+}
+.simple {
+    justify-content: center;
+}
+.compound {
+    justify-content: space-around;
 }
 .slider__cards > div {
     flex: 0 0 auto;
