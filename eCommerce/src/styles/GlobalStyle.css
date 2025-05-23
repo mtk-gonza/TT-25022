@@ -1,0 +1,138 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;700&family=Raleway:wght@300;400;500;700&display=swap');
+@import url('https://cdn.jsdelivr.net/npm/@glidejs/glide/dist/css/glide.core.min.css');
+@import url('https://cdn.jsdelivr.net/npm/@glidejs/glide/dist/css/glide.theme.min.css');
+
+/* VARIABLES */
+:root {
+    --primary-solid: #222831;
+    --primary-900: rgba(34, 40, 49, 0.9);
+    --primary-500: rgba(34, 40, 49, 0.5);
+    --primary-300: rgba(34, 40, 49, 0.3);
+
+    --secondary-solid: #393E46;
+    --secondary-900: rgb(57, 62, 70, 0.9);
+    --secondary-500: rgb(57, 62, 70, 0.5);
+    --secondary-300: rgb(57, 62, 70, 0.3);
+
+    --tertiary-solid: #00ADB5;
+    --tertiary-900: rgb(0, 173, 181, 0.9);
+    --tertiary-500: rgb(0, 173, 181, 0.5);
+    --tertiary-300: rgb(0, 173, 181, 0.3);
+
+    --quaternary-solid: #EEEEEE;
+    --quaternary-900: rgb(238, 238, 238, 0.9);
+    --quaternary-500: rgb(238, 238, 238, 0.5);
+    --quaternary-300: rgb(238, 238, 238, 0.3);
+
+    --dark-solid: #1F1F1F;
+    --dark-900: rgb(31, 31, 31, 0.9);
+    --dark-500: rgb(31, 31, 31, 0.5);
+    --dark-300: rgb(31, 31, 31, 0.3);
+
+    --dark-bg-solid: #222831;
+    --light-bg-solid: #EEEEEE;
+    --dark-font-solid: #393E46;
+    --light-font-solid: #00ADB5;   
+    
+    --primary-bg-btn: #0d6efd;
+    --primary-hover-btn: #0b5ed7;
+    --success-bg-btn: #198754;
+    --success-hover-btn: #157347;
+    --danger-bg-btn: #dc3545;
+    --danger-hover-btn: #bb2d3b;
+
+    --base-font: 'Inter', sans-serif;
+    --alternative-font: 'Raleway', sans-serif;
+
+    --font-display: 4.6em;
+    --font-jumbo: 3.8em;
+    --font-xlarge: 3em;
+    --font-large: 2.4em;
+    --font-medium: 1.8em;
+    --font-small: 1.6em;
+    --font-xsmall: 1.4em;
+
+    --spacing-196: 19.6rem;
+    --spacing-128: 12.8rem;
+    --spacing-68: 6.8rem;
+    --spacing-48: 4.8rem;
+    --spacing-36: 3.6rem;
+    --spacing-30: 3rem;
+    --spacing-28: 2.8rem;
+    --spacing-24: 2.4rem;
+    --spacing-20: 2rem;
+    --spacing-16: 1.6rem;
+    --spacing-14: 1.4rem;
+    --spacing-12: 1.2rem;
+    --spacing-10: 1rem;
+    --spacing-8: 0.8rem;
+    --spacing-6: 0.6rem;
+    --spacing-4: 0.4rem;
+}
+/* NORMALIZE */
+*,
+*::before,
+*::after {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+html {
+    font-family: var(--base-font);
+    font-size: 62.5%;
+    color: var(--dark-solid);
+    background-color: var(--secondary-solid);
+}
+body {
+    position: relative;
+    min-height: 100vh;
+}
+#root{
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    justify-content: space-between;
+}
+a {
+    text-decoration: none;
+    font-family: inherit;
+    color: inherit;
+}
+ul, ol {
+    list-style-type: none;
+}
+img {
+    width: 100%;
+}
+input[type="text"]::placeholder {
+    color: var(--dark-300);
+    font-family: var(--base-font);
+    font-weight: 500;
+}
+
+.grid-fixed {
+    display: grid;
+    grid-template-rows: auto 1fr auto;
+    min-height: 100vh;
+}
+
+.loading-data {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    background-color: var(--secondary-solid);
+}
+/* ANIMATIONNS */
+@keyframes fade {
+    0% {
+        opacity: 0;
+    }
+
+    100% {
+        opacity: 1;
+    }
+}

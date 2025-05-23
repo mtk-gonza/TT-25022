@@ -1,0 +1,40 @@
+.navbar {
+    display: flex;   
+    align-items: center;
+    justify-content: space-between;
+    font-size: x-large;
+    margin: 2rem 0;
+}
+
+.navbar__logo {
+    display: flex;
+    justify-content: flex-start;
+    min-width: 10%;
+    text-align: center;
+}
+.navbar__logo img {
+    height: 50px;
+    width: 50px;
+}
+.navbar__tittle {
+    min-width: 60%;
+    text-align: center;
+}
+.navbar__actions{
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    min-width: 10%;
+}
+.navbar__auth {
+    min-width: 20%;
+    height: 100%;
+    text-align: center;    
+    justify-content: flex-end;
+}
+.navbar__cart {
+    display: flex;
+    justify-content: flex-end;
+    min-width: 20%;
+    text-align: center;
+}

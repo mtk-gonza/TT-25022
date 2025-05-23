@@ -1,0 +1,42 @@
+[
+  {
+    "name": "Admin",
+    "lastName": "Root",
+    "email": "admin@funkoshop.com",
+    "password": "admin",
+    "rol_id": 1,
+    "id": "1"
+  },
+  {
+    "name": "Guest",
+    "lastName": "Guest",
+    "email": "guest@funkoshop.com",
+    "password": "guest",
+    "rol_id": 2,
+    "id": "2"
+  },
+  {
+    "name": "Fausto",
+    "lastName": "Dickinson",
+    "email": "Emilia22@hotmail.com",
+    "password": "SolMTbvU6uAiI8V",
+    "rol_id": 2,
+    "id": "3"
+  },
+  {
+    "name": "Kristina",
+    "lastName": "O'Conner",
+    "email": "Dexter.Hartmann@yahoo.com",
+    "password": "w0167o5QF5HZMTJ",
+    "rol_id": 2,
+    "id": "4"
+  },
+  {
+    "name": "Lyric",
+    "lastName": "Kling",
+    "email": "Hardy.Trantow@hotmail.com",
+    "password": "0r1FoaRSmSTJ1vq",
+    "rol_id": 2,
+    "id": "5"
+  }
+]

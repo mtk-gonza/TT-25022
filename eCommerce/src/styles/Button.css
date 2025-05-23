@@ -1,0 +1,25 @@
+.btn {
+    border: none;
+    cursor: pointer;
+    padding: 10px 20px;
+    transition: background 0.2s ease-in-out;
+    min-width: 60px;
+}
+.btn:hover {
+    background-color: var(--secondary-solid);
+}
+
+.btn--primary {
+    background-color: var(--primary-solid);
+    color: var(--light-font-solid);
+    transition: background 0.2s ease-in-out;
+}
+.btn--primary:hover {
+    background-color: var(--secondary-solid);
+}
+.btn--medium {
+    padding: var(--spacing-8) var(--spacing-16);
+}
+.btn--large {
+    padding: var(--spacing-12) var(--spacing-28);
+}

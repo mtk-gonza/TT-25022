@@ -1,7 +1,11 @@
-.slider {    
+.slider__content {
+    background-color: none;
+    display: flex;
+    flex-direction: column;
+}
+.slider__content {    
     position: relative;
-    width: 100%;
-    gap: var(--spacing-36);   
+    width: 100%;      
 }
 .slider__title {
     font-family: var(--alternative-font);
@@ -17,6 +21,7 @@
     width: 100%;  
 }
 .simple {
+    gap: 2rem;
     justify-content: center;
 }
 .compound {
@@ -24,8 +29,8 @@
 }
 .slider__cards > div {
     flex: 0 0 auto;
-    width: 100%;
 }
+
 .slider__arrows {
     position: absolute;
     top: 50%;
@@ -33,6 +38,7 @@
     width: 100%;
     display: flex;
     justify-content: space-between;    
+    z-index: 5;
 }
 
 .slider__arrows .pagination__link {

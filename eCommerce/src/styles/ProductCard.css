@@ -1,0 +1,66 @@
+.product-card {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.5rem;
+    border-bottom: 1px solid #eee;
+    background-color: var(--tertiary-solid);
+    border-radius: var(--spacing-4);
+    color: var(--primary-solid);
+    gap: .5rem;
+    padding: 1rem;
+    min-width: 200px;
+}
+
+.img_product {
+    width: 100px;
+    max-height: 100px;
+}
+
+.product-card strong {
+    font-size: 1.5rem;
+}
+
+.product-card span {
+    font-size: 1rem;
+}
+
+.product-card:last-child {
+    border-bottom: none;
+}
+
+.btn_decrease, .btn_increase {
+    background-color: var(--dark-bg-solid);
+    color: var(--light-font-solid);
+    border: none;
+    padding: 4px 8px;
+    border-radius: 4px;
+    cursor: pointer;
+    width: 25px;
+}
+
+.actions_card {
+    display: flex;
+    justify-content: center;
+    text-align: center;
+    align-items: center;
+}
+
+.quantity {
+    min-width: 30px;
+}
+
+.btn_add-item {
+    padding: 0.5rem .5rem;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: var(--spacing-4);
+    cursor: pointer;
+    font-size: 1rem;
+}
+
+.btn_add-item:hover {
+    background-color: #0056b3;
+}

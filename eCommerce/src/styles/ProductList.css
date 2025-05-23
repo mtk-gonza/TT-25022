@@ -1,0 +1,9 @@
+.products-list {
+    list-style: none;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: var(--spacing-28);
+}
+.products-list__item {
+    flex: 1 1 clamp(250px, 30%, 30%);
+}
