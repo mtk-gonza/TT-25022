@@ -20,7 +20,6 @@ export const Users= () => {
     const handleDelete = (item) => {
         console.log('Eliminar', item)
     }
-    console.log(users)
     return (
         <Table title='Usuarios' data={users} columns={columns} onEdit={handleEdit} onDelete={handleDelete}/>
     )

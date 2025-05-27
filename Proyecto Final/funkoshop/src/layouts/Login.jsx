@@ -1,5 +1,7 @@
 import React, { useState } from 'react'
 import { useNavigate, useLocation } from 'react-router-dom'
+
+import { Main } from './../components/Main.jsx'
 import { Container } from './../components/Container.jsx'
 
 import { useAuth } from './../hooks/useAuth.jsx'
@@ -39,7 +41,7 @@ export const Login = () => {
     }
 
     return (
-        <main className='login'>
+        <Main className='login'>
             <Container>
                 <div className='login__header'>
                     <h2 className='login__title'>INGRESAR A MI CUENTA</h2>
@@ -82,6 +84,6 @@ export const Login = () => {
                     </div>
                 </form>
             </Container>
-        </main>
+        </Main>
     )
 }

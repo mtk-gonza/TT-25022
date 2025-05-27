@@ -6,12 +6,6 @@ import './../styles/Products.css'
 
 export const Products = () => {
     const { products } = useProducts()
-    const [currentPage, setCurrentPage] = useState(1)
-    const itemsPerPage = 5 
-    const totalPages = Math.ceil(products.length / itemsPerPage)
-    const indexOfLastItem = currentPage * itemsPerPage
-    const indexOfFirstItem = indexOfLastItem - itemsPerPage
-    const currentData = products.slice(indexOfFirstItem, indexOfLastItem)
 
     const columns = [
         { key: 'id', label: 'ID' },
@@ -33,23 +27,13 @@ export const Products = () => {
         console.log('Eliminar', item)
     }
 
-    const handleAdd = () => {
-        console.log('Agregar nuevo producto')
-    }
-
     return (
         <Table 
             title='Productos' 
-            data={currentData} 
+            data={products} 
             columns={columns} 
             onEdit={handleEdit} 
             onDelete={handleDelete} 
-            onAdd={handleAdd}
-            pagination={{
-                currentPage,
-                totalPages,
-                onPageChange: (newPage) => setCurrentPage(newPage)
-            }}
         />
     )
 }

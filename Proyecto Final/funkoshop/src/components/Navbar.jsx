@@ -1,12 +1,16 @@
 import React, { useState } from 'react'
-import { faBars, faChevronDown } from '@fortawesome/free-solid-svg-icons'
 import { Link, useNavigate } from 'react-router-dom'
+import { faBars, faChevronDown, faRightToBracket } from '@fortawesome/free-solid-svg-icons'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+
 import { Icon } from './Icon.jsx'
 import { Cart } from './Cart.jsx'
+import { AccountMenu } from './AccountMenu.jsx'
 
 import { useProducts } from './../hooks/useProducts.jsx'
 import { useAuth } from './../hooks/useAuth.jsx'
 
+import logo from '/images/branding/logo_light_horizontal.svg'
 import './../styles/Navbar.css'
 
 export const Navbar = () => {
@@ -29,7 +33,7 @@ export const Navbar = () => {
         <nav className='navbar'>
             <picture className='navbar__logo'>
                 <Link to='/'>
-                    <img src='/images/branding/logo_light_horizontal.svg' alt='FunkoShop Logotipo' />
+                    <img src={logo} alt='FunkoShop Logotipo' />
                 </Link>
             </picture>
             <div className='navbar-toggle' id='navbarToggle' onClick={() => toggleMenu()}>
@@ -52,15 +56,17 @@ export const Navbar = () => {
                 {!isAuthenticated ?
                     <>
                         <li className='navbar__item'>
-                            <Link className='navbar__link' to='/login'>LOGIN</Link>
+                            <Link className='navbar__link' to='/register'>REGISTER</Link>
                         </li>
                         <li className='navbar__item'>
-                            <Link className='navbar__link' to='/register'>REGISTER</Link>
+                            <Link className='navbar__link' to='/login'>
+                                <FontAwesomeIcon icon={faRightToBracket} className='sign-in-icon' />
+                            </Link>
                         </li>
                     </>
                     :
                     <>
-                        {user?.role.name == 'admin' ? 
+                        {user?.role.name == 'admin' ?
                             <li className='navbar__item'>
                                 <Link className='navbar__link' to='/dashboard'>DASHBOARD</Link>
                             </li>
@@ -75,7 +81,7 @@ export const Navbar = () => {
                             </>
                         }
                         <li className='navbar__item'>
-                            <button className='btn_cerrar navbar__link' onClick={handleLoguot}>CERRAR SESIÓN</button>
+                            <AccountMenu />
                         </li>
                     </>
                 }

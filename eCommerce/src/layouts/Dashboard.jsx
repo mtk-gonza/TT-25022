@@ -1,14 +1,17 @@
-import { TabContainer } from './../components/TabContainer.jsx'
+import React from 'react'
+
+import { Main } from './../components/Main.jsx'
+import { Tabs } from './../components/Tabs.jsx'
 
 import './../styles/Dashboard.css'
 
 export const Dashboard = () => {  
     return (
-        <div className='dashboard'>            
+        <Main className='dashboard'>            
             <div className='container'>
                 <h1>Bienvenido al Dashboard</h1>
-                <TabContainer />
+                <Tabs />
             </div>
-        </div>
+        </Main>
     )
 }

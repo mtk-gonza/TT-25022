@@ -1,4 +1,8 @@
+import React from 'react'
 import { useParams, Link } from 'react-router-dom'
+
+import { Main } from './../components/Main.jsx'
+import { Container } from '../components/Container.jsx'
 
 import './../styles/Edit.css'
 
@@ -21,10 +25,12 @@ export const Edit = () => {
         }
     }
     return (
-        <div className="container">  
-            <Item>            
-            </Item>  
-            <Link to='/dashboard/admin' className='edit__back'>Volver</Link>                      
-        </div>
+        <Main>
+            <Container>  
+                <Item>            
+                </Item>  
+                <Link to='/dashboard/admin' className='edit__back'>Volver</Link>                      
+            </Container>
+        </Main>
     )
 }

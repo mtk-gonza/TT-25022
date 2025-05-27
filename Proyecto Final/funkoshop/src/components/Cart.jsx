@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
 import { faCartShopping } from '@fortawesome/free-solid-svg-icons'
+
 import { Icon } from './Icon.jsx'
 import { CartList } from './CartList.jsx'
 

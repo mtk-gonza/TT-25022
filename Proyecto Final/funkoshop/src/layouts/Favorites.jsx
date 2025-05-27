@@ -1,4 +1,6 @@
 import React from 'react'
+
+import { Main } from './../components/Main.jsx'
 import { Container } from './../components/Container.jsx'
 import { Card } from './../components/Card.jsx'
 import { Slider } from './../components/Slider.jsx'
@@ -14,10 +16,10 @@ export const Favorites = () => {
     let favoritesProducts = [...products]
     favoritesProducts = favoritesProducts.filter(product => isFavorite(product.id))
     return (
-        <div className='favorites'>
+        <Main className='favorites'>
             <Container>
                 <Slider products={favoritesProducts} title='Mis Favoritos'/>
             </Container>
-        </div>
+        </Main>
     )
 }

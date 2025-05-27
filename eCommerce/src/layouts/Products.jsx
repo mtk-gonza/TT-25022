@@ -1,4 +1,6 @@
 import React, { useContext } from 'react'
+
+import { Main } from './../components/Main.jsx'
 import { Container } from './../components/Container.jsx'
 import { Loading } from './../components/Loading.jsx'
 import { ProductList } from './../components/ProductList.jsx'
@@ -10,7 +12,7 @@ import './../styles/products.css'
 export const Products = () => {
     const { products, isLoading } = useContext(ProductsContext)
     return (
-        <div className='products'>
+        <Main className='products'>
             <Container>
                 {
                     isLoading ? (
@@ -20,6 +22,6 @@ export const Products = () => {
                     )
                 }
             </Container>
-        </div>
+        </Main>
     )
 }

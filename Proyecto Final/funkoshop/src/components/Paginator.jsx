@@ -1,6 +1,7 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 import { faChevronLeft, faChevronRight } from '@fortawesome/free-solid-svg-icons'
+
 import { Icon } from './Icon'
 
 import './../styles/Paginator.css'

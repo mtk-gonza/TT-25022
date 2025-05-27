@@ -1,5 +1,6 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
+
 import { Loading } from './Loading.jsx'
 
 import { news } from './../utils/news.js'

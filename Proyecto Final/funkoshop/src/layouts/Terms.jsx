@@ -1,12 +1,14 @@
 import React from 'react'
+
+import { Main } from './../components/Main.jsx'
 import { Container } from './../components/Container.jsx'
 
 export const Terms = () => {
     return (
-        <div className='terms'>
+        <Main className='terms'>
             <Container>
                 <p>Terminos y Condiciones</p>
             </Container>
-        </div>
+        </Main>
     )
 }

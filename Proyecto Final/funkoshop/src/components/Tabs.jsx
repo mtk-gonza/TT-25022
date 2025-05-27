@@ -1,12 +1,13 @@
-import { useState } from 'react'
+import React, { useState } from 'react'
+
 import { Products } from './Products.jsx'
 import { Licences } from './Licences.jsx'
 import { Categories } from './Categories.jsx'
 import { Users } from './Users.jsx'
 
-import './../styles/TabContainer.css'
+import './../styles/Tabs.css'
 
-export const TabContainer = () => {
+export const Tabs = () => {
     const [activeTab, setActiveTab] = useState(0)
 
     const tabs = [
@@ -27,6 +28,26 @@ export const TabContainer = () => {
         }
     ]
 
+    const handlerAdd = () => {
+        switch (tabs[activeTab].label) {
+            case 'Productos':
+                console.log('Productos')
+                break
+            case 'Licencias':
+                console.log('Licencias')
+                break
+            case 'Categorias':
+                console.log('Categorias')
+                break
+            case 'Usuarios':
+                console.log('Usuarios')
+                break
+            default:
+                console.log('error')
+                break
+        }
+    }
+
     return (
         <div className='tab-container'>
             <div className='tab-buttons'>
@@ -39,6 +60,9 @@ export const TabContainer = () => {
                         {tab.label}
                     </button>
                 ))}
+                <div className='tab__add'>
+                    <button className='btn-add' onClick={handlerAdd}>Agregar</button>
+                </div>
             </div>
             <div className='tab-content'>
                 {tabs[activeTab].content}
@@ -46,5 +70,3 @@ export const TabContainer = () => {
         </div>
     )
 }
-
-export default TabContainer

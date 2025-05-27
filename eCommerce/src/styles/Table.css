@@ -1,6 +1,11 @@
+.table {
+    background-color: var(--secondary-solid);
+    min-height: max-content;
+}
 table {
     border-collapse: collapse;
     width: 100%;
+    background-color: var(--light-bg-solid);
 }
 
 th {
@@ -16,6 +21,7 @@ th, td {
 
 tr {
     text-align: center;
+    border-bottom: '1px solid #ddd';
 }
 
 .table__title {

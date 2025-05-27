@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import React, { useState } from 'react'
 import { faChevronRight, faChevronLeft } from '@fortawesome/free-solid-svg-icons'
 
 import { Container } from './Container.jsx'

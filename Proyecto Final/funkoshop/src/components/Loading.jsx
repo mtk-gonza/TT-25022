@@ -1,4 +1,5 @@
 import React from 'react'
+
 import loading from './../assets/loading.gif'
 
 import './../styles/Loading.css'

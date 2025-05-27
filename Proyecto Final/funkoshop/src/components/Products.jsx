@@ -1,17 +1,13 @@
-import React, { useState } from 'react'
+import React from 'react'
+
 import { Table } from './Table.jsx'
+
 import { useProducts } from '../hooks/useProducts.jsx'
 
 import './../styles/Products.css'
 
 export const Products = () => {
     const { products } = useProducts()
-    const [currentPage, setCurrentPage] = useState(1)
-    const itemsPerPage = 5 
-    const totalPages = Math.ceil(products.length / itemsPerPage)
-    const indexOfLastItem = currentPage * itemsPerPage
-    const indexOfFirstItem = indexOfLastItem - itemsPerPage
-    const currentData = products.slice(indexOfFirstItem, indexOfLastItem)
 
     const columns = [
         { key: 'id', label: 'ID' },
@@ -40,16 +36,11 @@ export const Products = () => {
     return (
         <Table 
             title='Productos' 
-            data={currentData} 
+            data={products} 
             columns={columns} 
             onEdit={handleEdit} 
             onDelete={handleDelete} 
             onAdd={handleAdd}
-            pagination={{
-                currentPage,
-                totalPages,
-                onPageChange: (newPage) => setCurrentPage(newPage)
-            }}
         />
     )
 }

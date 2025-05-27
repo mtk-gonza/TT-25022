@@ -1,5 +1,7 @@
 import React, { useState } from 'react'
 import { useParams } from 'react-router-dom'
+
+import { Main } from './../components/Main.jsx'
 import { Container } from '../components/Container.jsx'
 import { Loading } from './../components/Loading.jsx'
 import { Slider } from './../components/Slider.jsx'
@@ -45,7 +47,7 @@ export const Detail = () => {
     const discountedPrice = product.price - (product.price * product.discount) / 100
 
     return (
-        <section className='detail-item'>
+        <Main className='detail-item'>
             <Container>
                 <div className='detail-item__content'>
                     <picture className='detail-item__cover'>
@@ -90,6 +92,6 @@ export const Detail = () => {
                 </div>
             </Container>
             {productsColection.length > 1 &&  <Slider products={productsColection} title='COLECCIÓN'/>}            
-        </section>
+        </Main>
     )
 }

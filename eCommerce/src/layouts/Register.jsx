@@ -1,5 +1,7 @@
 import { useState } from 'react'
 
+import { Main } from './../components/Main.jsx'
+
 const apiUrl = 'http://localhost:3000/api'
 
 import './../styles/Register.css'
@@ -31,7 +33,7 @@ export const Register = () => {
     }
 
     return (
-        <main id="register" className="container">
+        <Main className="container">
             <div className="register__header">
                 <h2 className="register__title">CREA TU CUENTA</h2>
                 <p className="register__subtitle">Completa el formulario para ser parte del mundo de los Funkos</p>
@@ -108,6 +110,6 @@ export const Register = () => {
                     </div>
                 </div>
             </form>
-        </main>
+        </Main>
     )
 }

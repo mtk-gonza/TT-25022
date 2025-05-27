@@ -1,5 +1,7 @@
 import React from 'react'
+
 import { Table } from './Table.jsx'
+
 import { useProducts } from './../hooks/useProducts.jsx'
 
 import './../styles/Licences.css'

@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react'
 import { useSearchParams, useParams, useNavigate } from 'react-router-dom'
 import { faSpinner } from '@fortawesome/free-solid-svg-icons'
 
+import { Main } from './../components/Main.jsx'
 import { Container } from './../components/Container.jsx'
 import { Card } from './../components/Card.jsx'
 import { Icon } from './../components/Icon.jsx'
@@ -137,7 +138,7 @@ export const Shop = () => {
     }, [products, category_name, licenceParam, searchTerm, filters, priceRange, sortOrder])
 
     return (
-        <main className='shop'>
+        <Main className='shop'>
             <Container>
                 <aside className='shop__filters filters'>
                     <div className='filters__search'>
@@ -299,6 +300,6 @@ export const Shop = () => {
                     )}
                 </section>
             </Container>
-        </main>
+        </Main>
     )
 }
