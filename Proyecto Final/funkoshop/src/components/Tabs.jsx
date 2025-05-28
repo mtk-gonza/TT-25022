@@ -4,6 +4,7 @@ import { Products } from './Products.jsx'
 import { Licences } from './Licences.jsx'
 import { Categories } from './Categories.jsx'
 import { Users } from './Users.jsx'
+import { Container } from './Container.jsx'
 
 import './../styles/Tabs.css'
 
@@ -49,24 +50,28 @@ export const Tabs = () => {
     }
 
     return (
-        <div className='tab-container'>
-            <div className='tab-buttons'>
-                {tabs.map((tab, index) => (
-                    <button
-                        key={index}
-                        onClick={() => setActiveTab(index)}
-                        className={activeTab === index ? 'active' : ''}
-                    >
-                        {tab.label}
-                    </button>
-                ))}
-                <div className='tab__add'>
-                    <button className='btn-add' onClick={handlerAdd}>Agregar</button>
+        <div className='tabs'>
+            <Container>
+                <div className='tabs__content'>
+                    <div className='tabs__header'>
+                        {tabs.map((tab, index) => (
+                            <button
+                                key={index}
+                                onClick={() => setActiveTab(index)}
+                                className={activeTab === index ? 'active' : ''}
+                            >
+                                {tab.label}
+                            </button>
+                        ))}
+                        <div className='tab__add'>
+                            <button className='btn-add' onClick={handlerAdd}>Agregar</button>
+                        </div>
+                    </div>
+                    <div className='tab-content'>
+                        {tabs[activeTab].content}
+                    </div>
                 </div>
-            </div>
-            <div className='tab-content'>
-                {tabs[activeTab].content}
-            </div>
+            </Container>
         </div>
     )
 }

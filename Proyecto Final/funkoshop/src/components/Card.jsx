@@ -42,7 +42,6 @@ export const Card = ({ product }) => {
                 <h4 className='card-item__name'>{product.name}</h4>
                 <p className='card-item__price'>${product.price}.-</p>
                 <p className='card-item__promo'>{product.dues} CUOTAS SIN INTERÉS</p>
-
                 <Link className='card-item__see-more' to={`/detail/${product.id}`}>VER MAS</Link>
             </div>
         </article>

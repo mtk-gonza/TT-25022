@@ -7,7 +7,8 @@ import { Icon } from './Icon.jsx'
 
 import './../styles/Slider.css'
 
-export const Slider = ({ products, title = 'ÚLTIMOS LANZAMIENTOS' }) => {
+export const Slider = ({ products, title = 'ÚLTIMOS lanzamientos' }) => {
+    title = title.toUpperCase()
     const [currentPage, setCurrentPage] = useState(0)
     const itemsPerPage = 3
     const totalPages = Math.ceil(products.length / itemsPerPage)
@@ -24,12 +25,12 @@ export const Slider = ({ products, title = 'ÚLTIMOS LANZAMIENTOS' }) => {
     const endIndex = startIndex + itemsPerPage
     const visibleProducts = products.slice(startIndex, endIndex)
 
-     return (
-        <section>
+    return (
+        <section className='slider'>
             <Container>
-                <div className='slider'>
+                <div className='slider__relative'>
                     <h2 className='slider__title'>{title}</h2>
-                    <div className={products.length < 3 ? 'slider__cards simple': 'slider__cards compound'}>
+                    <div className={products.length < 3 ? 'slider__cards simple' : 'slider__cards compound'}>
                         {visibleProducts.map((product) => (
                             <Card product={product} key={product.id}></Card>
                         ))}

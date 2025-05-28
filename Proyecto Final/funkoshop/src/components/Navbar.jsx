@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
-import { Link, useNavigate } from 'react-router-dom'
-import { faBars, faChevronDown, faRightToBracket } from '@fortawesome/free-solid-svg-icons'
+import { Link } from 'react-router-dom'
+import { faBars, faChevronDown, faSignIn } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 
 import { Icon } from './Icon.jsx'
@@ -15,18 +15,12 @@ import './../styles/Navbar.css'
 
 export const Navbar = () => {
     const { categories } = useProducts()
-    const { isAuthenticated, logout, user } = useAuth()
+    const { isAuthenticated, user } = useAuth()
 
     const [isOpen, setIsOpen] = useState(false)
-    const navigate = useNavigate()
 
     const toggleMenu = () => {
         setIsOpen(!isOpen)
-    }
-
-    const handleLoguot = () => {
-        logout()
-        navigate('/login')
     }
 
     return (
@@ -60,25 +54,19 @@ export const Navbar = () => {
                         </li>
                         <li className='navbar__item'>
                             <Link className='navbar__link' to='/login'>
-                                <FontAwesomeIcon icon={faRightToBracket} className='sign-in-icon' />
+                                <FontAwesomeIcon icon={faSignIn} className='sign-in-icon' />
                             </Link>
                         </li>
                     </>
                     :
                     <>
-                        {user?.role.name == 'admin' ?
+                        <li className='navbar__item'>
+                            <Link className='navbar__link' to='/favorites'>MIS FAVORITOS</Link>
+                        </li>
+                        {user?.role.name == 'admin' &&
                             <li className='navbar__item'>
                                 <Link className='navbar__link' to='/dashboard'>DASHBOARD</Link>
                             </li>
-                            :
-                            <>
-                                <li className='navbar__item'>
-                                    <Link className='navbar__link' to='/favorites'>MIS FAVORITOS</Link>
-                                </li>
-                                <li className='navbar__item'>
-                                    <Link className='navbar__link' to='/purchases'>MIS COMPRAS</Link>
-                                </li>
-                            </>
                         }
                         <li className='navbar__item'>
                             <AccountMenu />

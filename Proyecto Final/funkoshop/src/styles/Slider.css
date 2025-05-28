@@ -1,7 +1,8 @@
-.slider {    
+.slider__relative {    
     position: relative;
     width: 100%;
-    gap: var(--spacing-36);   
+    overflow: hidden;
+    padding: var(--spacing-24) 0;
 }
 .slider__title {
     font-family: var(--alternative-font);
@@ -17,6 +18,7 @@
     width: 100%;  
 }
 .simple {
+    gap: 3rem;
     justify-content: center;
 }
 .compound {
@@ -34,7 +36,6 @@
     display: flex;
     justify-content: space-between;    
 }
-
 .slider__arrows .pagination__link {
     display: block;
     font-size: var(--font-medium);
@@ -44,7 +45,6 @@
     border: 2px solid var(--dark-300);
     transition: background 0.2s ease-in-out, color 0.2s ease-in-out;
 }
-
 .slider__arrows .pagination__link:hover {
     background-color: var(--primary-900);
     color: var(--light-bg-solid);

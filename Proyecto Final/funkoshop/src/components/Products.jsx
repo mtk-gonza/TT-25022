@@ -29,18 +29,7 @@ export const Products = () => {
         console.log('Eliminar', item)
     }
 
-    const handleAdd = () => {
-        console.log('Agregar nuevo producto')
-    }
-
     return (
-        <Table 
-            title='Productos' 
-            data={products} 
-            columns={columns} 
-            onEdit={handleEdit} 
-            onDelete={handleDelete} 
-            onAdd={handleAdd}
-        />
+        <Table columns={columns} data={products} onEdit={handleEdit} onDelete={handleDelete} />
     )
 }

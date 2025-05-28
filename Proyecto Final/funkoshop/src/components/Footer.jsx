@@ -11,9 +11,9 @@ export const Footer = () => {
             <Container>
                 <div className='footer__container'>
                     <ul className='footer__links'>
-                        <li><Link className='footer__link' to="/returns">Devoluciones</Link></li>
-                        <li><Link className='footer__link' to="/terms">Términos y Condiciones</Link></li>
-                        <li><Link className='footer__link' to="/privacy">Política de Privacidad</Link></li>
+                        <li><Link className='footer__link' to='/returns'>Devoluciones</Link></li>
+                        <li><Link className='footer__link' to='/terms'>Términos y Condiciones</Link></li>
+                        <li><Link className='footer__link' to='/privacy'>Política de Privacidad</Link></li>
                     </ul>    
                     <picture className='footer__logo'>
                         <img src='/images/branding/isotype.svg' alt='Isotipo de la marca FunkoShop'/>    

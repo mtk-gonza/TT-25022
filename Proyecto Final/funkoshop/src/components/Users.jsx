@@ -24,6 +24,6 @@ export const Users= () => {
     }
 
     return (
-        <Table title='Usuarios' data={users} columns={columns} onEdit={handleEdit} onDelete={handleDelete}/>
+        <Table columns={columns} data={users} onEdit={handleEdit} onDelete={handleDelete}/>
     )
 }

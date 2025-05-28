@@ -1,32 +1,26 @@
 
-.collection {
+.collection .container {
     display: flex;
     align-items: center;
     justify-content: space-between;
     padding: var(--spacing-16) 0;
     flex-wrap: nowrap;
 }
-
 .collection__content {
     flex: 0 0 70%;
-    order: 1;     /* Por defecto, texto va segundo */
+    order: 1;
 }
-
 .collection__cover,
 .collection__cover__par {
-    flex: 0 0 30%; /* 👈 30% fijo */
-    order: 2;      /* Por defecto, imagen va primero */
+    flex: 0 0 30%;
+    order: 2;
 }
-
-/* En los impares, cambiamos el orden */
 .collection__cover {
-    order: 2; /* Imagen a la derecha */
+    order: 2;
 }
-
 .collection__cover__par {
-    order: 0; /* Imagen a la izquierda */
+    order: 0; 
 }
-
 .collection__content {
     display: flex;
     flex-direction: column;

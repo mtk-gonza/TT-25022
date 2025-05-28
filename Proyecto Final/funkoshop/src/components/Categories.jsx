@@ -25,6 +25,6 @@ export const Categories = () => {
     }
 
     return (
-        <Table title='Categorias' data={categories} columns={columns} onEdit={handleEdit} onDelete={handleDelete}/>
+        <Table columns={columns} data={categories} onEdit={handleEdit} onDelete={handleDelete}/>
     )
 }

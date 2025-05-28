@@ -58,7 +58,7 @@ export const Table = ({columns, data, onEdit = null, onDelete = null}) => {
             </table>
 
             {totalPages > 1 && (
-                <div className="table__pagination">
+                <div className='table__pagination'>
                     <Paginator
                         currentPage={currentPage}
                         totalPages={totalPages}

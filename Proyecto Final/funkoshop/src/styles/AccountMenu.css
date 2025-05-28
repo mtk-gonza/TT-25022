@@ -1,7 +1,15 @@
 .account-menu {
     position: relative;
-    display: inline-block;   
+    display: inline-block;
+    align-items: center;   
+    text-align: center;
+    justify-content: center;
     cursor: pointer;  
+}
+.account-menu__icons {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
 }
 
 .ico_user {
@@ -51,5 +59,6 @@
 
 .dropdown-menu li:last-child {
     border-top: 1px solid #eee;
-    background-color: rgb(212, 23, 23);
+    background-color: rgb(212, 23, 23);    
+    gap: 1rem;
 }

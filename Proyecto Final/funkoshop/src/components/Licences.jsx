@@ -26,6 +26,6 @@ export const Licences = () => {
     }
 
     return (
-        <Table title='Licencias' data={licences} columns={columns} onEdit={handleEdit} onDelete={handleDelete}/>
+        <Table columns={columns} data={licences} onEdit={handleEdit} onDelete={handleDelete}/>
     )
 }

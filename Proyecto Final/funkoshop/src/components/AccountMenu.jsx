@@ -1,8 +1,9 @@
 import React, { useState, useEffect, useRef } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faUserCircle } from '@fortawesome/free-solid-svg-icons'
+import { faUserCircle, faSignOut, faChevronDown } from '@fortawesome/free-solid-svg-icons'
 
+import { Icon } from './../components/Icon.jsx'
 import { useAuth } from './../hooks/useAuth.jsx'
 
 import './../styles/AccountMenu.css'
@@ -17,11 +18,11 @@ export const AccountMenu = () => {
 
     const toggleMenu = () => {
         setIsMenuOpen(!isMenuOpen)
-    };
+    }
 
     const closeMenu = () => {
         setIsMenuOpen(false)
-    };
+    }
 
     const handleLogout = () => {
         logout()
@@ -34,7 +35,7 @@ export const AccountMenu = () => {
             if (menuRef.current && !menuRef.current.contains(event.target)) {
                 closeMenu()
             }
-        };
+        }
 
         document.addEventListener('mousedown', handleClickOutside);
         return () => {
@@ -43,12 +44,11 @@ export const AccountMenu = () => {
     }, [])
 
     return (
-        <div className='account-menu' ref={menuRef}>
-            <FontAwesomeIcon
-                icon={faUserCircle}
-                className='ico_user'
-                onClick={toggleMenu}
-            />
+        <div className='account-menu' ref={menuRef} onClick={toggleMenu}>
+            <div className='account-menu__icons'>
+                <FontAwesomeIcon className='ico_user' icon={faUserCircle} />
+                <Icon css='icon' icon={faChevronDown} />
+            </div>
             {isMenuOpen && (
                 <ul className='dropdown-menu'>
                     <li>{user.name} {user.lastName}</li>
@@ -64,7 +64,10 @@ export const AccountMenu = () => {
                             </Link>
                         </li>
                     }
-                    <li onClick={handleLogout}>Cerrar sesión</li>                    
+                    <li onClick={handleLogout}>
+                        <FontAwesomeIcon icon={faSignOut} className='sign-in-icon' /> 
+                        <span>Cerrar sesión</span>
+                    </li>                    
                 </ul>
             )}
         </div>

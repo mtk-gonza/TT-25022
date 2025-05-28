@@ -1,12 +1,13 @@
-.tab-container {
+.tabs__content {
     margin: 0 auto;
-    margin-bottom: 1rem;
+    width: 100%;
+    min-height: 550px;
 }
-.tab-buttons {
+.tabs__header {
     display: flex;
     border-bottom: 1px solid #ccc;
 } 
-.tab-buttons button {
+.tabs__header button {
     padding: 10px 20px;
     border: none;
     background: none;
@@ -14,11 +15,11 @@
     font-size: var(--font-large);
     transition: background-color 0.3s;
 }
-.tab-buttons button.active {
+.tabs__header button.active {
     border-bottom: 2px solid var(--secondary-solid);
     color:var(--secondary-solid);
 }
-.tab-buttons button:hover {
+.tabs__header button:hover {
     background-color: #f0f0f0;
 }
 .tab__add {
