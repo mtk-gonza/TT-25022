@@ -1,5 +1,5 @@
-import { API_URL } from '../config.js'
-import { fetchData } from './fetchData.js'
+import { API_URL } from './../config.js'
+import { fetchData, postData } from './fetchHelper.js'
 
 export const getProducts = async () => {
     try {
@@ -24,4 +24,11 @@ export const getProducts = async () => {
         console.error('Error al obtener los datos:', error)
         throw error
     }
+}
+
+export const createProduct = async (data) => {
+    data.createdAt = new Date().toISOString().slice(0, 19)
+    data.updatedAt = new Date().toISOString().slice(0, 19)
+    const response = postData(API_URL, data)
+    return response
 }

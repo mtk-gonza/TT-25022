@@ -10,7 +10,7 @@ table {
 
 th {
     background-color: var(--dark-bg-solid);
-    color: #FAFAFF;
+    color: var(--light-font-solid);
     padding: var(--spacing-8);
 }
 
@@ -21,20 +21,20 @@ th, td {
 
 tr {
     text-align: center;
-    border-bottom: '1px solid #ddd';
 }
-
 .table__title {
     font-size: var(--font-large);
     padding: var(--spacing-8);
 }
-
+.table__actions-content{
+    display: flex;
+    justify-content: space-around;
+}
 .table__pagination {
     display: flex;
     justify-content: center;
     margin-top: var(--spacing-24);
 }
-
 .table__pagination .pagination {
     gap: var(--spacing-8);
 }

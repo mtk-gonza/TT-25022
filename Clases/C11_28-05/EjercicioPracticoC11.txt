@@ -1,0 +1,33 @@
+Ejercicios Prácticos
+
+Nueva Tarea en Talento Lab
+    El cliente de Talento Lab ha quedado impresionado con el progreso del equipo y ahora quiere mejorar aún más la plataforma. 
+    Para ello, ha solicitado la funcionalidad de editar y eliminar productos del catálogo.
+
+Descripción de tu tarea inicial:
+    Es fundamental que los usuarios puedan modificar la información de un producto cuando sea necesario y también eliminar aquellos que ya no sean relevantes. Además, 
+    se deben incluir validaciones para evitar errores en la edición y una confirmación antes de eliminar un producto.
+
+Objetivos:
+    Integrar el formulario de agregar/editar productos con el estado global de la aplicación utilizando Context API.
+    Validar los datos del formulario para asegurar que la información sea consistente.
+    Manejar errores y proporcionar retroalimentación clara al usuario.
+
+Requisitos del Proyecto:
+    Conectar el formulario con el estado global
+        Implementar Context API para manejar el estado de los productos en un solo lugar.
+        Crear un ProductsProvider que almacene la lista de productos y las funciones para agregar, editar y eliminar productos.
+        Envolver la aplicación con el ProductsProvider en main.jsx para que todos los componentes tengan acceso al estado global.        
+    Formulario controlado de agregar/editar productos
+        Crear un formulario reutilizable en React para agregar y editar productos.
+        El formulario debe manejar el estado del producto mediante useState.
+        Implementar la lógica para diferenciar entre modo "agregar" y "editar".
+        Al enviar el formulario, actualizar el estado global llamando a las funciones correspondientes (agregarProducto o editarProducto).
+    Validaciones del formulario
+        Todos los campos son obligatorios.
+        El precio debe ser un número mayor a 0.
+        La descripción debe tener al menos 10 caracteres.
+        Mostrar mensajes de error junto a los campos que no cumplan con las validaciones.
+    Manejo de errores y feedback al usuario
+        Si los datos ingresados no cumplen con las reglas, mostrar un mensaje de error.
+        Si la operación de agregar/editar es exitosa, limpiar el formulario y mostrar un mensaje de confirmación.

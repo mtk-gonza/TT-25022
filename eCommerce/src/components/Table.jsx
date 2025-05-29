@@ -35,17 +35,19 @@ export const Table = ({columns, data, onEdit = null, onDelete = null}) => {
                                         </td>
                                     ))}
                                     {(onEdit || onDelete) && (
-                                        <td>
-                                            {onEdit && (
-                                                <Button onClick={() => onEdit(row)} className='btn btn-edit'>
-                                                    Editar
-                                                </Button>
-                                            )}
-                                            {onDelete && (
-                                                <button onClick={() => onDelete(row.id)} className='btn btn-delete'>
-                                                    Eliminar
-                                                </button>
-                                            )}
+                                        <td className='table__actions'>
+                                            <div className='table__actions-content'>
+                                                {onEdit && (
+                                                    <Button onClick={() => onEdit(row)} className='btn btn-edit'>
+                                                        Editar
+                                                    </Button>
+                                                )}
+                                                {onDelete && (
+                                                    <button onClick={() => onDelete(row.id)} className='btn btn-delete'>
+                                                        Eliminar
+                                                    </button>
+                                                )}
+                                            </div>
                                         </td>
                                     )}
                                 </tr>

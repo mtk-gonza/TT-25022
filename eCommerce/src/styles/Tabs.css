@@ -1,40 +1,34 @@
-.tabs {
+.tabs__content {
     margin: 0 auto;
-    margin-bottom: 1rem;
-    background-color: var(--light-bg-solid);
+    width: 100%;
+    min-height: 550px;
 }
-  
-.tabs__btns {
+.tabs__header {
     display: flex;
-    align-items: center;
-    justify-content: space-between; 
-}
-  
-.tabs__btns button {
+    
+} 
+.tabs__header button {
     padding: 10px 20px;
     border: none;
     background: none;
     cursor: pointer;
     font-size: var(--font-large);
+    color: var(--light-font-solid);
     transition: background-color 0.3s;
 }
-  
-.tabs__btns button.active {
-    background-color: var(--dark-bg-solid);
+.tabs__header button.active {
+    border-bottom: 2px solid var(--secondary-solid);
     color:var(--light-font-solid);
-    border-bottom: 2px solid var(--dark-bg-solid);
+    background-color: var(--dark-bg-solid);
 }
-  
-.tabs__btns button:hover {
-    background-color: var(--secondary-solid);
+.tabs__header button:hover {
+    background-color: #f0f0f0;
+    color: var(--dark-font-solid);
 }
-
 .tab__add {
     margin-left: auto;
 }
-
-.tab__add .btn-add {
-    padding: 8px 16px;
+.tab__add .btn-add {    
     background-color: var(--primary-solid);
     color: var(--light-font-solid);
     border: none;
@@ -43,7 +37,6 @@
     font-size: var(--font-medium);
     margin-right: 1rem;
 }
-
 .tab__add .btn-add:hover {
     background-color: var(--secondary-solid);
 }
