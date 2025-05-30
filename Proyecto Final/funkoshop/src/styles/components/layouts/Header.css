@@ -1,0 +1,34 @@
+.header {
+    font-family: var(--alternative-font);
+    color: var(--light-font-solid);
+    background-color: var(--dark-bg-solid);
+    padding: .5rem;
+    padding-top: 2rem;    
+}
+.header .container {
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    align-items: center;   
+}
+.header__top {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+}
+.header__logo {
+    max-width: 30rem;
+}
+
+.header__bottom {    
+    display: flex;
+    justify-content: end;
+    width: 100%;
+}
+
+.header__bottom .container {
+    display: flex;
+    justify-content: end;
+}

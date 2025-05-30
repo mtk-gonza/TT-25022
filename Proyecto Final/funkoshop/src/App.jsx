@@ -5,8 +5,8 @@ import { AppRoutes } from './routes/AppRoutes.jsx'
 
 import { AppProvider } from './context/AppProvider.jsx'
 
-import { Header } from './components/Header.jsx'
-import { Footer } from './components/Footer.jsx'
+import { Header } from './components/layout/Header.jsx'
+import { Footer } from './components/layout/Footer.jsx'
 
 export const App = () => {
 

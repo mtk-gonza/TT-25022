@@ -1,7 +1,7 @@
 import React from 'react'
 import { Navigate } from 'react-router-dom'
-import { Container } from './../components/Container.jsx'
-import { Loading } from './../components/Loading.jsx'
+import { Container } from './../components/common/Container.jsx'
+import { Loading } from './../components/common/Loading.jsx'
 import { useAuth } from './../hooks/useAuth.jsx'
 
 export const ProtectedRoute = ({ children, allowedRoles }) => {

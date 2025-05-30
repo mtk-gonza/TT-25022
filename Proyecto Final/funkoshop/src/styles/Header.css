@@ -1,9 +1,0 @@
-.header {
-    display: flex;
-    text-align: center;
-    align-items: center;
-    justify-content: center;
-    font-family: var(--alternative-font);
-    color: var(--light-font-solid);
-    background-color: var(--dark-bg-solid);    
-}

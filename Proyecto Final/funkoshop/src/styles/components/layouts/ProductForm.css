@@ -1,0 +1,12 @@
+.product-form {    
+    padding: .5rem;
+    display: flex;
+    flex-direction: column;
+    gap: .5rem;
+}
+
+
+.product-form__actions{
+    display: flex;
+    justify-content: space-around;
+}
