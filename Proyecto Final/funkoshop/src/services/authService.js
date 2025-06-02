@@ -1,4 +1,4 @@
-import { API_URL } from './../config.js'
+import { API_USERS, API_ROLES } from './../config.js'
 import { fetchData } from './fetchData.js'
 
 const isValidEmail = (email) => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)
@@ -14,7 +14,7 @@ export const login = async (email, password) => {
         throw new Error('El correo electrónico no tiene un formato válido')
     }
     try {
-        const response = await fetch(`${API_URL}/users?email=${encodeURIComponent(email)}&password=${encodeURIComponent(password)}`)
+        const response = await fetch(`${API_USERS}?email=${encodeURIComponent(email)}&password=${encodeURIComponent(password)}`)
     
         if (response.status === 404) {
             throw new Error('Correo o contraseña incorrectos')
@@ -25,7 +25,7 @@ export const login = async (email, password) => {
         }
         
         const users = await response.json()
-        const roles = await fetchData('/data/roles.json')
+        const roles = await fetchData(API_ROLES)
         const rolesMap = Object.fromEntries(roles.map(r => [r.id, r]))
         const user = users[0]
         const userWithRole = {

@@ -1,11 +1,11 @@
-import { API_URL } from './../config.js'
+import { API_USERS, API_ROLES } from './../config.js'
 import { fetchData } from './fetchData.js'
 
 export const getUsers = async () => {
     try {
         const [users, roles] = await Promise.all([
-            fetchData(`${API_URL}/users`),
-            fetchData('/data/roles.json')
+            fetchData(API_USERS),
+            fetchData(API_ROLES)
         ])
 
         const rolesMap = Object.fromEntries(roles.map(r => [r.id, r]))

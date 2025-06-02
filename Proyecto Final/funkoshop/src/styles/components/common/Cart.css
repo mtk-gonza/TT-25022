@@ -48,6 +48,24 @@
     font-size: 1.2rem;
 }
 
+.cart__list {
+    border: 1px solid #ddd;
+    padding: 1rem;
+    border-radius: 8px;
+}
+
+.cart__list-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.5rem;
+    border-bottom: 1px solid #eee;
+}
+
+.cart__list-item:last-child {
+    border-bottom: none;
+}
+
 .cart__total {
     display: flex;
     justify-content: space-between;

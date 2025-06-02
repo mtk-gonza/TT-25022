@@ -1,23 +1,27 @@
-.card-item {
+.product-card {
     border-radius: 8px;
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
     border: 1px solid #eee;
     max-width: 29rem;
+    justify-content: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
-.card-item:hover {
+.product-card:hover {
     transform: translateY(-5px);
     box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
     border-color: #ddd;
 }
 
-.card-item__cover {
+.product-card__cover {
     display: flex;
     position: relative;
     width: 28rem;
     height: 28rem;
     overflow: hidden;
 }
-.card-item__tag {
+.product-card__tag {
     font-size: var(--font-xsmall);
     text-transform: uppercase;
     background-color: var(--primary-solid);
@@ -28,32 +32,32 @@
     left: .5rem;
     z-index: 2;
 }
-.card-item__img--front,
-.card-item__img--back {
+.product-card__img--front,
+.product-card__img--back {
     width: 100%;
     height: 100%;
     object-fit: contain;
     animation: fade .7s;
 }
 
-.card-item__img--back {
+.product-card__img--back {
     display: none;
 }
-.card-item__img--front,
-.card-item__img--back {
+.product-card__img--front,
+.product-card__img--back {
     max-height: 28rem;
     width: auto;
     height: auto;
 }
-.card-item__cover:hover 
-.card-item__img--back {
+.product-card__cover:hover 
+.product-card__img--back {
     display: block;
 }
-.card-item__cover:hover 
-.card-item__img--front {
+.product-card__cover:hover 
+.product-card__img--front {
     display: none;
 }
-.card-item__favorite {
+.product-card__favorite {
     font-size: var(--font-small);
     cursor: pointer;
     position: absolute;
@@ -61,28 +65,28 @@
     right: .5rem;
     z-index: 2;
 }
-.card-item__content {
+.product-card__content {
     display: flex;
     flex-direction: column;
     gap: var(--spacing-12);
     padding: var(--spacing-16);
 }
-.card-item__licence {
+.product-card__licence {
     font-size: var(--font-xsmall);
     font-weight: 500;
 }
-.card-item__name {
+.product-card__name {
     font-size: var(--font-medium);
     font-weight: 700;
 }
-.card-item__price {
+.product-card__price {
     font-size: var(--font-small);
 }
-.card-item__promo {
+.product-card__promo {
     font-size: var(--font-xsmall);
     font-weight: 500;
 }
-.card-item__see-more {
+.product-card__see-more {
     font-size: var(--font-xsmall);
     color: var(--secondary-solid);
     font-weight: 700;

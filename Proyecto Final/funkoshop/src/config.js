@@ -1,1 +1,5 @@
-export const API_URL = import.meta.env.VITE_API_URL || '/data/products.json'
+export const API_PRODUCTS= import.meta.env.VITE_API_PRODUCTS || '/data/products.json'
+export const API_LICENCES= import.meta.env.VITE_API_LICENCES || '/data/licences.json'
+export const API_CATEGORIES= import.meta.env.VITE_API_CATEGORIES || '/data/categories.json'
+export const API_USERS= import.meta.env.VITE_API_USERS || '/data/users.json'
+export const API_ROLES= import.meta.env.VITE_API_ROLES || '/data/roles.json'

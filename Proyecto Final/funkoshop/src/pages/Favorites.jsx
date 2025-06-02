@@ -2,7 +2,6 @@ import React from 'react'
 
 import { Main } from './../components/common/Main.jsx'
 import { Container } from './../components/common/Container.jsx'
-import { Card } from './../components/layout/Card.jsx'
 import { Slider } from './../components/layout/Slider.jsx'
 
 import { useProducts } from './../hooks/useProducts.jsx'

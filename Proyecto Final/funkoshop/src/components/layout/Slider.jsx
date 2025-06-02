@@ -3,7 +3,7 @@ import { faChevronRight, faChevronLeft } from '@fortawesome/free-solid-svg-icons
 
 import { Container } from './../common/Container.jsx'
 import { Icon } from './../common/Icon.jsx'
-import { Card } from './Card.jsx'
+import { ProductCard } from './../common/ProductCard.jsx'
 
 import './../../styles/components/layouts/Slider.css'
 
@@ -32,7 +32,7 @@ export const Slider = ({ products, title = 'ÚLTIMOS lanzamientos' }) => {
                     <h2 className='slider__title'>{title}</h2>
                     <div className={products.length < 3 ? 'slider__cards simple' : 'slider__cards compound'}>
                         {visibleProducts.map((product) => (
-                            <Card product={product} key={product.id}></Card>
+                            <ProductCard product={product} key={product.id}></ProductCard>
                         ))}
                     </div>
                     {products.length > 3 &&

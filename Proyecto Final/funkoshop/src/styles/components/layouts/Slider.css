@@ -11,11 +11,10 @@
     text-align: center;
 }
 .slider__cards{
-    display: flex;  
-    overflow-x: hidden;    
-    margin-bottom: 2rem; 
-    margin-top: var(--spacing-16);    
-    width: 100%;  
+    display: flex;
+    overflow-x: hidden;
+    padding: 3rem;
+    width: 100%;
 }
 .simple {
     gap: 3rem;

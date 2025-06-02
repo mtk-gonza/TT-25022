@@ -2,13 +2,14 @@ import React, { useState } from 'react'
 import { Link } from 'react-router-dom'
 import { faChevronDown } from '@fortawesome/free-solid-svg-icons'
 
-import { Icon } from '../common/Icon.jsx'
+import { Icon } from './Icon.jsx'
 import { Cart } from './Cart.jsx'
+import { AccountMenu } from './AccountMenu.jsx'
 
 import { useProducts } from '../../hooks/useProducts.jsx'
 import { useAuth } from '../../hooks/useAuth.jsx'
 
-import './../../styles/components/layouts/Navbar.css'
+import './../../styles/components/common/Navbar.css'
 
 export const Navbar = () => {
     const { categories } = useProducts()
@@ -54,6 +55,9 @@ export const Navbar = () => {
                 }
                 <li className='navbar__item'>
                     <Cart />
+                </li>
+                <li className='navbar__item'>
+                    <AccountMenu />
                 </li>
             </ul>
         </nav>

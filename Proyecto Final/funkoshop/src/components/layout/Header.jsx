@@ -1,9 +1,9 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 
-import { Container } from '../common/Container.jsx'
-import { AccountMenu } from './AccountMenu.jsx'
-import { Navbar } from './Navbar.jsx'
+import { Container } from './../common/Container.jsx'
+
+import { Navbar } from './../common/Navbar.jsx'
 
 import logo from '/images/branding/logo_light_horizontal.svg'
 import './../../styles/components/layouts/Header.css'
@@ -19,9 +19,6 @@ export const Header = () => {
                             <img src={logo} alt='FunkoShop Logotipo' />
                         </Link>
                     </picture>
-                    <AccountMenu />
-                </div>
-                <div className='header__bottom'>
                     <Navbar />
                 </div>
             </Container>

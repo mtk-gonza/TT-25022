@@ -6,7 +6,7 @@ import { Main } from './../components/common/Main.jsx'
 import { Container } from './../components/common/Container.jsx'
 import { Paginator } from './../components/common/Paginator.jsx'
 import { Icon } from './../components/common/Icon.jsx'
-import { Card } from './../components/layout/Card.jsx'
+import { ProductCard } from './../components/common/ProductCard.jsx'
 
 import { news } from './../utils/news.js'
 
@@ -284,7 +284,7 @@ export const Shop = () => {
                             <ul className='shop__items'>
                                 {currentProducts.map((product) => (
                                     <li key={product.id}>
-                                        <Card product={product}/>
+                                        <ProductCard product={product}/>
                                     </li>
                                 ))}
                             </ul>

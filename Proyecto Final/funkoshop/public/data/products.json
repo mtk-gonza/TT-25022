@@ -13,8 +13,8 @@
         "image_back": "/images/star-wars/funkos/baby-yoda-blueball_back.webp",
         "licence_id": 2,
         "category_id": 1,
-        "createdAt": "2025-04-30T12:23:54",
-        "updatedAt": "2025-04-30T12:23:54"
+        "createdAt": "2025-05-30T12:23:54",
+        "updatedAt": "2025-05-30T12:23:54"
     },
     {
         "id": 2,
@@ -30,8 +30,8 @@
         "image_back": "/images/star-wars/funkos/luke-skylwalker-&-grogu_back.webp",
         "licence_id": 2,
         "category_id": 1,
-        "createdAt": "2025-04-30T12:23:54",
-        "updatedAt": "2025-04-30T12:23:54"
+        "createdAt": "2025-05-30T12:23:54",
+        "updatedAt": "2025-05-30T12:23:54"
     },
     {
         "id": 3,
@@ -47,8 +47,8 @@
         "image_back": "/images/star-wars/funkos/stormtrooper-lightsaber_back.webp",
         "licence_id": 2,
         "category_id": 1,
-        "createdAt": "2025-04-30T12:23:54",
-        "updatedAt": "2025-04-30T12:23:54"
+        "createdAt": "2025-05-30T12:23:54",
+        "updatedAt": "2025-05-30T12:23:54"
     },
     {
         "id": 4,
@@ -64,8 +64,8 @@
         "image_back": "/images/pokemon/funkos/charmander-smiley_back.webp",
         "licence_id": 1,
         "category_id": 1,
-        "createdAt": "2025-04-30T12:23:54",
-        "updatedAt": "2025-04-30T12:23:54"
+        "createdAt": "2025-05-30T12:23:54",
+        "updatedAt": "2025-05-30T12:23:54"
     },
     {
         "id": 5,
@@ -81,8 +81,8 @@
         "image_back": "/images/pokemon/funkos/dragonite-hi!_back.webp",
         "licence_id": 1,
         "category_id": 1,
-        "createdAt": "2025-04-30T12:23:54",
-        "updatedAt": "2025-04-30T12:23:54"
+        "createdAt": "2025-05-30T12:23:54",
+        "updatedAt": "2025-05-30T12:23:54"
     },
     {
         "id": 6,
@@ -98,8 +98,8 @@
         "image_back": "/images/pokemon/funkos/pidgeotto-flying_back.webp",
         "licence_id": 1,
         "category_id": 1,
-        "createdAt": "2025-04-30T12:23:54",
-        "updatedAt": "2025-04-30T12:23:54"
+        "createdAt": "2025-05-30T12:23:54",
+        "updatedAt": "2025-05-30T12:23:54"
     },
     {
         "id": 7,
@@ -115,8 +115,8 @@
         "image_back": "/images/pokemon/funkos/pikachu-smiley_back.webp",
         "licence_id": 1,
         "category_id": 1,
-        "createdAt": "2025-04-30T12:23:54",
-        "updatedAt": "2025-04-30T12:23:54"
+        "createdAt": "2025-05-30T12:23:54",
+        "updatedAt": "2025-05-30T12:23:54"
     },
     {
         "id": 8,
@@ -132,8 +132,8 @@
         "image_back": "/images/pokemon/funkos/vulpix-fancy_back.webp",
         "licence_id": 1,
         "category_id": 1,
-        "createdAt": "2025-04-30T12:23:54",
-        "updatedAt": "2025-04-30T12:23:54"
+        "createdAt": "2025-05-30T12:23:54",
+        "updatedAt": "2025-05-30T12:23:54"
     },
     {
         "id": 9,
@@ -149,8 +149,8 @@
         "image_back": "/images/harry-potter/funkos/harry-potter-&-hegwid_back.webp",
         "licence_id": 3,
         "category_id": 1,
-        "createdAt": "2025-04-30T12:23:54",
-        "updatedAt": "2025-04-30T12:23:54"
+        "createdAt": "2025-05-30T12:23:54",
+        "updatedAt": "2025-05-30T12:23:54"
     },
     {
         "id": 10,
@@ -166,8 +166,8 @@
         "image_back": "/images/harry-potter/funkos/herminione-ball-dress_back.webp",
         "licence_id": 3,
         "category_id": 1,
-        "createdAt": "2025-04-30T12:23:54",
-        "updatedAt": "2025-04-30T12:23:54"
+        "createdAt": "2025-05-30T12:23:54",
+        "updatedAt": "2025-05-30T12:23:54"
     },
     {
         "id": 11,
@@ -183,8 +183,8 @@
         "image_back": "/images/harry-potter/funkos/luna-lovegood-lion-mask_back.webp",
         "licence_id": 3,
         "category_id": 1,
-        "createdAt": "2025-04-30T12:23:54",
-        "updatedAt": "2025-04-30T12:23:54"
+        "createdAt": "2025-05-30T12:23:54",
+        "updatedAt": "2025-05-30T12:23:54"
     },
     {
         "id": 12,
@@ -200,8 +200,8 @@
         "image_back": "/images/harry-potter/funkos/snape-patronus_back.webp",
         "licence_id": 3,
         "category_id": 1,
-        "createdAt": "2025-04-30T12:23:54",
-        "updatedAt": "2025-04-30T12:23:54"
+        "createdAt": "2025-05-30T12:23:54",
+        "updatedAt": "2025-05-30T12:23:54"
     },
     {
         "id": 13,
@@ -217,8 +217,8 @@
         "image_back": "/images/naruto/funkos/kakashi-hatake-shippuden_back.webp",
         "licence_id": 4,
         "category_id": 1,
-        "createdAt": "2025-04-30T12:23:54",
-        "updatedAt": "2025-04-30T12:23:54"
+        "createdAt": "2025-05-30T12:23:54",
+        "updatedAt": "2025-05-30T12:23:54"
     },
     {
         "id": 14,
@@ -251,7 +251,7 @@
         "image_back": "/images/dragon-ball/keychains/goku-with-kamehameha_back.webp",
         "licence_id": 5,
         "category_id": 3,
-        "createdAt": "2025-05-10T12:23:54",
-        "updatedAt": "2025-05-10T12:23:54"
+        "createdAt": "2025-05-30T12:23:54",
+        "updatedAt": "2025-05-30T12:23:54"
     }
 ]

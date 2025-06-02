@@ -1,12 +1,12 @@
-import { API_URL } from '../config.js'
+import { API_PRODUCTS, API_LICENCES, API_CATEGORIES} from '../config.js'
 import { fetchData } from './fetchData.js'
 
 export const getProducts = async () => {
     try {
         const [products, licences, categories] = await Promise.all([
-            fetchData(`${API_URL}/products`),
-            fetchData('/data/licences.json'),
-            fetchData('/data/categories.json')
+            fetchData(API_PRODUCTS),
+            fetchData(API_LICENCES),
+            fetchData(API_CATEGORIES)
         ])
 
         const licenceMap = Object.fromEntries(licences.map(l => [l.id, l]))

@@ -2,8 +2,7 @@
     font-family: var(--alternative-font);
     color: var(--light-font-solid);
     background-color: var(--dark-bg-solid);
-    padding: .5rem;
-    padding-top: 2rem;    
+    padding: 2rem;  
 }
 .header .container {
     display: flex;
@@ -20,15 +19,4 @@
 }
 .header__logo {
     max-width: 30rem;
-}
-
-.header__bottom {    
-    display: flex;
-    justify-content: end;
-    width: 100%;
-}
-
-.header__bottom .container {
-    display: flex;
-    justify-content: end;
 }

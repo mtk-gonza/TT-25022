@@ -1,15 +1,15 @@
 import React, { useState } from 'react'
 import { faCartShopping } from '@fortawesome/free-solid-svg-icons'
 
-import { Icon } from '../common/Icon.jsx'
-import { CartList } from './CartList.jsx'
+import { Icon } from './Icon.jsx'
+import { CartCard } from './CartCard.jsx'
 
 import { useCart } from '../../hooks/useCart.jsx'
 
-import './../../styles/components/layouts/Cart.css'
+import './../../styles/components/common/Cart.css'
 
 export const Cart = () => {
-    const { cartItems, removeFromCart, clearCart} = useCart()
+    const { cartItems, removeFromCart, clearCart } = useCart()
     const [isOpen, setIsOpen] = useState(false)
     const totalPrice = cartItems.reduce((total, item) => total + item.price * item.quantity, 0)
     const totalQuantity = cartItems.reduce((sum, item) => sum + item.quantity, 0)
@@ -38,7 +38,13 @@ export const Cart = () => {
                         <p>No hay productos.</p>
                     ) : (
                         <>
-                            <CartList cartItems={cartItems} removeFromCart={removeFromCart}/>
+                            <ul className='cart__list'>
+                                {cartItems.map((item) => (
+                                    <li key={item.id} className='cart__list-item'>
+                                        <CartCard item={item} removeFromCart={removeFromCart} />
+                                    </li>
+                                ))}
+                            </ul>                            
                             <div className='cart__total'>
                                 <span>Cantidad: {totalQuantity} producto(s)</span>
                                 <strong>Precio Total: ${totalPrice.toFixed(2)}</strong>

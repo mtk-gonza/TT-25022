@@ -2,10 +2,10 @@ import React, { useState, useEffect, useRef } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 import { faUserCircle, faSignOut, faChevronUp, faChevronDown, faSignIn } from '@fortawesome/free-solid-svg-icons'
 
-import { Icon } from '../common/Icon.jsx'
+import { Icon } from './Icon.jsx'
 import { useAuth } from '../../hooks/useAuth.jsx'
 
-import './../../styles/components/layouts/AccountMenu.css'
+import './../../styles/components/common/AccountMenu.css'
 
 export const AccountMenu = () => {
     const { logout, user, isAuthenticated } = useAuth()

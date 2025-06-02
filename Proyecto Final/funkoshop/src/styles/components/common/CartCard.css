@@ -1,4 +1,4 @@
-.cart-item {
+.cart-card {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
@@ -6,15 +6,15 @@
     width: 100%;
 }
 
-.cart-item__name {
+.cart-card__name {
     min-width: 120px;
 }
 
-.cart-item__price {
+.cart-card__price {
     width: 30px;
 }
 
-.cart-item__quantity {
+.cart-card__quantity {
     text-align: end;
     width: 30px;
 }
