@@ -12,8 +12,8 @@ export const Categories = () => {
         { key: 'id', label: 'ID' },
         { key: 'name', label: 'Nombre' },
         { key: 'description', label: 'Descripción' },
-        { key: 'createdAt', label: 'Fecha de Creación' },
-        { key: 'updatedAt', label: 'Fecha de Actualización' }
+        { key: 'created_at', label: 'Fecha de Creación' },
+        { key: 'updated_at', label: 'Fecha de Actualización' }
     ]
 
     const handleEdit = (item) => {

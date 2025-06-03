@@ -20,12 +20,12 @@ const initialProductState = {
     image_back: '',
     licence_id: 0,
     category_id: 0,
-    createdAt: '',
-    updatedAt: ''
+    created_at: new Date(Date.now()).toISOString(),
+    updated_at: ''
 }
 
 export const ProductForm = ({ selectedItem = {}, onSubmit, onClosed }) => {
-    const [product, setProduct] = useState(initialProductState);
+    const [product, setProduct] = useState(initialProductState)
     const [errors, setErrors] = useState({})
     const { categories, licences } = useProducts()
 

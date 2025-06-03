@@ -3,21 +3,21 @@
         "id": 1,
         "name": "funkos",
         "description": "Figuras coleccionables Funko Pop",
-        "createdAt": "2025-01-30T12:23:54",
-        "updatedAt": "2025-01-30T12:23:54"
+        "created_at": "2025-01-30T12:23:54",
+        "updated_at": "2025-01-30T12:23:54"
     },
     {
         "id": 2,
         "name": "remeras",
         "description": "Remeras de anime, series, peliculas y más",
-        "createdAt": "2025-01-30T12:23:54",
-        "updatedAt": "2025-01-30T12:23:54"
+        "created_at": "2025-01-30T12:23:54",
+        "updated_at": "2025-01-30T12:23:54"
     },
     {
         "id": 3,
         "name": "llaveros",
         "description": "Llaveros coleccionables",
-        "createdAt": "2025-01-30T12:23:54",
-        "updatedAt": "2025-01-30T12:23:54"
+        "created_at": "2025-01-30T12:23:54",
+        "updated_at": "2025-01-30T12:23:54"
     }
 ]

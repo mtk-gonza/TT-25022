@@ -11,8 +11,10 @@ export const Users= () => {
     const columns = [
         { key: 'id', label: 'ID' },
         { key: 'name', label: 'Nombre' },
-        { key: 'lastName', label: 'Apellido' },
-        { key: 'rol_id', label: 'Rol' }
+        { key: 'last_name', label: 'Apellido' },
+        { key: 'rol_id', label: 'Rol' },
+        { key: 'created_at', label: 'Fecha de Creación' },
+        { key: 'updated_at', label: 'Fecha de Actualización' }
     ]
 
     const handleEdit = (item) => {

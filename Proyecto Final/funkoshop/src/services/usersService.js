@@ -1,5 +1,5 @@
 import { API_USERS, API_ROLES } from './../config.js'
-import { fetchData } from './fetchData.js'
+import { fetchData, fetchDataById, postData, putData, deleteDataById } from './fetchService.js'
 
 export const getUsers = async () => {
     try {
@@ -15,10 +15,59 @@ export const getUsers = async () => {
             rol: rolesMap[user.rol_id],
         }))
 
-        return { users: enrichedUsers, roles }
-        
-    } catch (error) {
-        console.error('Error al obtener los datos:', error)
-        throw error
+        return { users: enrichedUsers, roles }  
+
+    } catch (err) {
+        console.error(err.message)
+        throw err
+    }
+}
+
+export const getUserById = async (id) => {
+    try {
+        const user = await fetchDataById(API_USERS, id)
+
+        if (!user) throw new Error(`Usuario con ID ${id} no encontrado`)
+
+        const role = await fetchDataById(API_ROLES, user.rol_id)
+
+        return {
+            ...user,
+            rol: role || null
+        }
+
+    } catch (err) {
+        console.error('Error al obtener usuario por ID:', err.message)
+        throw err
+    }
+}
+
+export const createUser = async (userData) => {
+    try {
+        const newUser = await postData(API_USERS, userData)
+        return newUser
+    } catch (err) {
+        console.error('Error al crear usuario:', err.message)
+        throw err
+    }
+}
+
+export const updateUser = async (userData) => {
+    try {
+        const updatedUser = await putData(API_USERS, userData)
+        return updatedUser
+    } catch (err) {
+        console.error('Error al actualizar usuario:', err.message)
+        throw err
+    }
+}
+
+export const deleteUser = async (id) => {
+    try {
+        const success = await deleteDataById(API_USERS, id)
+        return success
+    } catch (err) {
+        console.error('Error al eliminar usuario:', err.message)
+        throw err
     }
 }

@@ -13,8 +13,8 @@ export const Licences = () => {
         { key: 'name', label: 'Nombre' },
         { key: 'description', label: 'Descripción' },
         { key: 'image', label: 'Imagen Path' },
-        { key: 'createdAt', label: 'Fecha de Creación' },
-        { key: 'updatedAt', label: 'Fecha de Actualización' }
+        { key: 'created_at', label: 'Fecha de Creación' },
+        { key: 'updated_at', label: 'Fecha de Actualización' }
     ]
 
     const handleEdit = (item) => {

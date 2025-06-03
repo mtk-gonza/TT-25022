@@ -1,5 +1,5 @@
 import { API_USERS, API_ROLES } from './../config.js'
-import { fetchData } from './fetchData.js'
+import { fetchData } from './fetchService.js'
 
 const isValidEmail = (email) => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)
 

@@ -1,42 +1,64 @@
 [
-  {
-    "name": "Admin",
-    "lastName": "Root",
-    "email": "admin@funkoshop.com",
-    "password": "admin",
-    "rol_id": 1,
-    "id": "1"
-  },
-  {
-    "name": "Guest",
-    "lastName": "Guest",
-    "email": "guest@funkoshop.com",
-    "password": "guest",
-    "rol_id": 2,
-    "id": "2"
-  },
-  {
-    "name": "Fausto",
-    "lastName": "Dickinson",
-    "email": "Emilia22@hotmail.com",
-    "password": "SolMTbvU6uAiI8V",
-    "rol_id": 2,
-    "id": "3"
-  },
-  {
-    "name": "Kristina",
-    "lastName": "O'Conner",
-    "email": "Dexter.Hartmann@yahoo.com",
-    "password": "w0167o5QF5HZMTJ",
-    "rol_id": 2,
-    "id": "4"
-  },
-  {
-    "name": "Lyric",
-    "lastName": "Kling",
-    "email": "Hardy.Trantow@hotmail.com",
-    "password": "0r1FoaRSmSTJ1vq",
-    "rol_id": 2,
-    "id": "5"
-  }
+    {
+        "name": "Admin",
+        "last_name": "Root",
+        "email": "admin@funkoshop.com",
+        "password": "admin",
+        "rol_id": 1,
+        "id": "1",
+        "created_at": "2025-06-03T06:50:13.975Z",
+        "updated_at": "2025-06-03T06:50:13.975Z"
+    },
+    {
+        "name": "Guest",
+        "last_name": "Guest",
+        "email": "guest@funkoshop.com",
+        "password": "guest",
+        "rol_id": 2,
+        "id": "2",
+        "created_at": "2025-06-03T06:50:13.975Z",
+        "updated_at": "2025-06-03T06:50:13.975Z"
+    },
+    {
+        "name": "Fausto",
+        "last_name": "Dickinson",
+        "email": "Emilia22@hotmail.com",
+        "password": "SolMTbvU6uAiI8V",
+        "rol_id": 2,
+        "id": "3",
+        "created_at": "2025-06-03T06:50:13.975Z",
+        "updated_at": "2025-06-03T06:50:13.975Z"
+    },
+    {
+        "name": "Kristina",
+        "last_name": "O'Conner",
+        "email": "Dexter.Hartmann@yahoo.com",
+        "password": "w0167o5QF5HZMTJ",
+        "rol_id": 2,
+        "id": "4",
+        "created_at": "2025-06-03T06:50:13.975Z",
+        "updated_at": "2025-06-03T06:50:13.975Z"
+    },
+    {
+        "name": "Lyric",
+        "last_name": "Kling",
+        "email": "Hardy.Trantow@hotmail.com",
+        "password": "0r1FoaRSmSTJ1vq",
+        "rol_id": 2,
+        "id": "5",
+        "created_at": "2025-06-03T06:50:13.975Z",
+        "updated_at": "2025-06-03T06:50:13.975Z"
+    },
+    {
+        
+        "name": "John",
+        "avatar": "https://avatars.githubusercontent.com/u/30505970",
+        "id": "6",
+        "last_name": "Doe",
+        "email": "johndow@gmail.com",
+        "password": "asd123",
+        "rol_id": 2,
+        "created_at": "2025-06-03T06:50:13.975Z",
+        "updated_at": "2025-06-03T06:50:13.975Z"
+    }
 ]

@@ -1,6 +1,8 @@
 import React, { useState } from 'react'
 import { Link } from 'react-router-dom'
 
+import { createUser } from './../../services/usersService.js'
+
 import './../../styles/components/layouts/RegisterForm.css'
 
 export const RegisterForm = () => {
@@ -11,12 +13,39 @@ export const RegisterForm = () => {
     const [rePassword, setRePassword] = useState('')
     const [isCheck, setIsCheck] = useState(false)
 
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault()
-        if (isCheck & password == rePassword) {
-            console.log(name)
-            console.log(lastname)
-            console.log(email)
+        if (!isCheck) {
+            alert('Debes aceptar los términos y condiciones')
+            return
+        }
+        if (password !== rePassword) {
+            alert('Las contraseñas no coinciden')
+            return
+        }
+        const userData = {
+            name,
+            last_name: lastname,
+            email,
+            password,
+            rol_id: 2,
+            created_at: new Date(Date.now()).toISOString() 
+        }
+        try {
+            const newUser = await createUser(userData)
+
+            if (newUser) {
+                alert('Usuario creado exitosamente')
+                setName('')
+                setLastname('')
+                setEmail('')
+                setPassword('')
+                setRePassword('')
+                setIsCheck(false)
+            }
+        } catch (error) {
+            console.error('Error al crear el usuario:', error.message)
+            alert('Hubo un error al crear el usuario. Inténtalo más tarde.')
         }
     }
 

@@ -1,5 +1,5 @@
 import { API_PRODUCTS, API_LICENCES, API_CATEGORIES} from '../config.js'
-import { fetchData } from './fetchData.js'
+import { fetchData } from './fetchService.js'
 
 export const getProducts = async () => {
     try {
