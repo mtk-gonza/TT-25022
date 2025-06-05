@@ -1,6 +1,6 @@
 import React, { useState, useRef, useEffect } from 'react'
 
-import { Button } from './../common/Button.jsx'
+import { Button } from './Button.jsx'
 
 import { createLicence, updateLicence} from './../../services/licenceService.js'
 
@@ -10,7 +10,7 @@ const initialLicenceState = {
     image: ''
 }
 
-export const LicenceForm = ({ selectedItem = {}, onSubmit, onClosed }) => {
+export const LicenceForm = ({ selectedItem = {}, onClosed }) => {
     const [licence, setLicence] = useState(initialLicenceState)
     const isInitialLoad = useRef(true)
     const [errors, setErrors] = useState({})
@@ -79,10 +79,10 @@ export const LicenceForm = ({ selectedItem = {}, onSubmit, onClosed }) => {
                     {errors.image && <p className='form__error'>{errors.image}</p>}
                 </div>
                 <div className='form__actions'>
-                    <Button type='submit' className='form__btn-submit btn'>
+                    <Button type='submit' className={licence.id ? 'btn btn-edit' : 'btn btn-add'}>
                         {licence.id ? 'Actualizar' : 'Guardar'}
                     </Button>
-                    <Button className='form__btn-cancel btn btn--primary' onClick={onClosed}>
+                    <Button className='btn' onClick={onClosed}>
                         Cancelar
                     </Button>
                 </div>

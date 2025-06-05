@@ -1,10 +1,10 @@
 import React, { useState, useRef, useEffect } from 'react'
 
-import { Button } from './../common/Button.jsx'
+import { Button } from './Button.jsx'
 
 import { createProduct, updateProduct } from './../../services/productService.js'
 
-import { useProducts } from '../../hooks/useProducts.jsx'
+import { useProducts } from './../../hooks/useProducts.jsx'
 
 const initialProductState = {
     name: '',
@@ -170,10 +170,10 @@ export const ProductForm = ({ selectedItem = {}, onClosed }) => {
                     {errors.category_id && <p className='form__error'>{errors.category_id}</p>}
                 </div>
                 <div className='form__actions'>
-                    <Button type='submit' className='form__btn-submit btn'>
+                    <Button type='submit' className={product.id ? 'btn btn-edit' : 'btn btn-add'}>
                         {product.id ? 'Actualizar' : 'Guardar'}
                     </Button>
-                    <Button className='form__btn-cancel btn btn--primary' onClick={onClosed}>
+                    <Button className='btn' onClick={onClosed}>
                         Cancelar
                     </Button>
                 </div>

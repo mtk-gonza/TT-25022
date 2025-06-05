@@ -102,7 +102,7 @@ textarea::placeholder {
     color: gainsboro;
 }
 .form__content{
-    gap: .3rem;
+    gap: .4rem;
     display: flex;
     align-items: stretch;
     justify-content: space-around;
@@ -118,7 +118,10 @@ textarea::placeholder {
     margin-bottom: 1rem;
 }
 .form__title {
-    font-size: var(--font-jumbo);
+    font-size: var(--font-xlarge);
+}
+.form__subtitle {
+    font-size: var(--font-large);
 }
 .form__box--grid {
     display: grid;
@@ -171,6 +174,13 @@ textarea::placeholder {
     font-size: var(--font-medium);
     gap: var(--spacing-8);
 }
+.form__error {
+    font-weight: 900;
+    color: var(--primary-solid);
+    font-size: var(--font-small);
+    min-height: 2rem;
+    text-align: center;
+}
 .form__terms {
     display: flex;
     align-items: center;
@@ -182,9 +192,6 @@ textarea::placeholder {
     align-items: center;
     justify-content: center;
     gap: var(--spacing-16);
-}
-.form__btn {
-    font-size: var(--font-xsmall);
 }
 .form__link {
     color: var(--secondary-solid);
@@ -199,6 +206,7 @@ textarea::placeholder {
     padding: var(--spacing-8);
 }
 .form__actions{
+    padding: 2rem;
     display: flex;
     flex-direction: row;
     justify-content: space-around;

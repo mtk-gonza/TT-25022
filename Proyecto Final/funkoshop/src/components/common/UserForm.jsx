@@ -1,6 +1,6 @@
 import React, { useState, useRef, useEffect } from 'react'
 
-import { Button } from './../common/Button.jsx'
+import { Button } from './Button.jsx'
 
 import { createUser, updateUser } from './../../services/userService.js'
 
@@ -69,12 +69,12 @@ export const UserForm = ({ selectedItem = {}, onClosed }) => {
 
     return (
         <div className='user-form'>
-            <div className='product-form__header'>
-                <h2 className='product-form__title'>
+            <div className='form__header'>
+                <h2 className='form__title'>
                     {user.id ? 'Actualizar Usuario' : 'Agregar Usuario'}
                 </h2>
             </div>
-            <form className='product-form__content' onSubmit={handleSubmit} >
+            <form className='form__content' onSubmit={handleSubmit} >
                 <div className='form__box--grid'>
                     <label className='form__label'>Nombre:</label>
                     <input className='form__input' type='text' name='name' value={user.name} onChange={handleChange} required />

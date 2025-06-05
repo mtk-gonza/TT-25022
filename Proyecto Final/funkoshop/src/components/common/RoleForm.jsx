@@ -1,6 +1,6 @@
 import React, { useState, useRef, useEffect } from 'react'
 
-import { Button } from './../common/Button.jsx'
+import { Button } from './Button.jsx'
 
 import { createRole, updateRole } from './../../services/roleService.js'
 

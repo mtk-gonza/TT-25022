@@ -6,7 +6,6 @@ import { createUser } from './../../services/userService.js'
 import './../../styles/components/layouts/RegisterForm.css'
 
 const initialUserState = {
-    id: null,
     name: '',
     last_name: '',
     email: '',
@@ -15,14 +14,8 @@ const initialUserState = {
 
 export const RegisterForm = () => {
     const [user, setUser] = useState(initialUserState)
-    const [name, setName] = useState('')
-    const [lastname, setLastname] = useState('')
-    const [email, setEmail] = useState('')
-    const [password, setPassword] = useState('')
     const [rePassword, setRePassword] = useState('')
     const [isCheck, setIsCheck] = useState(false)
-
-    const pwsPlaceHolder = '●●●●●●●●●●●'
 
     const handleChange = (e) => {
         const { name, value } = e.target;
@@ -79,11 +72,11 @@ export const RegisterForm = () => {
                 </div>
                 <div className='form__box--grid'>
                     <label className='form__label' htmlFor='password'>Contraseña:</label>
-                    <input className='form__input' type='password' name='password' placeholder={pwsPlaceHolder} value={user.password} onChange={handleChange} required />
+                    <input className='form__input' type='password' name='password' placeholder='●●●●●●●●●●●' value={user.password} onChange={handleChange} required />
                 </div>
                 <div className='form__box--grid'>
                     <label className='form__label' htmlFor='repassword'>Repite Contraseña:</label>
-                    <input className='form__input' type='password' name='repassword' placeholder={pwsPlaceHolder}                        
+                    <input className='form__input' type='password' name='repassword' placeholder='●●●●●●●●●●●'                        
                         value={rePassword} onChange={(e) => setRePassword(e.target.value)} required />
                 </div>
                 <div className='form__submission'>

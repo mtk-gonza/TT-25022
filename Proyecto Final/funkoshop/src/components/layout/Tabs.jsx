@@ -66,13 +66,13 @@ export const Tabs = () => {
                             <button
                                 key={index}
                                 onClick={() => setActiveTab(index)}
-                                className={activeTab === index ? 'active' : ''}
+                                className={activeTab === index ? 'tab tab__active' : 'tab'}
                             >
                                 {tab.label}
                             </button>
                         ))}
                         <div className='tab__add'>
-                            <Button className='btn-add' onClick={handlerAdd}>
+                            <Button className='btn btn-add' onClick={handlerAdd}>
                                 Agregar
                             </Button>
                         </div>

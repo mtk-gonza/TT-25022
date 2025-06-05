@@ -30,7 +30,7 @@ export const login = async (email, password) => {
         const user = users[0]
         const userWithRole = {
             ...user,
-            role: rolesMap[user.rol_id] || { name: 'Sin rol' }
+            role: rolesMap[user.role_id] || { name: 'Sin rol' }
         }
     
         return userWithRole 

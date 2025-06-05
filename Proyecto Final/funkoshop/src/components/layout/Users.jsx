@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 
 import { Table } from './../common/Table.jsx'
 import { Modal } from './../common/Modal.jsx'
-import { UserForm } from './../layout/UserForm.jsx'
+import { UserForm } from '../common/UserForm.jsx'
 
 import { useUsers } from '../../hooks/userUsers.jsx'
 
@@ -17,7 +17,6 @@ export const Users= () => {
         { key: 'id', label: 'ID' },
         { key: 'name', label: 'Nombre' },
         { key: 'last_name', label: 'Apellido' },
-        { key: 'rol_id', label: 'Rol' },
         { key: 'created_at', label: 'Fecha de Creación' },
         { key: 'updated_at', label: 'Fecha de Actualización' }
     ]

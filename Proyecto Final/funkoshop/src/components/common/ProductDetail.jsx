@@ -1,10 +1,10 @@
 import React, { useState } from 'react'
 
-import { Container } from './../common/Container.jsx'
+import { Container } from './Container.jsx'
 
-import { useAuth } from '../../hooks/useAuth.jsx'
-import { useFavorites } from '../../hooks/useFavorites.jsx'
-import { useCart } from '../../hooks/useCart.jsx'
+import { useAuth } from './../../hooks/useAuth.jsx'
+import { useFavorites } from './../../hooks/useFavorites.jsx'
+import { useCart } from './../../hooks/useCart.jsx'
 
 import './../../styles/components/layouts/ProductDetail.css'
 

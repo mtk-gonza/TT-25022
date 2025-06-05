@@ -1,6 +1,6 @@
 import React, { useState, useRef, useEffect } from 'react'
 
-import { Button } from './../common/Button.jsx'
+import { Button } from './Button.jsx'
 
 import { createCategory, updateCategory } from './../../services/categoryService.js'
 
@@ -73,10 +73,10 @@ export const CategoryForm = ({ selectedItem = {}, onClosed }) => {
                     {errors.description && <p className='form__error'>{errors.description}</p>}
                 </div>
                 <div className='form__actions'>
-                    <Button type='submit' className='form__btn-submit btn'>
+                    <Button type='submit' className={category.id ? 'btn btn-edit' : 'btn btn-add'}>
                         {category.id ? 'Actualizar' : 'Guardar'}
                     </Button>
-                    <Button className='form__btn-cancel btn btn--primary' onClick={onClosed}>
+                    <Button className='btn' onClick={onClosed}>
                         Cancelar
                     </Button>
                 </div>

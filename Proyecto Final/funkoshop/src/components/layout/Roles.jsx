@@ -1,11 +1,16 @@
-import React from 'react'
+import React, { useState } from 'react'
 
 import { Table } from './../common/Table.jsx'
+import { Modal } from './../common/Modal.jsx'
+import { RoleForm } from './../layout/RoleForm.jsx'
 
 import { useUsers } from '../../hooks/userUsers.jsx'
 
 export const Roles = () => {
+    const [isOpen, setIsOpen] = useState(false)
+    const [role, setRole] = useState({})
     const { roles } = useUsers()
+
     const columns = [
         { key: 'id', label: 'ID' },
         { key: 'name', label: 'Nombre' },
@@ -14,14 +19,27 @@ export const Roles = () => {
     ]
 
     const handleEdit = (item) => {
-        console.log('Editar', item)
+        setRole(item)
+        setIsOpen(true)
     }
 
     const handleDelete = (item) => {
         console.log('Eliminar', item)
     }
 
+    const handleClosed = () => {
+        setIsOpen(false)
+        setRole({})
+    }
+
     return (
-        <Table columns={columns} data={roles} onEdit={handleEdit} onDelete={handleDelete}/>
+        <>
+            <Table columns={columns} data={roles} onEdit={handleEdit} onDelete={handleDelete}/>
+            {isOpen &&
+                <Modal isOpen={isOpen} onClosed={handleClosed}>
+                    <RoleForm selectedItem={role} onClosed={handleClosed}/>
+                </Modal>
+            }
+        </>
     )
 }

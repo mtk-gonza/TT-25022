@@ -3,7 +3,6 @@ import React, { useState } from 'react'
 import { Button } from './Button.jsx'
 import { Paginator } from './Paginator.jsx'
 
-
 import './../../styles/components/common/Table.css'
 
 export const Table = ({ columns, data, onEdit = null, onDelete = null }) => {
@@ -37,18 +36,16 @@ export const Table = ({ columns, data, onEdit = null, onDelete = null }) => {
                                 ))}
                                 {(onEdit || onDelete) && (
                                     <td className='table__actions'>
-                                        <div className='table__actions-content'>
-                                            {onEdit && (
-                                                <Button onClick={() => onEdit(row)} className='btn btn-edit'>
-                                                    Editar
-                                                </Button>
-                                            )}
-                                            {onDelete && (
-                                                <Button onClick={() => onDelete(row.id)} className='btn btn-delete'>
-                                                    Eliminar
-                                                </Button>
-                                            )}
-                                        </div>
+                                        {onEdit && (
+                                            <Button className='btn btn-edit' onClick={() => onEdit(row)} >
+                                                Editar
+                                            </Button>
+                                        )}
+                                        {onDelete && (
+                                            <Button className='btn' onClick={() => onDelete(row.id)} >
+                                                Eliminar
+                                            </Button>
+                                        )}
                                     </td>
                                 )}
                             </tr>

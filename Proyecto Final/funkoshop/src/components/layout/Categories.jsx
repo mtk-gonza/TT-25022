@@ -14,7 +14,6 @@ export const Categories = () => {
     const columns = [
         { key: 'id', label: 'ID' },
         { key: 'name', label: 'Nombre' },
-        { key: 'description', label: 'Descripción' },
         { key: 'created_at', label: 'Fecha de Creación' },
         { key: 'updated_at', label: 'Fecha de Actualización' }
     ]
