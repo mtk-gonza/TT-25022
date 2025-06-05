@@ -4,8 +4,6 @@ import { Table } from './../common/Table.jsx'
 
 import { useProducts } from '../../hooks/useProducts.jsx'
 
-import './../../styles/components/layouts/Products.css'
-
 export const Products = () => {
     const { products } = useProducts()
 

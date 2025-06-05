@@ -1,5 +1,7 @@
 import React, { createContext, useState, useEffect } from 'react'
-import { getProducts } from './../services/productsService.js'
+import { getProducts } from './../services/productService.js'
+import { getLicences } from './../services/licenceService.js'
+import { getCategories } from './../services/categoryService.js'
 import { news } from './../utils/news.js'
 
 export const ProductsContext = createContext()
@@ -16,11 +18,13 @@ export const ProductsProvider = ({ children }) => {
         const loadData = async () => {
             setIsLoading(true)
             try {
-                const data = await getProducts()
-                setLicences(data.licences)
-                setCategories(data.categories)
-                setProducts(data.products)
-                const releases = data.products.filter(product => news(product.createdAt, 30))
+                const productsResponse = await getProducts()
+                const licencesResponse = await getLicences()
+                const categoryResponse = await getCategories()
+                setLicences(licencesResponse)
+                setCategories(categoryResponse)
+                setProducts(productsResponse.products)
+                const releases = productsResponse.products.filter(product => news(product.created_at, 30))
                 setLatestReleases(releases)
             } catch (err) {
                 setError(err.message || 'No se pudieron cargar los productos')

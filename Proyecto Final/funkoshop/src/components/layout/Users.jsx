@@ -1,11 +1,16 @@
-import React from 'react'
+import React, { useState } from 'react'
 
 import { Table } from './../common/Table.jsx'
+import { Modal } from './../common/Modal.jsx'
+import { UserForm } from './../layout/UserForm.jsx'
+
 import { useUsers } from '../../hooks/userUsers.jsx'
 
 import './../../styles/components/layouts/Licences.css'
 
 export const Users= () => {
+    const [isOpen, setIsOpen] = useState(false)
+    const [user, setUser] = useState({})
     const { users } = useUsers()
     
     const columns = [
@@ -18,14 +23,27 @@ export const Users= () => {
     ]
 
     const handleEdit = (item) => {
-        console.log('Editar', item)
+        setUser(item)
+        setIsOpen(true)
     }
 
     const handleDelete = (item) => {
         console.log('Eliminar', item)
     }
 
+    const handleClosed = () => {
+        setIsOpen(false)
+        setUser({})
+    }
+
     return (
-        <Table columns={columns} data={users} onEdit={handleEdit} onDelete={handleDelete}/>
+        <>
+            <Table columns={columns} data={users} onEdit={handleEdit} onDelete={handleDelete}/>
+            {isOpen &&
+                <Modal isOpen={isOpen} onClosed={handleClosed}>
+                    <UserForm selectedItem={user} onClosed={handleClosed}/>
+                </Modal>
+            }
+        </>
     )
 }

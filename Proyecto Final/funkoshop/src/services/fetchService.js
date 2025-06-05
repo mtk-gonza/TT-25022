@@ -15,17 +15,18 @@ export const fetchDataById = async (url, id) => {
     try {
         const response = await fetch(`${url}/${id}`)
 
-        if (!response.ok) throw new Error(`Error al cargar el dato desde ${url}`)
+        if (!response.ok) throw new Error(`Error al cargar el dato desde ${url} con ID: ${id}`)
 
         return await response.json()
 
     } catch (err) {
-        console.error(err)
+        console.error(err.message)
     }
 }
 
 export const postData = async (url, data) => {
     try {
+        data.created_at = new Date(Date.now()).toISOString()
         const response = await fetch(url, {
             method: 'POST',
             headers: {
@@ -34,17 +35,18 @@ export const postData = async (url, data) => {
             body: JSON.stringify(data)
         })
 
-        if (!response.ok) throw new Error('Error al agregar')
+        if (!response.ok) throw new Error(`Error al agregar desde ${url}`)
 
         return await response.json()
 
     } catch (err) {
-        console.error('Error al agregar los datos: ', err.message)
+        console.error(err.message)
     }
 }
 
-export const putData = async (url, data) => {
+export const putData = async (url, data) => {    
     try {
+        data.updated_at = new Date(Date.now()).toISOString()
         const response = await fetch(`${url}/${data.id}`,
             {
                 method: 'PUT',
@@ -54,12 +56,12 @@ export const putData = async (url, data) => {
                 body: JSON.stringify(data)
             })
 
-        if (!response.ok) throw Error('Error al actualizar el producto')
+        if (!response.ok) throw Error(`Error al actualizar desde ${url}`)
 
         return await response.json()
 
     } catch (err) {
-        console.error('Error al actualizar los datos: ', err.message)
+        console.error(err.message)
     }
 }
 
@@ -69,11 +71,11 @@ export const deleteDataById = async (url, id) => {
             method: 'DELETE',
         })
 
-        if (!response.ok) throw Error('Error al eliminar')
+        if (!response.ok) throw Error(`Error al eliminar desde ${url}`)
 
         return true
 
     } catch (err) {
-        console.error('Error al eliminar: ', err.message)
+        console.error(err.message)
     }
 }

@@ -6,8 +6,13 @@ import { Modal } from './../common/Modal.jsx'
 import { Products } from './Products.jsx'
 import { Licences } from './Licences.jsx'
 import { Categories } from './Categories.jsx'
+import { Roles } from './Roles.jsx'
 import { Users } from './Users.jsx'
 import { ProductForm } from './ProductForm.jsx'
+import { LicenceForm } from './LicenceForm.jsx'
+import { CategoryForm } from './CategoryForm.jsx'
+import { RoleForm } from './RoleForm.jsx'
+import { UserForm } from './UserForm.jsx'
 
 import './../../styles/components/layouts/Tabs.css'
 
@@ -20,6 +25,7 @@ export const Tabs = () => {
         { label: 'Productos', content: <Products /> },
         { label: 'Licencias', content: <Licences /> },
         { label: 'Categorias', content: <Categories /> },
+        { label: 'Roles', content: <Roles /> },
         { label: 'Usuarios', content: <Users /> }
     ]
 
@@ -34,6 +40,9 @@ export const Tabs = () => {
                 break
             case 'Categorias':
                 setModalToShow('category')
+                break
+            case 'Roles':
+                setModalToShow('role')
                 break
             case 'Usuarios':
                 setModalToShow('user')
@@ -76,9 +85,10 @@ export const Tabs = () => {
             {isOpen &&
                 <Modal isOpen={isOpen} onClosed={handleClosed}>
                     {modalToShow === 'product' && <ProductForm onClosed={handleClosed}/>}
-                    {modalToShow === 'licence' && <p>Licencia</p>}
-                    {modalToShow === 'category' && <p>categoria</p>}
-                    {modalToShow === 'user' && <p>Usuario</p>}
+                    {modalToShow === 'licence' && <LicenceForm onClosed={handleClosed}/>}
+                    {modalToShow === 'category' && <CategoryForm onClosed={handleClosed}/>}
+                    {modalToShow === 'role' && <RoleForm onClosed={handleClosed}/>}
+                    {modalToShow === 'user' && <UserForm onClosed={handleClosed}/>}
                 </Modal>
             }
         </div>

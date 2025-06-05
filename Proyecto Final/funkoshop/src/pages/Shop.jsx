@@ -99,7 +99,7 @@ export const Shop = () => {
         }
 
         if (filters.news) {
-            result = result.filter(product => news(product.createdAt))
+            result = result.filter(product => news(product.created_at))
         }
 
         if (filters.offers) {
