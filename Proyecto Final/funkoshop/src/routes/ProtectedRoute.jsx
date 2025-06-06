@@ -5,10 +5,10 @@ import { Loading } from './../components/common/Loading.jsx'
 import { useAuth } from './../hooks/useAuth.jsx'
 
 export const ProtectedRoute = ({ children, allowedRoles }) => {
-    const { isAuthenticated, isLoadingUser, user } = useAuth()
+    const { isAuthenticated, isLoadingAuthUser, authUser } = useAuth()
     const currentPath = window.location.pathname
 
-    if (isLoadingUser) {
+    if (isLoadingAuthUser) {
         return (
             <Container>
                 <Loading />
@@ -24,7 +24,7 @@ export const ProtectedRoute = ({ children, allowedRoles }) => {
         return children
     }
 
-    const userRole = user?.role?.name
+    const userRole = authUser?.role?.name
 
     if (!userRole || !allowedRoles.includes(userRole)) {
         return <Navigate to='/unauthorized' />

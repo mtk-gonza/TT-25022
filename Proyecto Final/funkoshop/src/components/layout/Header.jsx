@@ -2,7 +2,6 @@ import React from 'react'
 import { Link } from 'react-router-dom'
 
 import { Container } from './../common/Container.jsx'
-
 import { Navbar } from './../common/Navbar.jsx'
 
 import logo from '/images/branding/logo_light_horizontal.svg'

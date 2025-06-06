@@ -18,7 +18,7 @@ export const getProducts = async () => {
             category: categoryMap[product.category_id]
         }))
 
-        return { products: enrichedProducts}
+        return enrichedProducts
         
     } catch (err) {
         console.error(err.message)

@@ -4,7 +4,8 @@ import { Button } from './Button.jsx'
 
 import { createProduct, updateProduct } from './../../services/productService.js'
 
-import { useProducts } from './../../hooks/useProducts.jsx'
+import { useCategories } from './../../hooks/useCategories.jsx'
+import { useLicences } from './../../hooks/useLicences.jsx'
 
 const initialProductState = {
     name: '',
@@ -25,7 +26,8 @@ export const ProductForm = ({ selectedItem = {}, onClosed }) => {
     const [product, setProduct] = useState(initialProductState)
     const isInitialLoad = useRef(true)
     const [errors, setErrors] = useState({})
-    const { categories, licences } = useProducts()
+    const { categories } = useCategories()
+    const { licences } = useLicences()
 
     const handleChange = (e) => {
         const { name, value } = e.target;

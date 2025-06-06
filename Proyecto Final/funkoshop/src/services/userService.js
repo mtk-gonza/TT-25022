@@ -15,7 +15,7 @@ export const getUsers = async () => {
             rol: rolesMap[user.rol_id],
         }))
 
-        return { users: enrichedUsers, roles }  
+        return enrichedUsers 
 
     } catch (err) {
         console.error(err.message)

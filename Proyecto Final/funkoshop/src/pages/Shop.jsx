@@ -11,12 +11,16 @@ import { ProductCard } from './../components/common/ProductCard.jsx'
 import { news } from './../utils/news.js'
 
 import { useProducts } from './../hooks/useProducts.jsx'
+import { useCategories } from './../hooks/useCategories.jsx'
+import { useLicences } from './../hooks/useLicences.jsx'
 import { useFavorites } from '../hooks/useFavorites'
 
 import './../styles/pages/Shop.css'
 
 export const Shop = () => {
-    const { products, categories, licences } = useProducts()
+    const { products } = useProducts()
+    const { categories } = useCategories()
+    const { licences } = useLicences()
     const { isFavorite } = useFavorites()
     const [searchParams] = useSearchParams()
     const { category_name, licence_id } = useParams()

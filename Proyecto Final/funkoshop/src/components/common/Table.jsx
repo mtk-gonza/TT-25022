@@ -42,7 +42,7 @@ export const Table = ({ columns, data, onEdit = null, onDelete = null }) => {
                                             </Button>
                                         )}
                                         {onDelete && (
-                                            <Button className='btn' onClick={() => onDelete(row.id)} >
+                                            <Button className='btn' onClick={() => onDelete(row)} >
                                                 Eliminar
                                             </Button>
                                         )}

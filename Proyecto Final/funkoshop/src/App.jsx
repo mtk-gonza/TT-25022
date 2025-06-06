@@ -3,7 +3,7 @@ import { BrowserRouter } from 'react-router-dom'
 
 import { AppRoutes } from './routes/AppRoutes.jsx'
 
-import { AppProvider } from './context/AppProvider.jsx'
+import { AppProvider } from './providers/AppProvider.jsx'
 
 import { Header } from './components/layout/Header.jsx'
 import { Footer } from './components/layout/Footer.jsx'

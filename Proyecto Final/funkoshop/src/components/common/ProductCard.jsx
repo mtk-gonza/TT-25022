@@ -3,11 +3,10 @@ import { Link } from 'react-router-dom'
 
 import { Loading } from './Loading.jsx'
 
-import { news } from '../../utils/news.js'
-
 import { useAuth } from '../../hooks/useAuth.jsx'
 import { useFavorites } from '../../hooks/useFavorites.jsx'
 
+import { news } from '../../utils/news.js'
 import './../../styles/components/common/ProductCard.css'
 
 export const ProductCard = ({ product }) => {

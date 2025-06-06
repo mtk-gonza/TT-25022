@@ -9,18 +9,16 @@ export const LoginForm = () => {
     const [credentials, setCredentials] = useState({ email: '', password: '' })
     const [remember, setRemember] = useState(false)
 
-    const { login, isLoadingUser, error, setError } = useAuth()
+    const { login, isLoadingAuthUser, errorAuthUser, setErrorAuthUser } = useAuth()
     const navigate = useNavigate()
     const location = useLocation()
-
-
 
     const handleChange = (e) => {
         const { name, value } = e.target
         setCredentials((prev) => ({ ...prev, [name]: value }))
 
-        if (error) {
-            setError(null)
+        if (errorAuthUser) {
+            setErrorAuthUser(null)
         }
     }
 
@@ -57,14 +55,14 @@ export const LoginForm = () => {
                     <input className='form__input' type='password' name='password' placeholder='●●●●●●●●●●●' onChange={handleChange} />
                 </div>
                 <div className='form__error'>
-                    {error && (<p>{error}</p>)}
+                    {errorAuthUser && (<p>{errorAuthUser}</p>)}
                 </div>
                 <div className='login__actions'>
                     <a className='form__link' href=''>
                         Olvidé mi contraseña
                     </a>
                     <div className='form__submission'>
-                        <input className='btn' type='submit' value={isLoadingUser ? 'Ingresando...' : 'Ingresar'} disabled={isLoadingUser} />
+                        <input className='btn' type='submit' value={isLoadingAuthUser ? 'Ingresando...' : 'Ingresar'} disabled={isLoadingAuthUser} />
                         <div className='form__remember'>
                             <input type='checkbox' name='remember' checked={remember} onChange={handleRememberChange} />
                             <label htmlFor=''>Recordarme</label>

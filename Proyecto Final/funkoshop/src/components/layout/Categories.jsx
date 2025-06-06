@@ -2,14 +2,14 @@ import React, { useState } from 'react'
 
 import { Table } from './../common/Table.jsx'
 import { Modal } from './../common/Modal.jsx'
-import { CategoryForm } from './../layout/CategoryForm.jsx'
+import { CategoryForm } from './../common/CategoryForm.jsx'
 
-import { useProducts } from '../../hooks/useProducts.jsx'
+import { useCategories } from '../../hooks/useCategories.jsx'
 
 export const Categories = () => {
     const [isOpen, setIsOpen] = useState(false)
     const [category, setCategory] = useState({})
-    const { categories } = useProducts()
+    const { categories } = useCategories()
 
     const columns = [
         { key: 'id', label: 'ID' },

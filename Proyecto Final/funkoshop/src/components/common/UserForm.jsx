@@ -4,7 +4,7 @@ import { Button } from './Button.jsx'
 
 import { createUser, updateUser } from './../../services/userService.js'
 
-import { useUsers } from './../../hooks/userUsers.jsx'
+import { useRoles } from './../../hooks/useRoles.jsx'
 
 const initialUserState = {
     name: '',
@@ -18,7 +18,7 @@ export const UserForm = ({ selectedItem = {}, onClosed }) => {
     const [user, setUser] = useState(initialUserState)
     const isInitialLoad = useRef(true)
     const [errors, setErrors] = useState({})
-    const { roles } = useUsers()
+    const { roles } = useRoles()
 
     const handleChange = (e) => {
         const { name, value } = e.target;

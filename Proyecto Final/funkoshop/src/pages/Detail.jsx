@@ -3,7 +3,7 @@ import { useParams } from 'react-router-dom'
 
 import { Main } from './../components/common/Main.jsx'
 import { Loading } from './../components/common/Loading.jsx'
-import { ProductDetail } from './../components/layout/ProductDetail.jsx'
+import { ProductDetail } from './../components/common/ProductDetail.jsx'
 import { Slider } from './../components/layout/Slider.jsx'
 
 import { useProducts } from './../hooks/useProducts.jsx'

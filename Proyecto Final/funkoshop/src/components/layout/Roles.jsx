@@ -2,14 +2,14 @@ import React, { useState } from 'react'
 
 import { Table } from './../common/Table.jsx'
 import { Modal } from './../common/Modal.jsx'
-import { RoleForm } from './../layout/RoleForm.jsx'
+import { RoleForm } from './../common/RoleForm.jsx'
 
-import { useUsers } from '../../hooks/userUsers.jsx'
+import { useRoles } from '../../hooks/useRoles.jsx'
 
 export const Roles = () => {
     const [isOpen, setIsOpen] = useState(false)
     const [role, setRole] = useState({})
-    const { roles } = useUsers()
+    const { roles } = useRoles()
 
     const columns = [
         { key: 'id', label: 'ID' },

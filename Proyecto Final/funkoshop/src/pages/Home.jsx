@@ -5,14 +5,16 @@ import { Hero } from './../components/layout/Hero.jsx'
 import { Collection } from './../components/layout/Collection.jsx'
 import { Slider } from './../components/layout/Slider.jsx'
 
+import { useLicences } from './../hooks/useLicences.jsx'
 import { useProducts } from './../hooks/useProducts.jsx'
-import { CartContext } from './../context/CartContext.jsx'
+import { useCart } from './../hooks/useCart.jsx'
 
 import './../styles/pages/Home.css'
 
 export const Home = () => {
-    const { licences, latestReleases } = useProducts()
-    const { addToCart } = useContext(CartContext)
+    const { licences } = useLicences()
+    const { latestReleases } = useProducts()
+    const { addToCart } = useCart()
 
     return (
         <Main className='main-container'>

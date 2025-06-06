@@ -4,14 +4,14 @@ import { Table } from './../common/Table.jsx'
 import { Modal } from './../common/Modal.jsx'
 import { LicenceForm } from '../common/LicenceForm.jsx'
 
-import { useProducts } from '../../hooks/useProducts.jsx'
+import { useLicences } from '../../hooks/useLicences.jsx'
 
 import './../../styles/components/layouts/Licences.css'
 
 export const Licences = () => {
     const [isOpen, setIsOpen] = useState(false)
     const [licence, setLicene] = useState({})
-    const { licences } = useProducts()
+    const { licences } = useLicences()
 
     const columns = [
         { key: 'id', label: 'ID' },

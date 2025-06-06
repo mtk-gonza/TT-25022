@@ -8,7 +8,7 @@ import { useAuth } from '../../hooks/useAuth.jsx'
 import './../../styles/components/common/AccountMenu.css'
 
 export const AccountMenu = () => {
-    const { logout, user, isAuthenticated } = useAuth()
+    const { logout, authUser, isAuthenticated } = useAuth()
 
     const [isMenuOpen, setIsMenuOpen] = useState(false)
     const menuRef = useRef(null)
@@ -55,13 +55,13 @@ export const AccountMenu = () => {
                     </div>
                     {isMenuOpen && (
                         <ul className='dropdown-menu'>
-                            <li>{user.name} {user.lastName}</li>
+                            <li>{authUser.name} {authUser.lastName}</li>
                             <li>
                                 <Link to='/favorites'>
                                     Mis Favoritos
                                 </Link>
                             </li>
-                            {user.rol_id == 1 &&
+                            {authUser.role_id == 1 &&
                                 <li>
                                     <Link to='/dashboard'>
                                         Dashboard

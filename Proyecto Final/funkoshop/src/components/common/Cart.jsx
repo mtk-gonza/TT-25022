@@ -4,7 +4,7 @@ import { faCartShopping } from '@fortawesome/free-solid-svg-icons'
 import { Icon } from './Icon.jsx'
 import { CartCard } from './CartCard.jsx'
 
-import { useCart } from '../../hooks/useCart.jsx'
+import { useCart } from './../../hooks/useCart.jsx'
 
 import './../../styles/components/common/Cart.css'
 
