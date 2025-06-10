@@ -1,8 +1,12 @@
 import React, { useState, useRef, useEffect } from 'react'
 
 import { Button } from './Button.jsx'
+import { Message } from './Message.jsx'
 
-import { createLicence, updateLicence} from './../../services/licenceService.js'
+import { useLicences } from './../../hooks/useLicences.jsx'
+import { useWarning } from './../../hooks/useWarning.jsx'
+
+import { getFormMessages } from './../../utils/messageUtils.js'
 
 const initialLicenceState = {
     name: '',
@@ -14,6 +18,8 @@ export const LicenceForm = ({ selectedItem = {}, onClosed }) => {
     const [licence, setLicence] = useState(initialLicenceState)
     const isInitialLoad = useRef(true)
     const [errors, setErrors] = useState({})
+    const { addLicence, updateLicence } = useLicences()
+    const { isOpenWarning, warning, titleWarning, messageWarning, handleClosedWarning } = useWarning()
 
     const handleChange = (e) => {
         const { name, value } = e.target;
@@ -26,21 +32,21 @@ export const LicenceForm = ({ selectedItem = {}, onClosed }) => {
     const handleSubmit = async (e) => {
         e.preventDefault()
         try {
-            let response
-            if (licence.id) {
-                response = await updateLicence(licence)
-            } else {
-                response = await createLicence(licence)
-            }
+            const isUpdate = !!licence.id;
+            const response = isUpdate ? await updateLicence(licence) : await addLicence(licence)
+            const { title, message } = getFormMessages('Licencia', isUpdate, !!response)
+
+            warning(title, message, onClosed)
+
             if (response) {
-                alert(licence.id ? 'Licencia actualizada exitosamente' : 'Licencia creada exitosamente')
                 setLicence(initialLicenceState)
                 isInitialLoad.current = true
-                onClosed()
             }
+
         } catch (err) {
             console.error(err)
-            alert('Hubo un error al procesar la licencia. Inténtalo más tarde.')
+            const { title, message } = getFormMessages('Licencia', !!licence.id, false)
+            warning(title, message, onClosed)
         }
     }
 
@@ -87,6 +93,15 @@ export const LicenceForm = ({ selectedItem = {}, onClosed }) => {
                     </Button>
                 </div>
             </form>
+            {isOpenWarning && (
+                <Message
+                    isOpen={isOpenWarning}
+                    title={titleWarning}
+                    message={messageWarning}
+                    onCancel={handleClosedWarning}
+                    isConfirm={false}
+                />
+            )}            
         </div>
     )
 }

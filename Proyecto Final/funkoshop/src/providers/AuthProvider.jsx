@@ -25,9 +25,9 @@ export const AuthProvider = ({ children }) => {
     }, [])
 
     const handleLogin = async (email, password, remember = false) => {
+        setErrorAuthUser(null)
+        setIsLoadingAuthUser(true)
         try {
-            setErrorAuthUser(null)
-            setIsLoadingAuthUser(true)
             const reponse = await login(email, password)          
             setAuthUser(reponse)
             setIsAuthenticated(true)

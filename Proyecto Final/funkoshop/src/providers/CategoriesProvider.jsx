@@ -2,37 +2,97 @@ import React, { useState, useEffect } from 'react'
 
 import { CategoriesContext } from './../context/CategoriesContext.jsx'
 
-import { getCategories } from './../services/categoryService.js'
+import { getCategories, getCategoryById, createCategory, updateCategory, deleteCategory } from './../services/categoryService.js'
 
 export const CategoriesProvider = ({ children }) => {
     const [categories, setCategories] = useState([])
     const [errorCategories, setErrorCategories] = useState(null)
     const [isLoadingCategories, setIsLoadingCategories] = useState(false)
 
-    const loadCategories = async () => {
-        setIsLoadingCategories(true)
-        try {
-            const response = await getCategories()
-            setCategories(response)
-        } catch (err) {
-            setErrorCategories(err.message || 'No se pudieron cargar los productos')
-            console.error('Error al cargar los datos:', err)
-            console.log(errorCategories)
-        } finally {
-            setIsLoadingCategories(false)
+    const actionsCategories = {
+        getCategories: async () => {
+            setErrorCategories(null)
+            setIsLoadingCategories(true)
+            try {
+                const response = await getCategories()
+                setCategories(response)
+                return response
+            } catch (err) {
+                setErrorCategories(err.message)
+                throw err
+            } finally {
+                setIsLoadingCategories(false)
+            }
+        },
+        getCategoryById: async (id) => {
+            setErrorCategories(null)
+            setIsLoadingCategories(true)
+            try {
+                const response =  await getCategoryById(id)
+                return response
+            } catch (err) {
+                setErrorCategories(err.message)
+                throw err
+            } finally {
+                setIsLoadingCategories(false)
+            }            
+        },
+        addCategory: async (newCategory) => {
+            setErrorCategories(null)
+            setIsLoadingCategories(true)
+            try {
+                const response = await createCategory(newCategory)
+                setCategories((prev) => [...prev, response])  
+                return response              
+            } catch (err) {
+                setErrorCategories(err.message)
+                throw err
+            } finally {
+                setIsLoadingCategories(false)
+            }
+        },
+        updateCategory: async (updatedCategory) => {
+            setErrorCategories(null)
+            setIsLoadingCategories(true)
+            try {                
+                const response = await updateCategory(updatedCategory)
+                setCategories((prev) =>
+                    prev.map((p) => (p.id === response.id ? response : p))
+                )
+                return response
+            } catch (err) {
+                setErrorCategories(err.message)
+                throw err                
+            } finally {
+                setIsLoadingCategories(false)
+            }
+        },
+        deleteCategory: async (id) => {
+            setErrorCategories(null)
+            setIsLoadingCategories(true)
+            try {                
+                const response = await deleteCategory(id);
+                setCategories((prev) => prev.filter((p) => p.id !== id))
+                return response || true 
+            } catch (err) {
+                setErrorCategories(err.message)
+                throw err 
+            } finally {
+                setIsLoadingCategories(false)
+            }
         }
     }
 
     useEffect(() => {
-        loadCategories()
+        actionsCategories.getCategories()
     }, [])
 
     return (
         <CategoriesContext.Provider value={{
             categories,
             errorCategories,
-            loadCategories,
-            isLoadingCategories
+            isLoadingCategories,
+            ...actionsCategories
         }}>
             {children}
         </CategoriesContext.Provider>

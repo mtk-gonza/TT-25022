@@ -2,37 +2,97 @@ import { useState, useEffect } from 'react'
 
 import { RolesContext } from './../context/RolesContext.jsx'
 
-import { getRoles } from './../services/roleService.js'
+import { getRoles, getRoleById, createRole, updateRole, deleteRole } from './../services/roleService.js'
 
 export const RolesProvider = ({ children }) => {
     const [roles, setRoles] = useState([])
     const [errorRoles, setErrorRoles] = useState(null)
     const [isLoadingRoles, setIsLoadingRoles] = useState(false)
 
-    const loadRoles = async () => {
-        setIsLoadingRoles(true)
-        try {
-            const response = await getRoles()
-            setRoles(response)
-        } catch (err) {
-            setErrorRoles(err)
-            console.error('Error al cargar los datos:', err)
-            console.log(errorRoles)         
-        } finally {
-            setIsLoadingRoles(false)
-        }
+    const actionsRoles = {
+        getRoles: async () => {
+            setErrorRoles(null)
+            setIsLoadingRoles(true)
+            try {
+                const response = await getRoles()
+                setRoles(response)
+                return response
+            } catch (err) {
+                setErrorRoles(err.message)
+                throw err
+            } finally {
+                setIsLoadingRoles(false)
+            }
+        },
+        getRoleById: async (id) => {
+            setErrorRoles(null)
+            setIsLoadingRoles(true)
+            try {
+                const response = await getRoleById(id)
+                return response
+            } catch (err) {
+                setErrorRoles(err.message)
+                throw err
+            } finally {
+                setIsLoadingRoles(false)
+            }            
+        },
+        addRole: async (newRole) => {
+            setErrorRoles(null)
+            setIsLoadingRoles(true)
+            try {
+                const response = await createRole(newRole)
+                setRoles((prev) => [...prev, response])  
+                return response              
+            } catch (err) {
+                setErrorRoles(err.message)
+                throw err    
+            } finally {
+                setIsLoadingRoles(false)
+            }
+        },
+        updateRole: async (updatedRole) => {
+            setErrorRoles(null)
+            setIsLoadingRoles(true)
+            try {                
+                const response = await updateRole(updatedRole)
+                setRoles((prev) =>
+                    prev.map((p) => (p.id === response.id ? response : p))
+                )
+                return response
+            } catch (err) {
+                setErrorRoles(err.message)
+                throw err                
+            } finally {
+                setIsLoadingRoles(false)
+            }
+        },
+        deleteRole: async (id) => {
+            setErrorRoles(null)
+            setIsLoadingRoles(true)
+            try {                
+                const response = await deleteRole(id);
+                setRoles((prev) => prev.filter((r) => r.id !== id))
+                return response || true  
+            } catch (err) {
+                setErrorRoles(err.message)
+                throw err  
+            } finally {
+                setIsLoadingRoles(false)
+            }
+        }  
     }
 
     useEffect(() => {
-        loadRoles()
+        actionsRoles.getRoles()
     }, [])
 
     return (
         <RolesContext.Provider value={{
             roles,
             errorRoles,
-            loadRoles,
-            isLoadingRoles
+            isLoadingRoles,
+            ...actionsRoles
         }}>
             {children}
         </RolesContext.Provider> 

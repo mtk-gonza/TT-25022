@@ -2,18 +2,20 @@ import React, { useState } from 'react'
 
 import { Table } from './../common/Table.jsx'
 import { Modal } from './../common/Modal.jsx'
-import { UserForm } from '../common/UserForm.jsx'
+import { UserForm } from './../common/UserForm.jsx'
+import { Message } from './../common/Message.jsx'
 
-import { useUsers } from '../../hooks/useUsers.jsx'
-import { deleteUser } from './../../services/userService.js'
+import { useUsers } from './../../hooks/useUsers.jsx'
+import { useConfirm } from './../../hooks/useConfirm.jsx'
+import { useWarning } from './../../hooks/useWarning.jsx'
 
-import './../../styles/components/layouts/Licences.css'
-
-export const Users= () => {
+export const Users = () => {
     const [isOpen, setIsOpen] = useState(false)
     const [user, setUser] = useState({})
-    const { users, getUsers } = useUsers()
-    
+    const { users, deleteUser } = useUsers()
+    const { isOpenConfirm, message, title, confirm, onConfirm, onCancel } = useConfirm()
+    const { isOpenWarning, warning, titleWarning, messageWarning, handleClosedWarning } = useWarning()
+
     const columns = [
         { key: 'id', label: 'ID' },
         { key: 'name', label: 'Nombre' },
@@ -28,14 +30,13 @@ export const Users= () => {
     }
 
     const handleDelete = async (item) => {
-        console.log('Eliminar', item)
-        const confirm = window.confirm(`¿Estas seguro de eliminar al usuario: ${item.email}`)
-        if (confirm){
+        const confirmed = await confirm(`¿Estás seguro de eliminar al Usuario: ${item.email}?`, 'Eliminar Usuario')
+        if (confirmed) {
             try {
                 const response = await deleteUser(item.id)
-                getUsers()
-                if (response) alert('Usuario eliminado exitosamente')
+                if (response) warning('Eliminado exitosamente', `El Usuario con el correo ${item.email} fue eliminado.`)
             } catch (err) {
+                warning('Error al intentar Eliminar',`Error: ${err.message}`)
                 console.error(err)
             }
         }
@@ -48,12 +49,31 @@ export const Users= () => {
 
     return (
         <>
-            <Table columns={columns} data={users} onEdit={handleEdit} onDelete={handleDelete}/>
+            <Table columns={columns} data={users} onEdit={handleEdit} onDelete={handleDelete} />
             {isOpen &&
                 <Modal isOpen={isOpen} onClosed={handleClosed}>
-                    <UserForm selectedItem={user} onClosed={handleClosed}/>
+                    <UserForm selectedItem={user} onClosed={handleClosed} />
                 </Modal>
             }
+            {isOpenConfirm && (
+                <Message
+                    isOpen={isOpenConfirm}
+                    title={title}
+                    message={message}
+                    onConfirm={onConfirm}
+                    onCancel={onCancel}
+                    isConfirm={true}
+                />
+            )}
+            {isOpenWarning && (
+                <Message
+                    isOpen={isOpenWarning}
+                    title={titleWarning}
+                    message={messageWarning}
+                    onCancel={handleClosedWarning}
+                    isConfirm={false}
+                />
+            )}
         </>
     )
 }

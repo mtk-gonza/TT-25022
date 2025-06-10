@@ -11,43 +11,99 @@ export const ProductsProvider = ({ children }) => {
     const [errorProducts, setErrorProducts] = useState(null)
     const [isLoadingProducts, setIsLoadingProducts] = useState(false)
 
-    const loadProducts = async () => {
-        setIsLoadingProducts(true)
-        try {
-            const response = await getProducts()
-            setProducts(response)
-            const releases = response.filter(product => news(product.created_at, 30))
-            setLatestReleases(releases)
-        } catch (err) {
-            setErrorProducts(err.message)
-            setIsLoadingProducts(false)
-        } finally {
-            setIsLoadingProducts(false)
-        }
-    }
-
-    const actions = {
-        addProduct: async (newProduct) => {
-            const product = await createProduct(newProduct)
-            setProducts((prev) => [...prev, product])
+    const actionsProducts = {
+        getProducts: async () => {
+            setErrorProducts(null)
+            setIsLoadingProducts(true)
+            try {
+                const response = await getProducts()
+                setProducts(response)
+                return response
+            } catch (err) {
+                setErrorProducts(err.message)
+                throw err
+            } finally {
+                setIsLoadingProducts(false)
+            }
         },
-        updateProduct: async (updatedProduct) => {
-            const updated = await updateProduct(updatedProduct)
-            setProducts((prev) =>
-                prev.map((p) => (p.id === updated.id ? updated : p))
-            )
-        },
-        deleteProduct: async (id) => {
-            await deleteProduct(id);
-            setProducts((prev) => prev.filter((p) => p.id !== id))
+        getLatestRealses: async () => {
+            setErrorProducts(null)
+            setIsLoadingProducts(true)
+            try {
+                const response = await getProducts()
+                const releases = response.filter(product => news(product.created_at, 30))
+                setLatestReleases(releases)
+                return releases
+            } catch (err) {
+                setErrorProducts(err.message)
+                throw err
+            } finally {
+                setIsLoadingProducts(false)
+            }
         },
         getProductById: async (id) => {
-            return await getProductById(id)
+            setErrorProducts(null)
+            setIsLoadingProducts(true)
+            try {
+                const response = await getProductById(id)
+                return response
+            } catch (err) {
+                setErrorProducts(err.message)
+                throw err
+            } finally {
+                setIsLoadingProducts(false)
+            }            
+        },
+        addProduct: async (newProduct) => {
+            setErrorProducts(null)
+            setIsLoadingProducts(true)
+            try {
+                const response = await createProduct(newProduct)
+                setProducts((prev) => [...prev, response]) 
+                setLatestReleases((prev) => [...prev, response])  
+                return response             
+            } catch (err) {
+                setErrorProducts(err.message)
+                throw err
+            } finally {
+                setIsLoadingProducts(false)
+            }
+        },
+        updateProduct: async (updatedProduct) => {
+            setErrorProducts(null)
+            setIsLoadingProducts(true)
+            try {                
+                const response =  await updateProduct(updatedProduct)
+                setProducts((prev) =>
+                    prev.map((p) => (p.id === response.id ? response : p))
+                )
+                return response
+            } catch (err) {
+                setErrorProducts(err.message)
+                throw err               
+            } finally {
+                setIsLoadingProducts(false)
+            }
+        },
+        deleteProduct: async (id) => {
+            setErrorProducts(null)
+            setIsLoadingProducts(true)
+            try {                
+                const response = await deleteProduct(id);
+                setProducts((prev) => prev.filter((p) => p.id !== id))
+                return response || true  
+            } catch (err) {
+                setErrorProducts(err.message)
+                throw err  
+            } finally {
+                setIsLoadingProducts(false)
+            }
         }
     }
 
     useEffect(() => {
-        loadProducts()
+        actionsProducts.getProducts()
+        actionsProducts.getLatestRealses()
     }, [])
 
     return (
@@ -55,9 +111,8 @@ export const ProductsProvider = ({ children }) => {
             products,
             latestReleases,
             errorProducts,
-            loadProducts,
             isLoadingProducts,
-            ...actions
+            ...actionsProducts
         }}>
             {children}
         </ProductsContext.Provider>

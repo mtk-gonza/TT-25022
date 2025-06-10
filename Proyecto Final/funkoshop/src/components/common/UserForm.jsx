@@ -1,10 +1,13 @@
 import React, { useState, useRef, useEffect } from 'react'
 
 import { Button } from './Button.jsx'
+import { Message } from './Message.jsx'
 
-import { createUser, updateUser } from './../../services/userService.js'
-
+import { useUsers } from './../../hooks/useUsers.jsx'
 import { useRoles } from './../../hooks/useRoles.jsx'
+import { useWarning } from './../../hooks/useWarning.jsx'
+
+import { getFormMessages } from './../../utils/messageUtils.js'
 
 const initialUserState = {
     name: '',
@@ -18,7 +21,9 @@ export const UserForm = ({ selectedItem = {}, onClosed }) => {
     const [user, setUser] = useState(initialUserState)
     const isInitialLoad = useRef(true)
     const [errors, setErrors] = useState({})
+    const { addUser, updateUser } = useUsers()
     const { roles } = useRoles()
+    const { isOpenWarning, warning, titleWarning, messageWarning, handleClosedWarning } = useWarning()
 
     const handleChange = (e) => {
         const { name, value } = e.target;
@@ -38,21 +43,21 @@ export const UserForm = ({ selectedItem = {}, onClosed }) => {
     const handleSubmit = async (e) => {
         e.preventDefault()
         try {
-            let response
-            if (user.id) {
-                response = await updateUser(user)
-            } else {
-                response = await createUser(user)
-            }
+            const isUpdate = !!user.id;
+            const response = isUpdate ? await updateUser(user) : await addUser(user)
+            const { title, message } = getFormMessages('Usuario', isUpdate, !!response)
+
+            warning(title, message, onClosed)
+
             if (response) {
-                alert(user.id ? 'Usuario actualizado exitosamente' : 'Usuario creado exitosamente')
                 setUser(initialUserState)
                 isInitialLoad.current = true
-                onClosed()
             }
+
         } catch (err) {
             console.error(err)
-            alert('Hubo un error al procesar el Usuario. Inténtalo más tarde.')
+            const { title, message } = getFormMessages('Usuario', !!user.id, false)
+            warning(title, message, onClosed)
         }
     }
 
@@ -116,6 +121,15 @@ export const UserForm = ({ selectedItem = {}, onClosed }) => {
                     </Button>
                 </div>
             </form>
+            {isOpenWarning && (
+                <Message
+                    isOpen={isOpenWarning}
+                    title={titleWarning}
+                    message={messageWarning}
+                    onCancel={handleClosedWarning}
+                    isConfirm={false}
+                />
+            )}
         </div>
     )
 }

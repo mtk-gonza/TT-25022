@@ -1,4 +1,4 @@
-import { API_USERS, API_ROLES } from '../config.js'
+import { API_USERS, API_ROLES } from './../config.js'
 import { fetchData, fetchDataById, postData, putData, deleteDataById } from './fetchService.js'
 
 export const getUsers = async () => {

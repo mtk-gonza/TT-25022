@@ -1,8 +1,12 @@
 import React, { useState, useRef, useEffect } from 'react'
 
 import { Button } from './Button.jsx'
+import { Message } from './Message.jsx'
 
-import { createCategory, updateCategory } from './../../services/categoryService.js'
+import { useCategories } from './../../hooks/useCategories.jsx'
+import { useWarning } from './../../hooks/useWarning.jsx'
+
+import { getFormMessages } from './../../utils/messageUtils.js'
 
 const initialCategoryState = {
     name: '',
@@ -13,6 +17,8 @@ export const CategoryForm = ({ selectedItem = {}, onClosed }) => {
     const [category, setCategory] = useState(initialCategoryState)
     const isInitialLoad = useRef(true)
     const [errors, setErrors] = useState({})
+    const { addCategory, updateCategory } = useCategories()
+    const { isOpenWarning, warning, titleWarning, messageWarning, handleClosedWarning } = useWarning()
 
     const handleChange = (e) => {
         const { name, value } = e.target;
@@ -25,21 +31,21 @@ export const CategoryForm = ({ selectedItem = {}, onClosed }) => {
     const handleSubmit = async (e) => {
         e.preventDefault()
         try {
-            let response
-            if (category.id) {
-                response = await updateCategory(category)
-            } else {
-                response = await createCategory(category)
-            }
+            const isUpdate = !!category.id;
+            const response = isUpdate ? await updateCategory(category) : await addCategory(category)
+            const { title, message } = getFormMessages('Categoria', isUpdate, !!response)
+
+            warning(title, message, onClosed)
+
             if (response) {
-                alert(category.id ? 'Categoría actualizada exitosamente' : 'Categoría creada exitosamente')
                 setCategory(initialCategoryState)
                 isInitialLoad.current = true
-                onClosed()
             }
+
         } catch (err) {
             console.error(err)
-            alert('Hubo un error al procesar la categoría. Inténtalo más tarde.')
+            const { title, message } = getFormMessages('Categoria', !!category.id, false)
+            warning(title, message, onClosed)
         }
     }
 
@@ -81,6 +87,15 @@ export const CategoryForm = ({ selectedItem = {}, onClosed }) => {
                     </Button>
                 </div>
             </form>
+            {isOpenWarning && (
+                <Message
+                    isOpen={isOpenWarning}
+                    title={titleWarning}
+                    message={messageWarning}
+                    onCancel={handleClosedWarning}
+                    isConfirm={false}
+                />
+            )}
         </div>
     )
 }

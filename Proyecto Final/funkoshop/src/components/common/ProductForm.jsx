@@ -1,11 +1,14 @@
 import React, { useState, useRef, useEffect } from 'react'
 
 import { Button } from './Button.jsx'
+import { Message } from './Message.jsx'
 
-import { createProduct, updateProduct } from './../../services/productService.js'
-
+import { useProducts } from './../../hooks/useProducts.jsx'
 import { useCategories } from './../../hooks/useCategories.jsx'
 import { useLicences } from './../../hooks/useLicences.jsx'
+import { useWarning } from './../../hooks/useWarning.jsx'
+
+import { getFormMessages } from './../../utils/messageUtils.js'
 
 const initialProductState = {
     name: '',
@@ -28,6 +31,8 @@ export const ProductForm = ({ selectedItem = {}, onClosed }) => {
     const [errors, setErrors] = useState({})
     const { categories } = useCategories()
     const { licences } = useLicences()
+    const { addProduct, updateProduct } = useProducts()
+    const { isOpenWarning, warning, titleWarning, messageWarning, handleClosedWarning } = useWarning()
 
     const handleChange = (e) => {
         const { name, value } = e.target;
@@ -56,33 +61,33 @@ export const ProductForm = ({ selectedItem = {}, onClosed }) => {
     const handleSubmit = async (e) => {
         e.preventDefault()
         try {
-            let response
-            if (product.id) {
-                response = await updateProduct(product)
-            } else {
-                response = await createProduct(product)
-            }
+            const isUpdate = !!product.id;
+            const response = isUpdate ? await updateProduct(product) : await addProduct(product)
+            const { title, message } = getFormMessages('Producto', isUpdate, !!response)
+
+            warning(title, message, onClosed)
+
             if (response) {
-                alert(product.id ? 'Producto actualizado exitosamente' : 'Producto creado exitosamente')
                 setProduct(initialProductState)
                 isInitialLoad.current = true
-                onClosed()
             }
+
         } catch (err) {
             console.error(err)
-            alert('Hubo un error al procesar el producto. Inténtalo más tarde.')
+            const { title, message } = getFormMessages('Producto', !!product.id, false)
+            warning(title, message, onClosed)
         }
     }
 
     useEffect(() => {
-            if (isInitialLoad.current) {
-                if (selectedItem && selectedItem.id) {
-                    setProduct(selectedItem)
-                } else {
-                    setProduct(initialProductState)
-                }
-                isInitialLoad.current = false
+        if (isInitialLoad.current) {
+            if (selectedItem && selectedItem.id) {
+                setProduct(selectedItem)
+            } else {
+                setProduct(initialProductState)
             }
+            isInitialLoad.current = false
+        }
     }, [selectedItem])
 
     return (
@@ -180,6 +185,15 @@ export const ProductForm = ({ selectedItem = {}, onClosed }) => {
                     </Button>
                 </div>
             </form>
+            {isOpenWarning && (
+                <Message
+                    isOpen={isOpenWarning}
+                    title={titleWarning}
+                    message={messageWarning}
+                    onCancel={handleClosedWarning}
+                    isConfirm={false}
+                />
+            )}
         </div>
     )
 }

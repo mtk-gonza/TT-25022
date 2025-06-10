@@ -14,7 +14,7 @@
     background-color: var(--secondary-solid);
 }
 .btn-add {    
-    background-color: #198754;
+    background-color: var(--success-solid);
 }
 .btn-add:hover {
     background-color: var(--secondary-solid);
@@ -24,4 +24,10 @@
 }
 .btn-edit:hover {
     background-color: var(--secondary-solid);
+}
+.btn-dark {
+    background-color: var(--dark-bg-solid);
+}
+.btn-dark:hover {
+    background-color: #198754;
 }

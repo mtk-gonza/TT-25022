@@ -11,20 +11,20 @@ export const getCategories = async () => {
     }
 }
 
-export const createCategory = async (categoryData) => {
+export const getCategoryById = async (id) => {
     try {
-        const newCategory = await postData(API_CATEGORIES, categoryData)        
-        return newCategory
+        const category = await fetchDataById(API_CATEGORIES, id)
+        return category
     } catch (err) {
         console.error(err.message)
         throw err
     }
 }
 
-export const getCategoryById = async (id) => {
+export const createCategory = async (categoryData) => {
     try {
-        const category = await fetchDataById(API_CATEGORIES, id)
-        return category
+        const newCategory = await postData(API_CATEGORIES, categoryData)        
+        return newCategory
     } catch (err) {
         console.error(err.message)
         throw err

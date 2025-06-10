@@ -9,36 +9,41 @@ export const UsersProvider = ({ children }) => {
     const [errorUsers, setErrorUsers] = useState(null)
     const [isLoadingUsers, setIsLoadingUsers] = useState(false)
 
-    const usersActions = {
+    const actionsUsers = {
         getUsers: async () => {
+            setErrorUsers(null)
             setIsLoadingUsers(true)
             try {
                 const response = await getUsers()
                 setUsers(response)
+                return response
             } catch (err) {
                 setErrorUsers(err.message)
-                setIsLoadingUsers(false)
+                throw err
             } finally {
                 setIsLoadingUsers(false)
             }
         },
         getUserById: async (id) => {
-            setIsLoadingUsers(true);
+            setErrorUsers(null)
+            setIsLoadingUsers(true)
             try {
-                return await getUserById(id);
+                const response = await getUserById(id)
+                return response
             } catch (err) {
-                setErrorUsers(err.message);
-                return null;
+                setErrorUsers(err.message)
+                throw err
             } finally {
-                setIsLoadingUsers(false);
+                setIsLoadingUsers(false)
             }
         },
         addUser: async (newUser) => {
+            setErrorUsers(null)
             setIsLoadingUsers(true)
             try {
-                const user = await createUser(newUser)
-                setUsers((prev) => [...prev, user])
-                return user
+                const response = await createUser(newUser)
+                setUsers((prev) => [...prev, response])
+                return response
             } catch (err) {
                 setErrorUsers(err.message)
                 throw err
@@ -47,19 +52,39 @@ export const UsersProvider = ({ children }) => {
             }
         },
         updateUser: async (updatedUser) => {
-            const updated = await updateUser(updatedUser)
-            setUsers((prev) =>
-                prev.map((p) => (p.id === updated.id ? updated : p))
-            )
+            setErrorUsers(null)
+            setIsLoadingUsers(true)
+            try {
+                const response = await updateUser(updatedUser)
+                setUsers((prev) =>
+                    prev.map((p) => (p.id === response.id ? response : p))
+                )
+                return response                
+            } catch (err) {
+                setErrorUsers(err.message)
+                throw err
+            } finally {
+                setIsLoadingUsers(false)
+            }
         },
         deleteUser: async (id) => {
-            await deleteUser(id);
-            setUsers((prev) => prev.filter((u) => u.id !== id))
+            setErrorUsers(null)
+            setIsLoadingUsers(true)
+            try {
+                const response = await deleteUser(id)
+                setUsers((prev) => prev.filter((u) => u.id !== id))  
+                return response || true              
+            } catch (err) {
+                setErrorUsers(err.message)
+                throw err
+            } finally {
+                setIsLoadingUsers(false)
+            }
         }
     }
 
     useEffect(() => {
-        usersActions.getUsers()
+        actionsUsers.getUsers()
     }, [])
 
     return (
@@ -67,7 +92,7 @@ export const UsersProvider = ({ children }) => {
             users,
             errorUsers,
             isLoadingUsers,
-            ...usersActions
+            ...actionsUsers
         }}>
             {children}
         </UsersContext.Provider>

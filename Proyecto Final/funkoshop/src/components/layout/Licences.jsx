@@ -3,15 +3,18 @@ import React, { useState } from 'react'
 import { Table } from './../common/Table.jsx'
 import { Modal } from './../common/Modal.jsx'
 import { LicenceForm } from '../common/LicenceForm.jsx'
+import { Message } from './../common/Message.jsx'
 
 import { useLicences } from '../../hooks/useLicences.jsx'
-
-import './../../styles/components/layouts/Licences.css'
+import { useConfirm } from './../../hooks/useConfirm.jsx'
+import { useWarning } from './../../hooks/useWarning.jsx'
 
 export const Licences = () => {
     const [isOpen, setIsOpen] = useState(false)
     const [licence, setLicene] = useState({})
-    const { licences } = useLicences()
+    const { licences, deleteLicence } = useLicences()
+    const { isOpenConfirm, message, title, confirm, onConfirm, onCancel } = useConfirm()
+    const { isOpenWarning, warning, titleWarning, messageWarning, handleClosedWarning } = useWarning()
 
     const columns = [
         { key: 'id', label: 'ID' },
@@ -21,13 +24,21 @@ export const Licences = () => {
     ]
 
     const handleEdit = (item) => {
-        console.log("Editar", item)
         setLicene(item)
         setIsOpen(true)
     }
 
-    const handleDelete = (item) => {
-        console.log("Eliminar", item)
+    const handleDelete = async (item) => {
+        const confirmed = await confirm(`¿Estás seguro de eliminar la Licencia: ${item.name}?`, 'Eliminar Licencia')
+        if (confirmed) {
+            try {
+                const response = await deleteLicence(item.id)
+                if (response) warning('Eliminada exitosamente', `La Licencia: ${item.name} fue eliminada.`)
+            } catch (err) {
+                warning('Error al intentar Eliminar',`Error: ${err.message}`)
+                console.error(err)
+            }
+        }
     }
 
     const handleClosed = () => {
@@ -43,6 +54,25 @@ export const Licences = () => {
                     <LicenceForm selectedItem={licence} onClosed={handleClosed}/>
                 </Modal>
             }
+            {isOpenConfirm && (
+                <Message
+                    isOpen={isOpenConfirm}
+                    title={title}
+                    message={message}
+                    onConfirm={onConfirm}
+                    onCancel={onCancel}
+                    isConfirm={true}
+                />
+            )}
+            {isOpenWarning && (
+                <Message
+                    isOpen={isOpenWarning}
+                    title={titleWarning}
+                    message={messageWarning}
+                    onCancel={handleClosedWarning}
+                    isConfirm={false}
+                />
+            )}
         </>
     )
 }

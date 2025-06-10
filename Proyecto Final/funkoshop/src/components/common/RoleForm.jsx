@@ -1,13 +1,19 @@
 import React, { useState, useRef, useEffect } from 'react'
 
 import { Button } from './Button.jsx'
+import { Message } from './Message.jsx'
 
-import { createRole, updateRole } from './../../services/roleService.js'
+import { useRoles } from './../../hooks/useRoles.jsx'
+import { useWarning } from './../../hooks/useWarning.jsx'
+
+import { getFormMessages } from './../../utils/messageUtils.js'
 
 export const RoleForm = ({ selectedItem = {}, onClosed }) => {
     const [role, setRole] = useState({})
     const isInitialLoad = useRef(true)
     const [errors, setErrors] = useState({})
+    const { addRole, updateRole } = useRoles()
+    const { isOpenWarning, warning, titleWarning, messageWarning, handleClosedWarning } = useWarning()
 
     const handleChange = (e) => {
         const { name, value } = e.target;
@@ -20,21 +26,21 @@ export const RoleForm = ({ selectedItem = {}, onClosed }) => {
     const handleSubmit = async (e) => {
         e.preventDefault()
         try {
-            let response
-            if (role.id) {
-                response = await updateRole(role)
-            } else {
-                response = await createRole(role)
-            }
+            const isUpdate = !!role.id;
+            const response = isUpdate ? await updateRole(role) : await addRole(role)
+            const { title, message } = getFormMessages('Rol', isUpdate, !!response)
+
+            warning(title, message, onClosed)
+
             if (response) {
-                alert(role.id ? 'Rol actualizado exitosamente' : 'Rol creado exitosamente')
                 setRole({})
                 isInitialLoad.current = true
-                onClosed()
             }
+
         } catch (err) {
             console.error(err)
-            alert('Hubo un error al procesar el Rol. Inténtalo más tarde.')
+            const { title, message } = getFormMessages('Rol', !!role.id, false)
+            warning(title, message, onClosed)
         }
     }
 
@@ -71,6 +77,15 @@ export const RoleForm = ({ selectedItem = {}, onClosed }) => {
                     </Button>
                 </div>
             </form>
+            {isOpenWarning && (
+                <Message
+                    isOpen={isOpenWarning}
+                    title={titleWarning}
+                    message={messageWarning}
+                    onCancel={handleClosedWarning}
+                    isConfirm={false}
+                />
+            )}
         </div>
     )
 }
