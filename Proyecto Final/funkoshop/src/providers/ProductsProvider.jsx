@@ -3,7 +3,7 @@ import React, { useState, useEffect } from 'react'
 import { ProductsContext } from './../context/ProductsContext.jsx'
 
 import { getProducts, getProductById, createProduct, updateProduct, deleteProduct } from './../services/productService.js'
-import { news } from './../utils/news.js'
+import { news } from './../utils/newsUtils.js'
 
 export const ProductsProvider = ({ children }) => {
     const [products, setProducts] = useState([])

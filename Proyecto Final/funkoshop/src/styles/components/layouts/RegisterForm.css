@@ -17,6 +17,7 @@
 }
 .register__subtitle {
     font-size: var(--font-large);
+    margin-bottom: 1rem;
 }
 .register__form {
     display: flex;

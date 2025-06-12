@@ -1,4 +1,4 @@
-import React, { useState, useRef, useEffect } from 'react'
+import React, { useRef, useEffect } from 'react'
 
 import { Button } from './Button.jsx'
 import { Message } from './Message.jsx'
@@ -6,68 +6,46 @@ import { Message } from './Message.jsx'
 import { useUsers } from './../../hooks/useUsers.jsx'
 import { useRoles } from './../../hooks/useRoles.jsx'
 import { useWarning } from './../../hooks/useWarning.jsx'
+import { useForm } from './../../hooks/useForm.jsx'
+
+import { userValidationRules } from './../../validations/userValidationRules.js'
 
 import { getFormMessages } from './../../utils/messageUtils.js'
 
-const initialUserState = {
-    name: '',
-    last_name: '',
-    password: '',
-    email: '',
-    role_id: 0,
-}
+import './../../styles/components/common/UserForm.css'
 
 export const UserForm = ({ selectedItem = {}, onClosed }) => {
-    const [user, setUser] = useState(initialUserState)
     const isInitialLoad = useRef(true)
-    const [errors, setErrors] = useState({})
+    const { values, handleChange, handleSubmit, errors, resetForm } = useForm(selectedItem, userValidationRules)
     const { addUser, updateUser } = useUsers()
     const { roles } = useRoles()
     const { isOpenWarning, warning, titleWarning, messageWarning, handleClosedWarning } = useWarning()
 
-    const handleChange = (e) => {
-        const { name, value } = e.target;
-        setUser((prev) => ({
-            ...prev,
-            [name]: value,
-        }))
-    }
-    const handleLicenceChange = (e) => {
-        const selectedLicence = roles.find(rol => rol.id === e.target.value);
-        setUser((prev) => ({
-            ...prev,
-            role_id: selectedLicence.id,
-        }))
+    const handleRoleChange = (e) => {
+        handleChange({ target: { name: 'role_id', value: e.target.value } })
     }
 
-    const handleSubmit = async (e) => {
-        e.preventDefault()
-        try {
-            const isUpdate = !!user.id;
-            const response = isUpdate ? await updateUser(user) : await addUser(user)
-            const { title, message } = getFormMessages('Usuario', isUpdate, !!response)
+    const onSubmit = async (e) => {
+        try {            
+            const response = values.id ? await updateUser(values) : await addUser(values)
+            const { title, message } = getFormMessages('Usuario', values.id ? 'update' : 'create', !!response)
 
             warning(title, message, onClosed)
 
             if (response) {
-                setUser(initialUserState)
-                isInitialLoad.current = true
+                resetForm({})
             }
 
         } catch (err) {
             console.error(err)
-            const { title, message } = getFormMessages('Usuario', !!user.id, false)
+            const { title, message } = getFormMessages('Usuario', values.id ? 'update' : 'create', false)
             warning(title, message, onClosed)
         }
     }
 
     useEffect(() => {
         if (isInitialLoad.current) {
-            if (selectedItem && selectedItem.id) {
-                setUser(selectedItem)
-            } else {
-                setUser(initialUserState)
-            }
+            resetForm(selectedItem)
             isInitialLoad.current = false
         }
     }, [selectedItem])
@@ -76,33 +54,33 @@ export const UserForm = ({ selectedItem = {}, onClosed }) => {
         <div className='user-form'>
             <div className='form__header'>
                 <h2 className='form__title'>
-                    {user.id ? 'Actualizar Usuario' : 'Agregar Usuario'}
+                    {values.id ? 'Actualizar Usuario' : 'Agregar Usuario'}
                 </h2>
             </div>
-            <form className='form__content' onSubmit={handleSubmit} >
+            <form className='form__content' onSubmit={handleSubmit(onSubmit)} >
                 <div className='form__box--grid'>
                     <label className='form__label'>Nombre:</label>
-                    <input className='form__input' type='text' name='name' value={user.name} onChange={handleChange} required />
-                    {errors.name && <p className='form__error'>{errors.name}</p>}
+                    <input className='form__input' type='text' name='name' value={values.name} onChange={handleChange} required />
                 </div>
+                <p className='form__error'>{errors.name}</p>
                 <div className='form__box--grid'>
                     <label className='form__label'>Apellido:</label>
-                    <input className='form__input' type='text' name='last_name' value={user.last_name} onChange={handleChange} required />
-                    {errors.last_name && <p className='form__error'>{errors.last_name}</p>}
+                    <input className='form__input' type='text' name='last_name' value={values.last_name} onChange={handleChange} required />
                 </div>
+                <p className='form__error'>{errors.last_name}</p>
                 <div className='form__box--grid'>
                     <label className='form__label'>Email:</label>
-                    <input className='form__input' type='text' name='email' value={user.email} onChange={handleChange} required />
-                    {errors.email && <p className='form__error'>{errors.email}</p>}
+                    <input className='form__input' type='text' name='email' value={values.email} onChange={handleChange} required />
                 </div>
+                <p className='form__error'>{errors.email}</p>
                 <div className='form__box--grid'>
                     <label className='form__label'>Contraseña:</label>
-                    <input className='form__input' type='password' name='password' value={user.password} onChange={handleChange} required />
-                    {errors.password && <p className='form__error'>{errors.password}</p>}
+                    <input className='form__input' type='password' name='password' value={values.password} onChange={handleChange} required />
                 </div>
+                <p className='form__error'>{errors.password}</p>
                 <div className='form__box--grid'>
                     <label className='form__label'>Rol:</label>
-                    <select className='form__select' name='role_id' value={user.role_id || ''} onChange={handleLicenceChange} required >
+                    <select className='form__select' name='role_id' value={values.role_id || ''} onChange={handleRoleChange} required >
                         <option value=''>Seleccione un Rol</option>
                         {roles.map((role) => (
                             <option key={role.id} value={role.id}>
@@ -110,13 +88,13 @@ export const UserForm = ({ selectedItem = {}, onClosed }) => {
                             </option>
                         ))}
                     </select>
-                    {errors.role_id && <p className='form__error'>{errors.role_id}</p>}
                 </div>
+                <p className='form__error'>{errors.role_id}</p>
                 <div className='form__actions'>
-                    <Button type='submit' className='form__btn-submit btn'>
-                        {user.id ? 'Actualizar' : 'Guardar'}
+                    <Button type='submit' className={values.id ? 'btn btn-edit' : 'btn btn-add'}>
+                        {values.id ? 'Actualizar' : 'Guardar'}
                     </Button>
-                    <Button className='form__btn-cancel btn btn--primary' onClick={onClosed}>
+                    <Button className='btn' onClick={onClosed}>
                         Cancelar
                     </Button>
                 </div>

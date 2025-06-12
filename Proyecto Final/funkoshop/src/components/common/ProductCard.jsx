@@ -6,7 +6,7 @@ import { Loading } from './Loading.jsx'
 import { useAuth } from '../../hooks/useAuth.jsx'
 import { useFavorites } from '../../hooks/useFavorites.jsx'
 
-import { news } from '../../utils/news.js'
+import { news } from '../../utils/newsUtils.js'
 import './../../styles/components/common/ProductCard.css'
 
 export const ProductCard = ({ product }) => {

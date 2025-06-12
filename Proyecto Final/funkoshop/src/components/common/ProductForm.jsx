@@ -1,4 +1,4 @@
-import React, { useState, useRef, useEffect } from 'react'
+import React, { useRef, useEffect } from 'react'
 
 import { Button } from './Button.jsx'
 import { Message } from './Message.jsx'
@@ -7,85 +7,49 @@ import { useProducts } from './../../hooks/useProducts.jsx'
 import { useCategories } from './../../hooks/useCategories.jsx'
 import { useLicences } from './../../hooks/useLicences.jsx'
 import { useWarning } from './../../hooks/useWarning.jsx'
+import { useForm } from './../../hooks/useForm.jsx'
+
+import { productValidationRules } from './../../validations/productValidationRules.js'
 
 import { getFormMessages } from './../../utils/messageUtils.js'
 
-const initialProductState = {
-    name: '',
-    sku: '',
-    description: '',
-    price: 0,
-    stock: 0,
-    discount: 0,
-    dues: 0,
-    special: false,
-    image_front: '',
-    image_back: '',
-    licence_id: 0,
-    category_id: 0
-}
-
 export const ProductForm = ({ selectedItem = {}, onClosed }) => {
-    const [product, setProduct] = useState(initialProductState)
     const isInitialLoad = useRef(true)
-    const [errors, setErrors] = useState({})
+    const { values, handleChange, handleSubmit, errors, resetForm } = useForm(selectedItem, productValidationRules)
+    const { addProduct, updateProduct } = useProducts()
     const { categories } = useCategories()
     const { licences } = useLicences()
-    const { addProduct, updateProduct } = useProducts()
     const { isOpenWarning, warning, titleWarning, messageWarning, handleClosedWarning } = useWarning()
 
-    const handleChange = (e) => {
-        const { name, value } = e.target;
-        setProduct((prev) => ({
-            ...prev,
-            [name]: value,
-        }))
-    }
-
     const handleCategoryChange = (e) => {
-        const selectedCategory = categories.find(cat => cat.id === parseInt(e.target.value));
-        setProduct((prev) => ({
-            ...prev,
-            category_id: selectedCategory.id,
-        }))
+        handleChange({ target: { name: 'category_id', value: e.target.value } })
     }
 
     const handleLicenceChange = (e) => {
-        const selectedLicence = licences.find(lic => lic.id === e.target.value);
-        setProduct((prev) => ({
-            ...prev,
-            licence_id: selectedLicence.id,
-        }))
+        handleChange({ target: { name: 'licence_id', value: e.target.value } })
     }
 
-    const handleSubmit = async (e) => {
-        e.preventDefault()
+    const onSubmit = async (e) => {
         try {
-            const isUpdate = !!product.id;
-            const response = isUpdate ? await updateProduct(product) : await addProduct(product)
-            const { title, message } = getFormMessages('Producto', isUpdate, !!response)
+            const response = values.id ? await updateProduct(values) : await addProduct(values)
+            const { title, message } = getFormMessages('Producto', values.id ? 'update' : 'create', !!response)
 
             warning(title, message, onClosed)
 
             if (response) {
-                setProduct(initialProductState)
-                isInitialLoad.current = true
+                resetForm({})
             }
 
         } catch (err) {
             console.error(err)
-            const { title, message } = getFormMessages('Producto', !!product.id, false)
+            const { title, message } = getFormMessages('Producto', values.id ? 'update' : 'create', false)
             warning(title, message, onClosed)
         }
     }
 
     useEffect(() => {
         if (isInitialLoad.current) {
-            if (selectedItem && selectedItem.id) {
-                setProduct(selectedItem)
-            } else {
-                setProduct(initialProductState)
-            }
+            resetForm(selectedItem)
             isInitialLoad.current = false
         }
     }, [selectedItem])
@@ -94,67 +58,67 @@ export const ProductForm = ({ selectedItem = {}, onClosed }) => {
         <div className='product-form'>
             <div className='form__header'>
                 <h2 className='form__title'>
-                    {product.id ? 'Actualizar Producto' : 'Agregar Producto'}
+                    {values.id ? 'Actualizar Producto' : 'Agregar Producto'}
                 </h2>
             </div>
-            <form className='form__content' onSubmit={handleSubmit} >
+            <form className='form__content' onSubmit={handleSubmit(onSubmit)} >
                 <div className='form__box--grid'>
                     <label className='form__label'>Nombre:</label>
-                    <input className='form__input' type='text' name='name' value={product.name} onChange={handleChange} required />
-                    {errors.name && <p className='form__error'>{errors.name}</p>}
+                    <input className='form__input' type='text' name='name' value={values.name} onChange={handleChange} required />
                 </div>
+                <p className='form__error'>{errors.name}</p>
                 <div className='form__box--grid'>
                     <label className='form__label'>N° De Serie:</label>
-                    <input className='form__input' type='text' name='sku' value={product.sku} onChange={handleChange} required />
-                    {errors.sku && <p className='form__error'>{errors.sku}</p>}
+                    <input className='form__input' type='text' name='sku' value={values.sku} onChange={handleChange} required />
                 </div>
+                <p className='form__error'>{errors.sku}</p>
                 <div className='form__box--grid'>
                     <label className='form__label'>Descripcion:</label>
-                    <input className='form__input' type='text' name='description' value={product.description} onChange={handleChange} required />
-                    {errors.description && <p className='form__error'>{errors.description}</p>}
+                    <input className='form__input' type='text' name='description' value={values.description} onChange={handleChange} required />
                 </div>
+                <p className='form__error'>{errors.description}</p>
                 <div className='form__box--grid'>
                     <label className='form__label'>Precio:</label>
-                    <input className='form__input' type='number' name='price' value={product.price} onChange={handleChange} required />
-                    {errors.price && <p className='form__error'>{errors.price}</p>}
+                    <input className='form__input' type='number' name='price' value={values.price} onChange={handleChange} required />
                 </div>
+                <p className='form__error'>{errors.price}</p>
                 <div className='form__box--grid'>
                     <label className='form__label'>Stock:</label>
-                    <input className='form__input' type='number' name='stock' value={product.stock} onChange={handleChange} required />
-                    {errors.stock && <p className='form__error'>{errors.stock}</p>}
+                    <input className='form__input' type='number' name='stock' value={values.stock} onChange={handleChange} required />
                 </div>
+                <p className='form__error'>{errors.stock}</p>
                 <div className='form__box--grid'>
                     <label className='form__label'>Descuento:</label>
-                    <input className='form__input' type='number' name='discount' value={product.discount} onChange={handleChange} required />
-                    {errors.discount && <p className='form__error'>{errors.discount}</p>}
+                    <input className='form__input' type='number' name='discount' value={values.discount} onChange={handleChange} required />
                 </div>
+                <p className='form__error'>{errors.discount}</p>
                 <div className='form__box--grid'>
                     <label className='form__label'>Cuotas:</label>
-                    <input className='form__input' type='number' name='dues' value={product.dues} onChange={handleChange} required />
-                    {errors.dues && <p className='form__error'>{errors.dues}</p>}
+                    <input className='form__input' type='number' name='dues' value={values.dues} onChange={handleChange} required />
                 </div>
+                <p className='form__error'>{errors.dues}</p>
                 <div className='form__box--grid'>
                     <label className='form__label'>Especial:</label>
-                    <select className='form__select' name='special' value={product.special} onChange={handleCategoryChange} required >
+                    <select className='form__select' name='special' value={values.special} onChange={handleCategoryChange} required >
                         <option value=''>Seleccione si es Especial</option>
                         <option value={true}>SI</option>
                         <option value={false}>NO</option>
                     </select>
-                    {errors.special && <p className='form__error'>{errors.special}</p>}
                 </div>
+                <p className='form__error'>{errors.special}</p>
                 <div className='form__box--grid'>
                     <label className='form__label'>URL FRONT</label>
-                    <input className='form__input' type='text' name='image_front' value={product.image_front} onChange={handleChange} required />
-                    {errors.image_front && <p className='form__error'>{errors.image_front}</p>}
+                    <input className='form__input' type='text' name='image_front' value={values.image_front} onChange={handleChange} required />
                 </div>
+                <p className='form__error'>{errors.image_front}</p>
                 <div className='form__box--grid'>
                     <label className='form__label'>URL BACK</label>
-                    <input className='form__input' type='text' name='image_back' value={product.description} onChange={handleChange} required />
-                    {errors.image_back && <p className='form__error'>{errors.image_back}</p>}
+                    <input className='form__input' type='text' name='image_back' value={values.description} onChange={handleChange} required />
                 </div>
+                <p className='form__error'>{errors.image_back}</p>
                 <div className='form__box--grid'>
                     <label className='form__label'>Licencia:</label>
-                    <select className='form__select' name='licence_id' value={product.licence_id || ''} onChange={handleLicenceChange} required >
+                    <select className='form__select' name='licence_id' value={values.licence_id || ''} onChange={handleLicenceChange} required >
                         <option value=''>Seleccione una Licencia</option>
                         {licences.map((licence) => (
                             <option key={licence.id} value={licence.id}>
@@ -162,11 +126,11 @@ export const ProductForm = ({ selectedItem = {}, onClosed }) => {
                             </option>
                         ))}
                     </select>
-                    {errors.licence_id && <p className='form__error'>{errors.licence_id}</p>}
                 </div>
+                <p className='form__error'>{errors.licence_id}</p>
                 <div className='form__box--grid'>
                     <label className='form__label'>Categoría:</label>
-                    <select className='form__select' name='category_id' value={product.category_id || ''} onChange={handleCategoryChange} required >
+                    <select className='form__select' name='category_id' value={values.category_id || ''} onChange={handleCategoryChange} required >
                         <option value=''>Seleccione una Categoría</option>
                         {categories.map((category) => (
                             <option key={category.id} value={category.id}>
@@ -174,11 +138,11 @@ export const ProductForm = ({ selectedItem = {}, onClosed }) => {
                             </option>
                         ))}
                     </select>
-                    {errors.category_id && <p className='form__error'>{errors.category_id}</p>}
                 </div>
+                <p className='form__error'>{errors.category_id}</p>
                 <div className='form__actions'>
-                    <Button type='submit' className={product.id ? 'btn btn-edit' : 'btn btn-add'}>
-                        {product.id ? 'Actualizar' : 'Guardar'}
+                    <Button type='submit' className={values.id ? 'btn btn-edit' : 'btn btn-add'}>
+                        {values.id ? 'Actualizar' : 'Guardar'}
                     </Button>
                     <Button className='btn' onClick={onClosed}>
                         Cancelar

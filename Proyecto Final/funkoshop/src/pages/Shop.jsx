@@ -8,7 +8,7 @@ import { Paginator } from './../components/common/Paginator.jsx'
 import { Icon } from './../components/common/Icon.jsx'
 import { ProductCard } from './../components/common/ProductCard.jsx'
 
-import { news } from './../utils/news.js'
+import { news } from './../utils/newsUtils.js'
 
 import { useProducts } from './../hooks/useProducts.jsx'
 import { useCategories } from './../hooks/useCategories.jsx'
