@@ -10,3 +10,6 @@
     padding: 20px;
     font-size: var(--font-xlarge);
 }
+.dashboard .link {
+    padding: 2rem;
+}

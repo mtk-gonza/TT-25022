@@ -10,8 +10,10 @@ export const NotFound = () => {
     return (
         <Main className='not-found'>
             <Container>
-                <p>Pagina no encontrada</p>
-                <Link className='collection__link' to={'/'}>HOME</Link>
+                <div className='not-found__content'>
+                    <p>Pagina no encontrada</p>
+                    <Link className='link' to={'/'}>HOME</Link>
+                </div>
             </Container>
         </Main>
     )

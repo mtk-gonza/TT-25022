@@ -2,8 +2,8 @@ import React, { useState } from 'react'
 
 import { Table } from './../common/Table.jsx'
 import { Modal } from './../common/Modal.jsx'
-import { CategoryForm } from './../common/CategoryForm.jsx'
 import { Message } from './../common/Message.jsx'
+import { CategoryForm } from './../forms/CategoryForm.jsx'
 
 import { useCategories } from '../../hooks/useCategories.jsx'
 import { useConfirm } from './../../hooks/useConfirm.jsx'

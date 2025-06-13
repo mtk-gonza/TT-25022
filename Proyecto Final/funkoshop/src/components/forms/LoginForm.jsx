@@ -1,9 +1,9 @@
 import React, { useState } from 'react'
 import { useNavigate, useLocation } from 'react-router-dom'
 
-import { useAuth } from './../../hooks/useAuth.jsx'
+import { useAuth } from '../../hooks/useAuth.jsx'
 
-import './../../styles/components/layouts/LoginForm.css'
+import './../../styles/components/forms/LoginForm.css'
 
 export const LoginForm = () => {
     const [credentials, setCredentials] = useState({ email: '', password: '' })

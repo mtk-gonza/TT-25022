@@ -1,28 +1,26 @@
 import React, { useRef, useEffect } from 'react'
 
-import { Button } from './Button.jsx'
-import { Message } from './Message.jsx'
+import { Button } from '../common/Button.jsx'
+import { Message } from '../common/Message.jsx'
 
-import { useRoles } from './../../hooks/useRoles.jsx'
-import { useWarning } from './../../hooks/useWarning.jsx'
-import { useForm } from './../../hooks/useForm'
+import { useCategories } from '../../hooks/useCategories.jsx'
+import { useWarning } from '../../hooks/useWarning.jsx'
+import { useForm } from '../../hooks/useForm.jsx'
 
-import { roleValidationRules } from './../../validations/roleValidationRules.js'
+import { categoryValidationRules } from '../../validations/categoryValidationRules.js'
 
-import { getFormMessages } from './../../utils/messageUtils.js'
+import { getFormMessages } from '../../utils/messageUtils.js'
 
-import './../../styles/components/common/RoleForm.css'
-
-export const RoleForm = ({ selectedItem = {}, onClosed }) => {
+export const CategoryForm = ({ selectedItem = {}, onClosed }) => {
     const isInitialLoad = useRef(true)
-    const { values, handleChange, handleSubmit, errors, resetForm } = useForm(selectedItem, roleValidationRules)
-    const { addRole, updateRole } = useRoles()
+    const { values, handleChange, handleSubmit, errors, resetForm } = useForm(selectedItem, categoryValidationRules)
+    const { addCategory, updateCategory } = useCategories()
     const { isOpenWarning, warning, titleWarning, messageWarning, handleClosedWarning } = useWarning()
 
-    const onSubmit = async () => {
+    const onSubmit = async (e) => {
         try {
-            const response = values.id ? await updateRole(values) : await addRole(values)
-            const { title, message } = getFormMessages('Rol', values.id ? 'update' : 'create', !!response)
+            const response = values.id ? await updateCategory(values) : await addCategory(values)
+            const { title, message } = getFormMessages('Categoria', values.id ? 'update' : 'create', !!response)
 
             warning(title, message, onClosed)
 
@@ -32,7 +30,7 @@ export const RoleForm = ({ selectedItem = {}, onClosed }) => {
 
         } catch (err) {
             console.error(err)
-            const { title, message } = getFormMessages('Rol', values.id ? 'update' : 'create', false)
+            const { title, message } = getFormMessages('Categoria', values.id ? 'update' : 'create', false)
             warning(title, message, onClosed)
         }
     }
@@ -45,10 +43,10 @@ export const RoleForm = ({ selectedItem = {}, onClosed }) => {
     }, [selectedItem])
 
     return (
-        <div className='rol-form'>
+        <div className='category-form'>
             <div className='form__header'>
                 <h2 className='form__title'>
-                    {values.id ? 'Actualizar Rol' : 'Agregar Rol'}
+                    {values.id ? 'Actualizar Categoria' : 'Agregar Categoria'}
                 </h2>
             </div>
             <form className='form__content' onSubmit={handleSubmit(onSubmit)} >
@@ -56,9 +54,14 @@ export const RoleForm = ({ selectedItem = {}, onClosed }) => {
                     <label className='form__label'>Nombre:</label>
                     <input className='form__input' type='text' name='name' value={values.name} onChange={handleChange} required />
                 </div>
-                {errors.name && <p className='form__error'>{errors.name}</p>}
+                <p className='form__error'>{errors.name}</p>
+                <div className='form__box--grid'>
+                    <label className='form__label'>Descripcion:</label>
+                    <input className='form__input' type='text' name='description' value={values.description} onChange={handleChange} required />
+                </div>
+                <p className='form__error'>{errors.description}</p>
                 <div className='form__actions'>
-                    <Button type='submit' className='btn btn-edit'>
+                    <Button type='submit' className={values.id ? 'btn btn-edit' : 'btn btn-add'}>
                         {values.id ? 'Actualizar' : 'Guardar'}
                     </Button>
                     <Button className='btn' onClick={onClosed}>

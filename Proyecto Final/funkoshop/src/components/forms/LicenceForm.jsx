@@ -1,15 +1,15 @@
 import React, { useRef, useEffect } from 'react'
 
-import { Button } from './Button.jsx'
-import { Message } from './Message.jsx'
+import { Button } from '../common/Button.jsx'
+import { Message } from '../common/Message.jsx'
 
-import { useLicences } from './../../hooks/useLicences.jsx'
-import { useWarning } from './../../hooks/useWarning.jsx'
-import { useForm } from './../../hooks/useForm.jsx'
+import { useLicences } from '../../hooks/useLicences.jsx'
+import { useWarning } from '../../hooks/useWarning.jsx'
+import { useForm } from '../../hooks/useForm.jsx'
 
-import { licenceValidationRules } from './../../validations/LicenceValidationRules.js'
+import { licenceValidationRules } from '../../validations/LicenceValidationRules.js'
 
-import { getFormMessages } from './../../utils/messageUtils.js'
+import { getFormMessages } from '../../utils/messageUtils.js'
 
 export const LicenceForm = ({ selectedItem = {}, onClosed }) => {
     const isInitialLoad = useRef(true)

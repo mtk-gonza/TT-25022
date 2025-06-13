@@ -1,10 +1,9 @@
 import React, { useState } from 'react'
 
-import { Container } from './../common/Container.jsx'
 import { Table } from './../common/Table.jsx'
 import { Modal } from './../common/Modal.jsx'
-import { ProductForm } from './../common/ProductForm.jsx'
 import { Message } from './../common/Message.jsx'
+import { ProductForm } from './../forms/ProductForm.jsx'
 
 import { useProducts } from './../../hooks/useProducts.jsx'
 import { useConfirm } from './../../hooks/useConfirm.jsx'

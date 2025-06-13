@@ -1,4 +1,4 @@
-import React, { useContext } from 'react'
+import React from 'react'
 
 import { Main } from './../components/common/Main.jsx'
 import { Hero } from './../components/layout/Hero.jsx'

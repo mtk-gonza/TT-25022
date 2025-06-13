@@ -1,7 +1,7 @@
 import React, { useRef, useEffect } from 'react'
 
-import { Button } from './Button.jsx'
-import { Message } from './Message.jsx'
+import { Button } from './../common/Button.jsx'
+import { Message } from './../common/Message.jsx'
 
 import { useProducts } from './../../hooks/useProducts.jsx'
 import { useCategories } from './../../hooks/useCategories.jsx'

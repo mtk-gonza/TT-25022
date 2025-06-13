@@ -1,7 +1,7 @@
 import React, { useRef, useEffect } from 'react'
 
-import { Button } from './Button.jsx'
-import { Message } from './Message.jsx'
+import { Button } from './../common/Button.jsx'
+import { Message } from './../common/Message.jsx'
 
 import { useUsers } from './../../hooks/useUsers.jsx'
 import { useRoles } from './../../hooks/useRoles.jsx'
@@ -11,8 +11,6 @@ import { useForm } from './../../hooks/useForm.jsx'
 import { userValidationRules } from './../../validations/userValidationRules.js'
 
 import { getFormMessages } from './../../utils/messageUtils.js'
-
-import './../../styles/components/common/UserForm.css'
 
 export const UserForm = ({ selectedItem = {}, onClosed }) => {
     const isInitialLoad = useRef(true)

@@ -1,7 +1,7 @@
-import React, { useState } from 'react'
+import React from 'react'
 import { Link } from 'react-router-dom'
 
-import { Message } from './Message.jsx'
+import { Message } from './../common/Message.jsx'
 
 import { useUsers } from './../../hooks/useUsers.jsx'
 import { useWarning } from './../../hooks/useWarning.jsx'
@@ -11,7 +11,7 @@ import { registerValidationRules } from './../../validations/registerValidationR
 
 import { getFormMessages } from './../../utils/messageUtils.js'
 
-import './../../styles/components/layouts/RegisterForm.css'
+import './../../styles/components/forms/RegisterForm.css'
 
 const initialRegisterState = {
     name: '',

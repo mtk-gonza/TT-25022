@@ -2,8 +2,8 @@ import React, { useState } from 'react'
 
 import { Table } from './../common/Table.jsx'
 import { Modal } from './../common/Modal.jsx'
-import { UserForm } from './../common/UserForm.jsx'
 import { Message } from './../common/Message.jsx'
+import { UserForm } from './../forms/UserForm.jsx'
 
 import { useUsers } from './../../hooks/useUsers.jsx'
 import { useConfirm } from './../../hooks/useConfirm.jsx'

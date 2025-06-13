@@ -2,8 +2,8 @@ import React, { useState } from 'react'
 
 import { Table } from './../common/Table.jsx'
 import { Modal } from './../common/Modal.jsx'
-import { LicenceForm } from '../common/LicenceForm.jsx'
 import { Message } from './../common/Message.jsx'
+import { LicenceForm } from '../forms/LicenceForm.jsx'
 
 import { useLicences } from '../../hooks/useLicences.jsx'
 import { useConfirm } from './../../hooks/useConfirm.jsx'
