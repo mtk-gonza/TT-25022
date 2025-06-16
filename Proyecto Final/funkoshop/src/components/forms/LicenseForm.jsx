@@ -3,23 +3,23 @@ import React, { useRef, useEffect } from 'react'
 import { Button } from '../common/Button.jsx'
 import { Message } from '../common/Message.jsx'
 
-import { useLicences } from '../../hooks/useLicences.jsx'
+import { useLicenses } from '../../hooks/useLicenses.jsx'
 import { useWarning } from '../../hooks/useWarning.jsx'
 import { useForm } from '../../hooks/useForm.jsx'
 
-import { licenceValidationRules } from '../../validations/LicenceValidationRules.js'
+import { licenseValidationRules } from '../../validations/LicenseValidationRules.js'
 
 import { getFormMessages } from '../../utils/messageUtils.js'
 
-export const LicenceForm = ({ selectedItem = {}, onClosed }) => {
+export const LicenseForm = ({ selectedItem = {}, onClosed }) => {
     const isInitialLoad = useRef(true)
-    const { values, handleChange, handleSubmit, errors, resetForm } = useForm(selectedItem, licenceValidationRules)
-    const { addLicence, updateLicence } = useLicences()
+    const { values, handleChange, handleSubmit, errors, resetForm } = useForm(selectedItem, licenseValidationRules)
+    const { addLicense, updateLicense } = useLicenses()
     const { isOpenWarning, warning, titleWarning, messageWarning, handleClosedWarning } = useWarning()
 
     const onSubmit = async (e) => {
         try {
-            const response = values.id ? await updateLicence(values) : await addLicence(values)
+            const response = values.id ? await updateLicense(values) : await addLicense(values)
             const { title, message } = getFormMessages('Licencia', values.id ? 'update' : 'create', !!response)
 
             warning(title, message, onClosed)

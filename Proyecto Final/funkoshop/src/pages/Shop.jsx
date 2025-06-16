@@ -12,7 +12,7 @@ import { news } from './../utils/newsUtils.js'
 
 import { useProducts } from './../hooks/useProducts.jsx'
 import { useCategories } from './../hooks/useCategories.jsx'
-import { useLicences } from './../hooks/useLicences.jsx'
+import { useLicenses } from '../hooks/useLicenses.jsx'
 import { useFavorites } from '../hooks/useFavorites'
 
 import './../styles/pages/Shop.css'
@@ -20,11 +20,11 @@ import './../styles/pages/Shop.css'
 export const Shop = () => {
     const { products } = useProducts()
     const { categories } = useCategories()
-    const { licences } = useLicences()
+    const { licenses } = useLicenses()
     const { isFavorite } = useFavorites()
     const [searchParams] = useSearchParams()
-    const { category_name, licence_id } = useParams()
-    const licenceParam = searchParams.get('licence_id') || licence_id
+    const { category_name, license_id } = useParams()
+    const licenseParam = searchParams.get('license_id') || license_id
     const categoryParam = searchParams.get('category_name') || category_name
     const [currentPage, setCurrentPage] = useState(1)
     const [productsPerPage] = useState(6)
@@ -53,10 +53,10 @@ export const Shop = () => {
         }))
     }
 
-    const handleLicenceChange = (e) => {
-        const selectedLicenceId = e.target.value
-        if (selectedLicenceId) {
-            navigate(`/shop/${category_name || ''}?licence_id=${selectedLicenceId}`)
+    const handleLicenseChange = (e) => {
+        const selectedLicenseId = e.target.value
+        if (selectedLicenseId) {
+            navigate(`/shop/${category_name || ''}?license_id=${selectedLicenseId}`)
         } else {
             navigate(`/shop/${category_name || ''}`)
         }
@@ -93,8 +93,8 @@ export const Shop = () => {
             result = result.filter(product => product.category?.name === category_name)
         }
 
-        if (licenceParam) {
-            result = result.filter(product => product.licence_id === parseInt(licenceParam, 10))
+        if (licenseParam) {
+            result = result.filter(product => product.license_id === parseInt(licenseParam, 10))
         }
 
         if (searchTerm.trim()) {
@@ -139,7 +139,7 @@ export const Shop = () => {
 
         setFinalProducts(result)
         setCurrentPage(1)
-    }, [products, category_name, licenceParam, searchTerm, filters, priceRange, sortOrder])
+    }, [products, category_name, licenseParam, searchTerm, filters, priceRange, sortOrder])
 
     return (
         <Main className='shop'>
@@ -158,11 +158,11 @@ export const Shop = () => {
                     <div className='filters__type'>
                         <label className='filters__title' htmlFor='licences'>FILTRAR LICENCIA</label>
                         <select name='licences'
-                            onChange={handleLicenceChange}
-                            value={licenceParam || ''}
+                            onChange={handleLicenseChange}
+                            value={licenseParam || ''}
                         >
                             <option value="">TODAS LAS LICENCIAS</option>
-                            {licences.map(licence => (
+                            {licenses.map(licence => (
                                 <option key={licence.id} value={licence.id}>
                                     {licence.name.toUpperCase()}
                                 </option>

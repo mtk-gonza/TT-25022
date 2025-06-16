@@ -37,7 +37,7 @@ export const ProductCard = ({ product }) => {
                 }
             </picture>
             <div className='product-card__content'>
-                <p className='product-card__licence'>{product.licence.name}</p>
+                <p className='product-card__license'>{product.license.name}</p>
                 <h4 className='product-card__name'>{product.name}</h4>
                 <p className='product-card__price'>${product.price}.-</p>
                 <p className='product-card__promo'>{product.dues} CUOTAS SIN INTERÉS</p>

@@ -15,7 +15,7 @@ export const Detail = () => {
     const { products } = useProducts()
 
     const product = products.find(producto => producto.id == product_id)
-    const productsColection = products.filter(item => item.licence_id == product.licence_id & item.id != product.id)
+    const productsColection = products.filter(item => item.license_id == product.license_id & item.id != product.id)
 
     if (!product) {
         return (

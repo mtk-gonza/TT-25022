@@ -1,4 +1,4 @@
-export const licenceValidationRules = {
+export const licenseValidationRules = {
     name: {
         required: true,
         message: 'El nombre de la LICENCIA es obligatorio',

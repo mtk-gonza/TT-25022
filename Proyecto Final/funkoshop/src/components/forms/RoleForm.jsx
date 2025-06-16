@@ -54,7 +54,7 @@ export const RoleForm = ({ selectedItem = {}, onClosed }) => {
                     <label className='form__label'>Nombre:</label>
                     <input className='form__input' type='text' name='name' value={values.name} onChange={handleChange} required />
                 </div>
-                {errors.name && <p className='form__error'>{errors.name}</p>}
+                <p className='form__error'>{errors.name}</p>
                 <div className='form__actions'>
                     <Button type='submit' className='btn btn-edit'>
                         {values.id ? 'Actualizar' : 'Guardar'}

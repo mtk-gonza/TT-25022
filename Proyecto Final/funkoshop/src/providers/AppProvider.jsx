@@ -1,7 +1,7 @@
 import React from 'react'
 
 import { CategoriesProvider } from './CategoriesProvider.jsx'
-import { LicencesProvider } from './LicencesProvider.jsx'
+import { LicensesProvider } from './LicensesProvider.jsx'
 import { RolesProvider } from './RolesProvider.jsx'
 import { AuthProvider } from './AuthProvider.jsx'
 import { CartProvider } from './CartProvider.jsx'
@@ -15,7 +15,7 @@ export const AppProvider = ({ children }) => {
             <AuthProvider>
                 <CartProvider>
                     <CategoriesProvider>
-                        <LicencesProvider>
+                        <LicensesProvider>
                             <ProductsProvider>
                                 <UsersProvider>
                                     <FavoritesProvider>
@@ -23,7 +23,7 @@ export const AppProvider = ({ children }) => {
                                     </FavoritesProvider>
                                 </UsersProvider>
                             </ProductsProvider>
-                        </LicencesProvider>
+                        </LicensesProvider>
                     </CategoriesProvider>
                 </CartProvider>
             </AuthProvider>

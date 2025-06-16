@@ -71,7 +71,7 @@
     gap: var(--spacing-12);
     padding: var(--spacing-16);
 }
-.product-card__licence {
+.product-card__license {
     font-size: var(--font-xsmall);
     font-weight: 500;
 }

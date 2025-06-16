@@ -4,12 +4,12 @@ import { Container } from './../common/Container.jsx'
 import { Button } from './../common/Button.jsx'
 import { Modal } from './../common/Modal.jsx'
 import { ProductForm } from './../forms/ProductForm.jsx'
-import { LicenceForm } from './../forms/LicenceForm.jsx'
+import { LicenseForm } from './../forms/LicenseForm.jsx'
 import { CategoryForm } from './../forms/CategoryForm.jsx'
 import { RoleForm } from './../forms/RoleForm.jsx'
 import { UserForm } from './../forms/UserForm.jsx'
 import { Products } from './Products.jsx'
-import { Licences } from './Licences.jsx'
+import { Licenses } from './Licenses.jsx'
 import { Categories } from './Categories.jsx'
 import { Roles } from './Roles.jsx'
 import { Users } from './Users.jsx'
@@ -23,7 +23,7 @@ export const Tabs = () => {
 
     const tabs = [
         { label: 'Productos', content: <Products /> },
-        { label: 'Licencias', content: <Licences /> },
+        { label: 'Licencias', content: <Licenses /> },
         { label: 'Categorias', content: <Categories /> },
         { label: 'Roles', content: <Roles /> },
         { label: 'Usuarios', content: <Users /> }
@@ -36,7 +36,7 @@ export const Tabs = () => {
                 setModalToShow('product')
                 break
             case 'Licencias':
-                setModalToShow('licence')
+                setModalToShow('license')
                 break
             case 'Categorias':
                 setModalToShow('category')
@@ -85,7 +85,7 @@ export const Tabs = () => {
             {isOpen &&
                 <Modal isOpen={isOpen} onClosed={handleClosed}>
                     {modalToShow === 'product' && <ProductForm onClosed={handleClosed}/>}
-                    {modalToShow === 'licence' && <LicenceForm onClosed={handleClosed}/>}
+                    {modalToShow === 'license' && <LicenseForm onClosed={handleClosed}/>}
                     {modalToShow === 'category' && <CategoryForm onClosed={handleClosed}/>}
                     {modalToShow === 'role' && <RoleForm onClosed={handleClosed}/>}
                     {modalToShow === 'user' && <UserForm onClosed={handleClosed}/>}

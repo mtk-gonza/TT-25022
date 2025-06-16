@@ -25,7 +25,7 @@ export const AppRoutes = () => {
 			<Route path='/login' element={<Login />} />
 			<Route path='/register' element={<Register />} />
 			<Route path='/shop' element={<Shop />} />
-			<Route path='/shop/:category_name?/:licence_id?' element={<Shop  />} />
+			<Route path='/shop/:category_name?/:license_id?' element={<Shop  />} />
 			<Route path='/detail/:product_id?' element={<Detail/>} />
 			<Route path='/contact' element={<Contact />} />
 			<Route path='/favorites' element={<ProtectedRoute allowedRoles={['guest', 'admin']}> <Favorites/> </ProtectedRoute>} />

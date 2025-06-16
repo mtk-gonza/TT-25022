@@ -5,7 +5,7 @@ import { Message } from './../common/Message.jsx'
 
 import { useProducts } from './../../hooks/useProducts.jsx'
 import { useCategories } from './../../hooks/useCategories.jsx'
-import { useLicences } from './../../hooks/useLicences.jsx'
+import { useLicenses } from '../../hooks/useLicenses.jsx'
 import { useWarning } from './../../hooks/useWarning.jsx'
 import { useForm } from './../../hooks/useForm.jsx'
 
@@ -18,15 +18,15 @@ export const ProductForm = ({ selectedItem = {}, onClosed }) => {
     const { values, handleChange, handleSubmit, errors, resetForm } = useForm(selectedItem, productValidationRules)
     const { addProduct, updateProduct } = useProducts()
     const { categories } = useCategories()
-    const { licences } = useLicences()
+    const { licenses } = useLicenses()
     const { isOpenWarning, warning, titleWarning, messageWarning, handleClosedWarning } = useWarning()
 
     const handleCategoryChange = (e) => {
         handleChange({ target: { name: 'category_id', value: e.target.value } })
     }
 
-    const handleLicenceChange = (e) => {
-        handleChange({ target: { name: 'licence_id', value: e.target.value } })
+    const handleLicenseChange = (e) => {
+        handleChange({ target: { name: 'license_id', value: e.target.value } })
     }
 
     const onSubmit = async (e) => {
@@ -118,16 +118,16 @@ export const ProductForm = ({ selectedItem = {}, onClosed }) => {
                 <p className='form__error'>{errors.image_back}</p>
                 <div className='form__box--grid'>
                     <label className='form__label'>Licencia:</label>
-                    <select className='form__select' name='licence_id' value={values.licence_id || ''} onChange={handleLicenceChange} required >
+                    <select className='form__select' name='license_id' value={values.license_id || ''} onChange={handleLicenseChange} required >
                         <option value=''>Seleccione una Licencia</option>
-                        {licences.map((licence) => (
-                            <option key={licence.id} value={licence.id}>
-                                {licence.name}
+                        {licenses.map((license) => (
+                            <option key={license.id} value={license.id}>
+                                {license.name}
                             </option>
                         ))}
                     </select>
                 </div>
-                <p className='form__error'>{errors.licence_id}</p>
+                <p className='form__error'>{errors.license_id}</p>
                 <div className='form__box--grid'>
                     <label className='form__label'>Categoría:</label>
                     <select className='form__select' name='category_id' value={values.category_id || ''} onChange={handleCategoryChange} required >

@@ -1,3 +1,3 @@
 import React, { createContext } from 'react'
 
-export const LicencesContext = createContext()
+export const LicensesContext = createContext()

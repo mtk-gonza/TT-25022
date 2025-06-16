@@ -5,17 +5,17 @@ import { Container } from './../common/Container.jsx'
 
 import './../../styles/components/layouts/Collection.css'
 
-export const Collection = ({licence, nameClass}) => {         
+export const Collection = ({license, nameClass}) => {         
     return (
         <section className='collection'>
             <Container>
                 <article className='collection__content'>
-                    <h3 className='collection__title'>{licence.name}</h3>
-                    <p className='collection__text'>{licence.description}</p>
-                    <Link className='collection__link' to={`/shop?licence_id=${licence.id}`} >VER COLECCIÓN</Link>                              
+                    <h3 className='collection__title'>{license.name}</h3>
+                    <p className='collection__text'>{license.description}</p>
+                    <Link className='collection__link' to={`/shop?license_id=${license.id}`} >VER COLECCIÓN</Link>                              
                 </article>
                 <picture className={nameClass}>
-                    <img className='collection__img' src={licence.image} alt={`Figura de ${licence.name}`}/>
+                    <img className='collection__img' src={license.image} alt={`Figura de ${license.name}`}/>
                 </picture>
             </Container>
         </section>  

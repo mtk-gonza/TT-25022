@@ -1,20 +1,20 @@
-import { API_PRODUCTS, API_LICENCES, API_CATEGORIES} from './../config.js'
+import { API_PRODUCTS, API_LICENSES, API_CATEGORIES} from './../config.js'
 import { fetchData, fetchDataById, postData, putData, deleteDataById } from './fetchService.js'
 
 export const getProducts = async () => {
     try {
-        const [products, licences, categories] = await Promise.all([
+        const [products, licenses, categories] = await Promise.all([
             fetchData(API_PRODUCTS),
-            fetchData(API_LICENCES),
+            fetchData(API_LICENSES),
             fetchData(API_CATEGORIES)
         ])
 
-        const licenceMap = Object.fromEntries(licences.map(l => [l.id, l]))
+        const licenseMap = Object.fromEntries(licenses.map(l => [l.id, l]))
         const categoryMap = Object.fromEntries(categories.map(c => [c.id, c]))
 
         const enrichedProducts = products.map(product => ({
             ...product,
-            licence: licenceMap[product.licence_id],
+            license: licenseMap[product.license_id],
             category: categoryMap[product.category_id]
         }))
 
@@ -29,12 +29,12 @@ export const getProducts = async () => {
 export const getProductById = async (id) => {
     try {
         const product  = await fetchDataById(API_PRODUCTS, id)
-        const licence = await fetchDataById(API_LICENCES, product.licence_id)
+        const license = await fetchDataById(API_LICENSES, product.license_id)
         const category = await fetchDataById(API_CATEGORIES, product.category_id)
 
         return {
             ...product,
-            licence: licence || null,
+            license: license || null,
             category: category || null
         } 
 

@@ -44,7 +44,7 @@ export const ProductDetail = ({ product }) => {
                         }
                     </picture>
                     <article className='detail-item__info'>
-                        <p className='detail-item__licence'>{product.licence.name} - {product.sku}</p>
+                        <p className='detail-item__license'>{product.license.name} - {product.sku}</p>
                         <h3 className='detail-item__name'>{product.name}</h3>
                         <p className='detail-item__description'>{product.description}</p>
                         {product.discount > 0 ? (
