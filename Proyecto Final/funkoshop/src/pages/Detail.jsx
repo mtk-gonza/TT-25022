@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { useParams } from 'react-router-dom'
 
 import { Main } from './../components/common/Main.jsx'
@@ -13,6 +13,10 @@ import './../styles/pages/Detail.css'
 export const Detail = () => {    
     const { product_id } = useParams()
     const { products } = useProducts()
+
+    useEffect(() => {
+        window.scrollTo(0, 0)
+    }, [product_id])
 
     const product = products.find(producto => producto.id == product_id)
     const productsColection = products.filter(item => item.license_id == product.license_id & item.id != product.id)

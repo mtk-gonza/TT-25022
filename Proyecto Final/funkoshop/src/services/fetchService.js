@@ -26,7 +26,6 @@ export const fetchDataById = async (url, id) => {
 
 export const postData = async (url, data) => {
     try {
-        data.created_at = new Date(Date.now()).toISOString()
         const response = await fetch(url, {
             method: 'POST',
             headers: {
@@ -46,7 +45,6 @@ export const postData = async (url, data) => {
 
 export const putData = async (url, data) => {    
     try {
-        data.updated_at = new Date(Date.now()).toISOString()
         const response = await fetch(`${url}/${data.id}`,
             {
                 method: 'PUT',

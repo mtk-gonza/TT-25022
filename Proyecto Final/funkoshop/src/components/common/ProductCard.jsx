@@ -13,8 +13,7 @@ export const ProductCard = ({ product }) => {
     const { isAuthenticated } = useAuth()
     const { isFavorite, toggleFavorite } = useFavorites()
     const isFav = isFavorite(product.id)
-    const isNew = news(product.createdAt, 14)
-
+    const isNew = news(product.created_at, 14)
     if (!product) {
         return (
             <div>

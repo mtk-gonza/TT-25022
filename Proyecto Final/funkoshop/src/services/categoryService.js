@@ -1,7 +1,8 @@
 import { API_CATEGORIES } from './../config.js'
 import { fetchData, fetchDataById, postData, putData, deleteDataById } from './fetchService.js'
+import { addEntityTimestamps, updateEntityTimestamp } from './../utils/dateUtils.js'
 
-export const getCategories = async () => {
+const getCategories = async () => {
     try {
         const categories = await fetchData(API_CATEGORIES)
         return categories
@@ -11,7 +12,7 @@ export const getCategories = async () => {
     }
 }
 
-export const getCategoryById = async (id) => {
+const getCategoryById = async (id) => {
     try {
         const category = await fetchDataById(API_CATEGORIES, id)
         return category
@@ -21,9 +22,10 @@ export const getCategoryById = async (id) => {
     }
 }
 
-export const createCategory = async (categoryData) => {
+const createCategory = async (categoryData) => {
     try {
-        const newCategory = await postData(API_CATEGORIES, categoryData)        
+        const categoryWithTimestamps = addEntityTimestamps(categoryData)
+        const newCategory = await postData(API_CATEGORIES, categoryWithTimestamps)        
         return newCategory
     } catch (err) {
         console.error(err.message)
@@ -31,9 +33,10 @@ export const createCategory = async (categoryData) => {
     }
 }
 
-export const updateCategory = async (categoryData) => {
+const updateCategory = async (categoryData) => {
     try {
-        const updatedCategory = await putData(API_CATEGORIES, categoryData)
+        const categoryWithTimestamp = updateEntityTimestamp(categoryData)
+        const updatedCategory = await putData(API_CATEGORIES, categoryWithTimestamp)
         return updatedCategory
     } catch (err) {
         console.error(err.message)
@@ -41,7 +44,7 @@ export const updateCategory = async (categoryData) => {
     }
 }
 
-export const deleteCategory = async (id) => {
+const deleteCategory = async (id) => {
     try {
         const success = await deleteDataById(API_CATEGORIES, id)
         return success
@@ -50,3 +53,13 @@ export const deleteCategory = async (id) => {
         throw err
     }
 }
+
+const categoryService = {
+    getCategories,
+    getCategoryById,
+    createCategory,
+    updateCategory,
+    deleteCategory
+}
+
+export default categoryService

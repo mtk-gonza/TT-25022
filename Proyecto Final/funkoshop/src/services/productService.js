@@ -1,7 +1,8 @@
 import { API_PRODUCTS, API_LICENSES, API_CATEGORIES} from './../config.js'
 import { fetchData, fetchDataById, postData, putData, deleteDataById } from './fetchService.js'
+import { addEntityTimestamps, updateEntityTimestamp } from './../utils/dateUtils.js'
 
-export const getProducts = async () => {
+const getProducts = async () => {
     try {
         const [products, licenses, categories] = await Promise.all([
             fetchData(API_PRODUCTS),
@@ -26,7 +27,7 @@ export const getProducts = async () => {
     }
 }
 
-export const getProductById = async (id) => {
+const getProductById = async (id) => {
     try {
         const product  = await fetchDataById(API_PRODUCTS, id)
         const license = await fetchDataById(API_LICENSES, product.license_id)
@@ -44,9 +45,10 @@ export const getProductById = async (id) => {
     }
 }
 
-export const createProduct = async (productData) => {
+const createProduct = async (productData) => {
     try {
-        const newProduct = await postData(API_PRODUCTS, productData)        
+        const productWithTimestamps = addEntityTimestamps(productData)
+        const newProduct = await postData(API_PRODUCTS, productWithTimestamps)        
         return newProduct
     } catch (err) {
         console.error(err.message)
@@ -54,9 +56,10 @@ export const createProduct = async (productData) => {
     }
 }
 
-export const updateProduct = async (productData) => {
+const updateProduct = async (productData) => {
     try {
-        const updatedProduct = await putData(API_PRODUCTS, productData)
+        const productWithTimestamp = updateEntityTimestamp(productData)
+        const updatedProduct = await putData(API_PRODUCTS, productWithTimestamp)
         return updatedProduct
     } catch (err) {
         console.error(err.message)
@@ -64,7 +67,7 @@ export const updateProduct = async (productData) => {
     }
 }
 
-export const deleteProduct = async (id) => {
+const deleteProduct = async (id) => {
     try {
         const success = await deleteDataById(API_PRODUCTS, id)
         return success
@@ -73,3 +76,13 @@ export const deleteProduct = async (id) => {
         throw err
     }
 }
+
+const productService = {
+    getProducts,
+    getProductById,
+    createProduct,
+    updateProduct,
+    deleteProduct
+}
+
+export default productService

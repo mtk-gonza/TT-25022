@@ -2,7 +2,8 @@ import React, { useState, useEffect } from 'react'
 
 import { ProductsContext } from './../context/ProductsContext.jsx'
 
-import { getProducts, getProductById, createProduct, updateProduct, deleteProduct } from './../services/productService.js'
+import productService from './../services/productService.js'
+
 import { news } from './../utils/newsUtils.js'
 
 export const ProductsProvider = ({ children }) => {
@@ -16,7 +17,7 @@ export const ProductsProvider = ({ children }) => {
             setErrorProducts(null)
             setIsLoadingProducts(true)
             try {
-                const response = await getProducts()
+                const response = await productService.getProducts()
                 setProducts(response)
                 return response
             } catch (err) {
@@ -30,7 +31,7 @@ export const ProductsProvider = ({ children }) => {
             setErrorProducts(null)
             setIsLoadingProducts(true)
             try {
-                const response = await getProducts()
+                const response = await productService.getProducts()
                 const releases = response.filter(product => news(product.created_at, 30))
                 setLatestReleases(releases)
                 return releases
@@ -45,7 +46,7 @@ export const ProductsProvider = ({ children }) => {
             setErrorProducts(null)
             setIsLoadingProducts(true)
             try {
-                const response = await getProductById(id)
+                const response = await productService.getProductById(id)
                 return response
             } catch (err) {
                 setErrorProducts(err.message)
@@ -58,7 +59,7 @@ export const ProductsProvider = ({ children }) => {
             setErrorProducts(null)
             setIsLoadingProducts(true)
             try {
-                const response = await createProduct(newProduct)
+                const response = await productService.createProduct(newProduct)
                 setProducts((prev) => [...prev, response]) 
                 setLatestReleases((prev) => [...prev, response])  
                 return response             
@@ -73,7 +74,7 @@ export const ProductsProvider = ({ children }) => {
             setErrorProducts(null)
             setIsLoadingProducts(true)
             try {                
-                const response =  await updateProduct(updatedProduct)
+                const response =  await productService.updateProduct(updatedProduct)
                 setProducts((prev) =>
                     prev.map((p) => (p.id === response.id ? response : p))
                 )
@@ -89,7 +90,7 @@ export const ProductsProvider = ({ children }) => {
             setErrorProducts(null)
             setIsLoadingProducts(true)
             try {                
-                const response = await deleteProduct(id);
+                const response = await productService.deleteProduct(id);
                 setProducts((prev) => prev.filter((p) => p.id !== id))
                 return response || true  
             } catch (err) {

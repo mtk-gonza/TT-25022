@@ -1,7 +1,8 @@
 import { API_USERS, API_ROLES } from './../config.js'
 import { fetchData, fetchDataById, postData, putData, deleteDataById } from './fetchService.js'
+import { addEntityTimestamps, updateEntityTimestamp } from './../utils/dateUtils.js'
 
-export const getUsers = async () => {
+const getUsers = async () => {
     try {
         const [users, roles] = await Promise.all([
             fetchData(API_USERS),
@@ -23,7 +24,7 @@ export const getUsers = async () => {
     }
 }
 
-export const getUserById = async (id) => {
+const getUserById = async (id) => {
     try {
         const user = await fetchDataById(API_USERS, id)
         const role = await fetchDataById(API_ROLES, user.rol_id)
@@ -39,19 +40,21 @@ export const getUserById = async (id) => {
     }
 }
 
-export const createUser = async (userData) => {
+const createUser = async (userData) => {
     try {
-        const newUser = await postData(API_USERS, userData)        
+        const userWithTimestamps = addEntityTimestamps(userData)
+        const newUser = await postData(API_USERS, userWithTimestamps)
         return newUser
     } catch (err) {
-        console.error('Error al crear usuario:', err.message)
+        console.error(err.message)
         throw err
     }
 }
 
-export const updateUser = async (userData) => {
+const updateUser = async (userData) => {
     try {
-        const updatedUser = await putData(API_USERS, userData)
+        const userWithTimestamp = updateEntityTimestamp(userData)
+        const updatedUser = await putData(API_USERS, userWithTimestamp)
         return updatedUser
     } catch (err) {
         console.error(err.message)
@@ -59,12 +62,21 @@ export const updateUser = async (userData) => {
     }
 }
 
-export const deleteUser = async (id) => {
+const deleteUser = async (id) => {
     try {
-        const success = await deleteDataById(API_USERS, id)
-        return success
+        return await deleteDataById(API_USERS, id)
     } catch (err) {
         console.error(err.message)
         throw err
     }
 }
+
+const userService = {
+    getUsers,
+    getUserById,
+    createUser,
+    updateUser,
+    deleteUser
+}
+
+export default userService

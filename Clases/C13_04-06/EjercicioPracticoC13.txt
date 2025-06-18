@@ -1,0 +1,35 @@
+Nueva Tarea en Talento Lab
+
+El cliente de Talento Lab está satisfecho con los avances del proyecto y ahora nos pide llevar la apariencia y la interacción de la aplicación 
+al siguiente nivel. Queremos que la aplicación no solo funcione correctamente, sino que también brinde una experiencia visualmente atractiva y responsiva. 
+
+Para ello, vamos a centrarnos en la optimización del diseño y la responsividad, utilizando herramientas como Bootstrap y styled-components. Además, 
+vamos a integrar mejoras de UX/UI, como React Icons y React Toastify, para hacer la interacción más intuitiva.
+
+Ejercicio Práctico
+
+Objetivos:
+    Optimizar el diseño y la responsividad de la aplicación utilizando Bootstrap y styled-components.
+    Mejorar la experiencia del usuario agregando iconos e interacciones visuales con React Icons y React Toastify.
+    Implementar ajustes visuales y de interacción para hacer la interfaz más atractiva y funcional.
+    Asegurar que la aplicación sea completamente responsiva, adaptándose a diferentes tamaños de pantalla.
+    Dejar la aplicación casi lista para su despliegue en un servidor, con los ajustes finales de SEO utilizando React Helmet.
+
+Requisitos del Proyecto:
+    Diseñar una interfaz responsiva con Bootstrap y styled-components:
+        Utiliza el sistema de grillas de Bootstrap para que los productos se muestren de manera eficiente en pantallas grandes, medianas y pequeñas.
+        Aplica estilos a los componentes utilizando styled-components para personalizar el diseño y hacer que el código sea más modular y limpio.
+
+    Integrar iconos con React Icons:
+        Instala React Icons y agrega iconos en botones y otros elementos interactivos. Por ejemplo, agrega un icono de carrito en la navbar para 
+        mejorar la claridad visual de la acción de compra.
+
+    Agregar notificaciones con React Toastify:
+        Integra React Toastify para mostrar notificaciones de manera elegante y no intrusiva. Por ejemplo, muestra un mensaje de éxito cuando un producto se agrega al carrito.
+
+    Preparar la aplicación para su despliegue:
+        Asegúrate de que todos los estilos sean responsivos y de que la interfaz funcione correctamente en diferentes dispositivos y tamaños de pantalla.
+        Revisa que la aplicación esté lista para su despliegue en un servidor, asegurando la optimización de los tiempos de carga y la experiencia del usuario en general.
+
+    Mejorar la accesibilidad y el SEO de la aplicación:
+        Utiliza React Helmet para mejorar el SEO de la aplicación. Modifica las etiquetas <title> y <meta> para asegurar que la aplicación sea fácilmente indexada por los motores de búsqueda

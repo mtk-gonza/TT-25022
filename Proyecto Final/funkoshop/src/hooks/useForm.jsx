@@ -13,7 +13,7 @@ export const useForm = (initialState, rules) => {
         const newValues = { ...values, [name]: newValue }
 
         setValues(newValues)
-
+        
         setTouched((prev) => ({ ...prev, [name]: true }))
 
         const fieldRule = rules[name]
@@ -24,7 +24,6 @@ export const useForm = (initialState, rules) => {
 
     const handleSubmit = (onSubmit) => (e) => {
         e.preventDefault()
-
         const { isValid, errors: formErrors } = validateForm(rules, values, values)
         setErrors(formErrors)
 

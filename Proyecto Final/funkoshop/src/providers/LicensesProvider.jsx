@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react'
 
 import { LicensesContext } from './../context/LicensesContext.jsx'
 
-import { getLicenses, getLicenseById, createLicense, updateLicense, deleteLicense } from './../services/licenseService.js'
+import licenseService from './../services/licenseService.js'
 
 export const LicensesProvider = ({ children }) => {
     const [licenses, setLicenses] = useState([])
@@ -14,7 +14,7 @@ export const LicensesProvider = ({ children }) => {
             setErrorLicenses(null)
             setIsLoadingLicenses(true)
             try {
-                const response = await getLicenses()
+                const response = await licenseService.getLicenses()
                 setLicenses(response)
                 return response
             } catch (err) {
@@ -28,7 +28,7 @@ export const LicensesProvider = ({ children }) => {
             setErrorLicenses(null)
             setIsLoadingLicenses(true)
             try {
-                const response = await getLicenseById(id)
+                const response = await licenseService.getLicenseById(id)
                 return response
             } catch (err) {
                 setErrorLicenses(err.message)
@@ -41,7 +41,7 @@ export const LicensesProvider = ({ children }) => {
             setErrorLicenses(null)
             setIsLoadingLicenses(true)
             try {
-                const response = await createLicense(newLicense)
+                const response = await licenseService.createLicense(newLicense)
                 setLicenses((prev) => [...prev, response])  
                 return response               
             } catch (err) {
@@ -55,7 +55,7 @@ export const LicensesProvider = ({ children }) => {
             setErrorLicenses(null)
             setIsLoadingLicenses(true)
             try {                
-                const response = await updateLicense(updatedProduct)
+                const response = await licenseService.updateLicense(updatedProduct)
                 setLicenses((prev) =>
                     prev.map((p) => (p.id === response.id ? response : p))
                 )
@@ -67,11 +67,11 @@ export const LicensesProvider = ({ children }) => {
                 setIsLoadingLicenses(false)
             }
         },
-        deletLicence: async (id) => {
+        deleteLicense: async (id) => {
             setErrorLicenses(null)
             setIsLoadingLicenses(true)
             try {                
-                const response = await deleteLicense(id);
+                const response = await licenseService.deleteLicense(id);
                 setLicenses((prev) => prev.filter((p) => p.id !== id))
                 return response || true 
             } catch (err) {

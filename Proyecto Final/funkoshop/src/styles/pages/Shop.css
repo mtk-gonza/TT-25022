@@ -135,3 +135,7 @@
 .filters__btn:hover {
     background-color: var(--primary-900);
 }
+
+.shop__content .link {
+    align-self: center;
+}

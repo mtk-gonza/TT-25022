@@ -28,7 +28,7 @@ export const Table = ({ columns, data, onEdit = null, onDelete = null }) => {
                 <tbody>
                     {data.length > 0 ? (
                         currentData.map((row, index) => (
-                            <tr key={index} style={{ borderBottom: '1px solid #ddd' }}>
+                            <tr key={index}>
                                 {columns.map((col) => (
                                     <td key={col.key}>
                                         {col.render ? col.render(row[col.key]) : row[col.key]}

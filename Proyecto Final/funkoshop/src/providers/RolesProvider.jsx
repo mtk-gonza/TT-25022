@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react'
 
 import { RolesContext } from './../context/RolesContext.jsx'
 
-import { getRoles, getRoleById, createRole, updateRole, deleteRole } from './../services/roleService.js'
+import roleService from './../services/roleService.js'
 
 export const RolesProvider = ({ children }) => {
     const [roles, setRoles] = useState([])
@@ -14,7 +14,7 @@ export const RolesProvider = ({ children }) => {
             setErrorRoles(null)
             setIsLoadingRoles(true)
             try {
-                const response = await getRoles()
+                const response = await roleService.getRoles()
                 setRoles(response)
                 return response
             } catch (err) {
@@ -28,7 +28,7 @@ export const RolesProvider = ({ children }) => {
             setErrorRoles(null)
             setIsLoadingRoles(true)
             try {
-                const response = await getRoleById(id)
+                const response = await roleService.getRoleById(id)
                 return response
             } catch (err) {
                 setErrorRoles(err.message)
@@ -39,9 +39,9 @@ export const RolesProvider = ({ children }) => {
         },
         addRole: async (newRole) => {
             setErrorRoles(null)
-            setIsLoadingRoles(true)
+            setIsLoadingRoles(true)            
             try {
-                const response = await createRole(newRole)
+                const response = await roleService.createRole(newRole)
                 setRoles((prev) => [...prev, response])  
                 return response              
             } catch (err) {
@@ -55,7 +55,7 @@ export const RolesProvider = ({ children }) => {
             setErrorRoles(null)
             setIsLoadingRoles(true)
             try {                
-                const response = await updateRole(updatedRole)
+                const response = await roleService.updateRole(updatedRole)
                 setRoles((prev) =>
                     prev.map((p) => (p.id === response.id ? response : p))
                 )
@@ -71,7 +71,7 @@ export const RolesProvider = ({ children }) => {
             setErrorRoles(null)
             setIsLoadingRoles(true)
             try {                
-                const response = await deleteRole(id);
+                const response = await roleService.deleteRole(id);
                 setRoles((prev) => prev.filter((r) => r.id !== id))
                 return response || true  
             } catch (err) {

@@ -1,0 +1,46 @@
+Ruta de avance
+
+Este apartado detalla el progreso esperado del proyecto hasta el momento. Si en tu desarrollo actual notas que falta alguna funcionalidad o que hay áreas por mejorar, 
+este es un buen momento para revisarlo y ajustarlo.
+
+    Manejo del Estado Global
+        Carrito de Compras: Se creó CarritoContext.js para gestionar productos en el carrito, con funciones para agregar y vaciar. El carrito solo es accesible para usuarios autenticados mediante rutas protegidas.
+        Autenticación: AuthContext.js maneja el login/logout con localStorage. Se implementó un formulario de inicio de sesión y redirección tras autenticación.
+
+    Gestión de Productos
+        Agregar Productos: Se desarrolló un formulario controlado con validaciones en tiempo real. Se implementó una solicitud POST para enviar datos a MockAPI y manejar respuestas.
+
+    Edición y Eliminación de Productos
+        Estado Global: ProductsProvider gestiona la lista de productos.
+        Edición: El formulario reutilizable diferencia entre agregar y editar, enviando una solicitud PUT a MockAPI.
+        Eliminación: Se implementó una función con confirmación del usuario antes de ejecutar la solicitud DELETE.
+        Si aún no implementaste la edición o eliminación, asegúrate de agregar estas funcionalidades antes de seguir optimizando.
+
+
+Ejercicios Prácticos
+
+    Nueva Tarea en Talento Lab
+        El cliente de Talento Lab ha solicitado un enfoque avanzado para mejorar la experiencia visual e interactiva de la aplicación, con un énfasis en la optimización para dispositivos móviles y la mejora de la usabilidad general. La aplicación 
+        debe ser completamente responsiva y ofrecer una experiencia de usuario fluida y accesible, manteniendo una apariencia atractiva en diferentes tamaños de pantalla..
+
+    Objetivos:
+        Aplicar enfoque mobile-first para asegurar responsividad completa.
+        Integrar React Icons y React Toastify para mejorar la navegación.
+        Implementar mejores prácticas de diseño para interfaces accesibles.
+        Optimizar SEO con React Helmet para mejorar la indexación.
+
+    Requisitos del Proyecto:
+        Optimización Responsiva con Bootstrap y Styled-components:
+            Utiliza el sistema de grillas de Bootstrap para organizar los componentes de manera responsiva, adaptando la distribución de los productos y otros elementos a diferentes tamaños de pantalla (móviles, tablets, escritorios).
+            Aplica styled-components para crear un diseño personalizado y modular, mejorando la claridad y mantenibilidad del código.
+        Interactividad Mejorada con React Icons y React Toastify:
+            Instala React Icons y agrega iconos en los botones de acción, como en la barra de navegación (por ejemplo, el icono de carrito en el botón de compra).
+        Integra React Toastify para mostrar notificaciones visuales al usuario, como mensajes de éxito cuando un producto es agregado al carrito de compras
+        Mejora de la Accesibilidad y SEO:
+            Utiliza etiquetas ARIA en botones y enlaces para mejorar la accesibilidad.
+        Usa React Helmet para modificar las etiquetas <title> y <meta>, mejorando el SEO de la aplicación y asegurando que sea fácilmente indexada por los motores de búsqueda.
+        Paginación en AllProductos:
+            Implementa una paginación funcional para mostrar los productos en páginas separadas.
+        Pruebas y Preparación para el Despliegue:
+            Realiza pruebas en diferentes dispositivos para garantizar la compatibilidad.
+            Revisa que todos los elementos de la interfaz se comporten correctamente en pantallas pequeñas y grandes, asegurando tiempos de carga rápidos y una experiencia de usuario fluida.

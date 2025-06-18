@@ -1,7 +1,8 @@
 import { API_LICENSES } from './../config.js'
 import { fetchData, fetchDataById, postData, putData, deleteDataById } from './fetchService.js'
+import { addEntityTimestamps, updateEntityTimestamp } from './../utils/dateUtils.js'
 
-export const getLicenses = async () => {
+const getLicenses = async () => {
     try {
         const licenses = await fetchData(API_LICENSES)
         return licenses
@@ -11,7 +12,7 @@ export const getLicenses = async () => {
     }
 }
 
-export const getLicenseById = async (id) => {
+const getLicenseById = async (id) => {
     try {
         const license = await fetchDataById(API_LICENSES, id)
         return license
@@ -21,19 +22,21 @@ export const getLicenseById = async (id) => {
     }
 }
 
-export const createLicense = async (licenseData) => {
+const createLicense = async (licenseData) => {
     try {
-        const newLicense = await postData(API_LICENSES, licenseData)        
-        return newLicense
+        const licenseWithTimestamps = addEntityTimestamps(licenseData)
+        const newLicense = await postData(API_LICENSES, licenseWithTimestamps)  
+        return newLicense        
     } catch (err) {
         console.error(err.message)
         throw err
     }
 }
 
-export const updateLicense = async (licenseData) => {
+const updateLicense = async (licenseData) => {
     try {
-        const updatedLicense = await putData(API_LICENSES, licenseData)
+        const licenseWithTimestamp = updateEntityTimestamp(licenseData)
+        const updatedLicense = await putData(API_LICENSES, licenseWithTimestamp)
         return updatedLicense
     } catch (err) {
         console.error(err.message)
@@ -41,7 +44,7 @@ export const updateLicense = async (licenseData) => {
     }
 }
 
-export const deleteLicense = async (id) => {
+const deleteLicense = async (id) => {
     try {
         const success = await deleteDataById(API_LICENSES, id)
         return success
@@ -50,3 +53,13 @@ export const deleteLicense = async (id) => {
         throw err
     }
 }
+
+const licenseService = {
+    getLicenses,
+    getLicenseById,
+    createLicense,
+    updateLicense,
+    deleteLicense
+}
+
+export default licenseService

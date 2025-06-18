@@ -24,7 +24,7 @@ export const UserForm = ({ selectedItem = {}, onClosed }) => {
     }
 
     const onSubmit = async (e) => {
-        try {            
+        try {          
             const response = values.id ? await updateUser(values) : await addUser(values)
             const { title, message } = getFormMessages('Usuario', values.id ? 'update' : 'create', !!response)
 

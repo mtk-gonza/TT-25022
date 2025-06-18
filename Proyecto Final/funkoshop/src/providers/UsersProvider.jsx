@@ -1,8 +1,7 @@
 import { useState, useEffect } from 'react'
 
 import { UsersContext } from './../context/UsersContext.jsx'
-
-import { getUsers, getUserById, createUser, updateUser, deleteUser } from './../services/userService.js'
+import userService from './../services/userService.js'
 
 export const UsersProvider = ({ children }) => {
     const [users, setUsers] = useState([])
@@ -14,7 +13,7 @@ export const UsersProvider = ({ children }) => {
             setErrorUsers(null)
             setIsLoadingUsers(true)
             try {
-                const response = await getUsers()
+                const response = await userService.getUsers()
                 setUsers(response)
                 return response
             } catch (err) {
@@ -28,7 +27,7 @@ export const UsersProvider = ({ children }) => {
             setErrorUsers(null)
             setIsLoadingUsers(true)
             try {
-                const response = await getUserById(id)
+                const response = await userService.getUserById(id)
                 return response
             } catch (err) {
                 setErrorUsers(err.message)
@@ -41,7 +40,7 @@ export const UsersProvider = ({ children }) => {
             setErrorUsers(null)
             setIsLoadingUsers(true)
             try {
-                const response = await createUser(newUser)
+                const response = await userService.createUser(newUser)
                 setUsers((prev) => [...prev, response])
                 return response
             } catch (err) {
@@ -55,7 +54,7 @@ export const UsersProvider = ({ children }) => {
             setErrorUsers(null)
             setIsLoadingUsers(true)
             try {
-                const response = await updateUser(updatedUser)
+                const response = await userService.updateUser(updatedUser)
                 setUsers((prev) =>
                     prev.map((p) => (p.id === response.id ? response : p))
                 )
@@ -71,7 +70,7 @@ export const UsersProvider = ({ children }) => {
             setErrorUsers(null)
             setIsLoadingUsers(true)
             try {
-                const response = await deleteUser(id)
+                const response = await userService.deleteUser(id)
                 setUsers((prev) => prev.filter((u) => u.id !== id))  
                 return response || true              
             } catch (err) {

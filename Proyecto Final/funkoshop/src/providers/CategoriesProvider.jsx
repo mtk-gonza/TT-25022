@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react'
 
 import { CategoriesContext } from './../context/CategoriesContext.jsx'
 
-import { getCategories, getCategoryById, createCategory, updateCategory, deleteCategory } from './../services/categoryService.js'
+import categoryService from './../services/categoryService.js'
 
 export const CategoriesProvider = ({ children }) => {
     const [categories, setCategories] = useState([])
@@ -14,7 +14,7 @@ export const CategoriesProvider = ({ children }) => {
             setErrorCategories(null)
             setIsLoadingCategories(true)
             try {
-                const response = await getCategories()
+                const response = await categoryService.getCategories()
                 setCategories(response)
                 return response
             } catch (err) {
@@ -28,7 +28,7 @@ export const CategoriesProvider = ({ children }) => {
             setErrorCategories(null)
             setIsLoadingCategories(true)
             try {
-                const response =  await getCategoryById(id)
+                const response =  await categoryService.getCategoryById(id)
                 return response
             } catch (err) {
                 setErrorCategories(err.message)
@@ -41,7 +41,7 @@ export const CategoriesProvider = ({ children }) => {
             setErrorCategories(null)
             setIsLoadingCategories(true)
             try {
-                const response = await createCategory(newCategory)
+                const response = await categoryService.createCategory(newCategory)
                 setCategories((prev) => [...prev, response])  
                 return response              
             } catch (err) {
@@ -55,7 +55,7 @@ export const CategoriesProvider = ({ children }) => {
             setErrorCategories(null)
             setIsLoadingCategories(true)
             try {                
-                const response = await updateCategory(updatedCategory)
+                const response = await categoryService.updateCategory(updatedCategory)
                 setCategories((prev) =>
                     prev.map((p) => (p.id === response.id ? response : p))
                 )
@@ -71,7 +71,7 @@ export const CategoriesProvider = ({ children }) => {
             setErrorCategories(null)
             setIsLoadingCategories(true)
             try {                
-                const response = await deleteCategory(id);
+                const response = await categoryService.deleteCategory(id);
                 setCategories((prev) => prev.filter((p) => p.id !== id))
                 return response || true 
             } catch (err) {

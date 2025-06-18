@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react'
-import { useSearchParams, useParams, useNavigate } from 'react-router-dom'
+import { useSearchParams, useParams, useNavigate, Link } from 'react-router-dom'
 import { faSpinner } from '@fortawesome/free-solid-svg-icons'
 
 import { Main } from './../components/common/Main.jsx'
@@ -300,9 +300,11 @@ export const Shop = () => {
                                     onPageChange={(newPage) => setCurrentPage(newPage)}
                                 />
                             )}
+                            <Link className='link' to='/'>Volver</Link>
                         </>
                     )}
                 </section>
+                
             </Container>
         </Main>
     )
