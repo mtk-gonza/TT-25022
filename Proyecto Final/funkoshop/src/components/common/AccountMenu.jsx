@@ -55,20 +55,20 @@ export const AccountMenu = () => {
                     </div>
                     {isMenuOpen && (
                         <ul className='dropdown-menu'>
-                            <li>{authUser.name} {authUser.lastName}</li>
-                            <li>
+                            <li className='dropdown-menu__link'>{authUser.name} {authUser.lastName}</li>
+                            <li className='dropdown-menu__link'>
                                 <Link to='/favorites'>
                                     Mis Favoritos
                                 </Link>
                             </li>
                             {authUser.role_id == 1 &&
-                                <li>
+                                <li className='dropdown-menu__link'>
                                     <Link to='/dashboard'>
                                         Dashboard
                                     </Link>
                                 </li>
                             }
-                            <li onClick={handleLogout}>
+                            <li className='dropdown-menu__link' onClick={handleLogout}>
                                 <Icon icon={faSignOut} className='sign-in-icon' />
                                 <span>Cerrar sesión</span>
                             </li>

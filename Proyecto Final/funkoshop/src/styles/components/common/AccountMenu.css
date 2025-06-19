@@ -6,8 +6,12 @@
     justify-content: center;
     cursor: pointer;      
 }
+.account-menu:hover {
+    background-color: var(--primary-900);
+}
 .account-menu__link {
-    font-size: xx-large;
+    padding: 2rem;
+    font-size: var(--font-medium);
 }
 
 .account-menu__icons {
@@ -31,10 +35,7 @@
     position: absolute;
     top: 100%;
     right: 0;
-    margin-top: 8px;
     background-color: var(--dark-bg-solid);
-    border: 1px solid #ccc;
-    border-radius: 4px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     list-style: none;
     margin: 0;
@@ -66,4 +67,16 @@
     border-top: 1px solid #eee;
     background-color: rgb(212, 23, 23);    
     gap: 1rem;
+}
+
+.dropdown-menu__link {
+    display: flex;
+    justify-content: left;
+    text-transform: uppercase;
+    padding: var(--spacing-8) var(--spacing-16);
+    font-size: var(--font-xsmall);
+    transition: background .3s ease-in-out;
+}
+.dropdown-menu__link:hover {
+    background-color: var(--primary-900);
 }

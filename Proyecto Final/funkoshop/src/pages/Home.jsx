@@ -3,6 +3,7 @@ import React from 'react'
 import { Main } from './../components/common/Main.jsx'
 import { Hero } from './../components/layout/Hero.jsx'
 import { Collection } from './../components/layout/Collection.jsx'
+import { Container } from './../components/common/Container.jsx'
 import { Slider } from './../components/layout/Slider.jsx'
 
 import { useLicenses } from '../hooks/useLicenses.jsx'
@@ -17,8 +18,9 @@ export const Home = () => {
     const { addToCart } = useCart()
 
     return (
-        <Main className='main-container'>
+        <Main className='home'>
             <Hero />
+            <Container>                
             {licenses.map((license, index) => (
                 <Collection
                     key={license.id}
@@ -26,6 +28,7 @@ export const Home = () => {
                     nameClass={index % 2 === 0 ? 'collection__cover__par' : 'collection__cover'}
                 />
             ))}
+            </Container>
             <Slider products={latestReleases} addToCart={addToCart} />
         </Main>
     )
