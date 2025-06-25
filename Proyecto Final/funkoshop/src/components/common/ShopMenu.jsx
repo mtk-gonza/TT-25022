@@ -1,12 +1,10 @@
-import React, { useState, useEffect, useRef } from 'react'
+import React, { useState, useRef } from 'react'
 import { Link } from 'react-router-dom'
-import {  faChevronUp, faChevronDown } from '@fortawesome/free-solid-svg-icons'
+import { faChevronUp, faChevronDown } from '@fortawesome/free-solid-svg-icons'
 
 import { Icon } from './Icon.jsx'
 
 import { useCategories } from './../../hooks/useCategories.jsx'
-
-import './../../styles/components/common/ShopMenu.css'
 
 export const ShopMenu = () => {
     const [isMenuOpen, setIsMenuOpen] = useState(false)
@@ -14,35 +12,26 @@ export const ShopMenu = () => {
 
     const { categories } = useCategories()
 
+    const handlerCloseOnMouseLeave = () => {
+        setIsMenuOpen(false)
+    }
+
     const toggleMenu = () => {
         setIsMenuOpen(!isMenuOpen)
     }
 
-    const closeMenu = () => {
-        setIsMenuOpen(false)
-    }
-
-    useEffect(() => {
-        const handleClickOutside = (event) => {
-            if (menuRef.current && !menuRef.current.contains(event.target)) {
-                closeMenu()
-            }
-        }
-        document.addEventListener('mousedown', handleClickOutside);
-        return () => {
-            document.removeEventListener('mousedown', handleClickOutside);
-        }
-    }, [])
-
     return (
-        <div className='shop-menu' ref={menuRef} onClick={toggleMenu}>
-            <div className='account-menu__icons' >
-                <p className='navbar__link with-icon'>SHOP<Icon css='icon' icon={!isMenuOpen ? faChevronDown : faChevronUp} /></p>
+        <div className='dropdown-menu' ref={menuRef} onClick={toggleMenu}>
+            <div className='dropdown-menu__icons' >
+                <div className='navbar__link with-icon'>
+                    <p>SHOP</p>
+                    <Icon css='icon' icon={!isMenuOpen ? faChevronDown : faChevronUp} />
+                </div>
                 {isMenuOpen &&(
-                    <ul className='shop-menu__dropdown-menu'>
+                    <ul className='dropdown-menu__list' onMouseLeave={handlerCloseOnMouseLeave} >
                         {categories.map((category) => (
-                            <li className='dropdown-menu__link' key={category.id}>
-                                <Link to={`/shop/${category.name}`}>{category.name}</Link>
+                            <li className='dropdown-menu__item-list' key={category.id}>
+                                <Link to={`/shop/${category.name}`}>{category.name.toUpperCase()}</Link>
                             </li>
                         ))}
                     </ul>

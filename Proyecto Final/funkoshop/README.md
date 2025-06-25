@@ -19,22 +19,32 @@ Node.js y npm. Puedes descargarlos desde Node.js.
 Sigue estos pasos para configurar el proyecto localmente:
 
 Clona el repositorio:
+```
 git clone https://github.com/mtk-gonza/TT-25022.git
-Proyecto Final/funkoshop
+```
+Ubicacion del Proyecto Final/funkoshop:
+```
 cd '.\Proyecto Final\funkoshop\'
+```
 renombra el .env.example a .env
 
 Instala las dependencias:
+````
 npm install
+```
 
 Inicia el servidor de desarrollo:
+```
 npm run dev
+```
 Accede a la aplicación en tu navegador: http://localhost:5173
 
 🚀 Despliegue
 Para un entorno de producción, crea una versión optimizada del proyecto:
 
+```
 npm run build
+```
 Esto generará los archivos de producción en la carpeta build/, listos para ser desplegados en plataformas como Netlify, Vercel o Heroku.
 
 🔌 Integración con Backend

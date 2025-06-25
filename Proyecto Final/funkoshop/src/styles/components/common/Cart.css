@@ -1,24 +1,9 @@
-.cart {
-    position: relative;
-    display: inline-block;
-}
-
-.cart__icon {
-    position: relative;
-    background: none;
-    border: none;
-    font-size: x-large;
-    cursor: pointer;
-    padding: 10px;
-    color: aliceblue;
-}
-
 .cart__badge {
     position: absolute;
     top: 0;
     right: 0;
-    background-color: red;
-    color: white;
+    background-color: var(--primary-solid);
+    color: var(--light-font-solid);
     border-radius: 50%;
     width: 20px;
     height: 20px;
@@ -32,15 +17,15 @@
     position: absolute;
     top: 50px;
     right: 0;
-    background-color: white;
+    background-color: var(--dark-bg-solid);
     min-width: 350px;
     box-shadow: 0px 8px 16px rgba(0,0,0,0.2);
     z-index: 1000;
     padding: 15px;
-    border-radius: 8px;
     max-height: 400px;
     overflow-y: auto;
-    color: black;
+    color: var(--light-font-solid);
+    cursor: default;
 }
 
 .cart__content h3 {

@@ -27,9 +27,12 @@
     padding: 0;             
     margin: 0;              
     font: inherit;          
-    color: inherit;         
+    color: var(--primary-solid);       
     cursor: pointer;        
     outline: none;          
     box-shadow: none;       
     appearance: none;
+}
+.btn-remove-item:hover {
+    color: var(--light-font-solid);
 }

@@ -1,19 +1,16 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
-import { faChevronDown } from '@fortawesome/free-solid-svg-icons'
 
-import { Icon } from './Icon.jsx'
 import { Cart } from './Cart.jsx'
 import { AccountMenu } from './AccountMenu.jsx'
 import { ShopMenu } from './ShopMenu.jsx'
 
-import { useCategories } from './../../hooks/useCategories.jsx'
+
 import { useAuth } from '../../hooks/useAuth.jsx'
 
 import './../../styles/components/common/Navbar.css'
 
 export const Navbar = () => {
-    const { categories } = useCategories()
     const { isAuthenticated, authUser } = useAuth()
 
     return (
