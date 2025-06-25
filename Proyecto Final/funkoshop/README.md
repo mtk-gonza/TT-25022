@@ -29,7 +29,7 @@ cd '.\Proyecto Final\funkoshop\'
 renombra el .env.example a .env
 
 Instala las dependencias:
-````
+```
 npm install
 ```
 
