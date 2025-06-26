@@ -1,8 +1,9 @@
 import React, { useState } from 'react'
-import { faCartShopping, faChevronUp, faChevronDown  } from '@fortawesome/free-solid-svg-icons'
+import { faCartShopping, faChevronUp, faChevronDown } from '@fortawesome/free-solid-svg-icons'
 
 import { Icon } from './Icon.jsx'
 import { CartCard } from './CartCard.jsx'
+import { Modal } from './Modal.jsx'
 
 import { useCart } from './../../hooks/useCart.jsx'
 
@@ -11,6 +12,7 @@ import './../../styles/components/common/Cart.css'
 export const Cart = () => {
     const { cartItems, removeFromCart, clearCart } = useCart()
     const [isMenuOpen, setIsMenuOpen] = useState(false)
+    const [isModalOpen, setIsModalOpen] = useState(false)
     const totalPrice = cartItems.reduce((total, item) => total + item.price * item.quantity, 0)
     const totalQuantity = cartItems.reduce((sum, item) => sum + item.quantity, 0)
 
@@ -26,7 +28,17 @@ export const Cart = () => {
         clearCart()
         setIsMenuOpen(false)
     }
-    
+
+    const handlerFinishPurchase = () => {
+        setIsModalOpen(true)
+        setIsMenuOpen(false)
+    }
+
+    const handlerCloseModal = () => {
+        setIsModalOpen(false)
+        clearCart()
+    }
+
     return (
         <div className='dropdown-menu'>
             <div className='dropdown-menu__icons' onClick={toggleMenu}>
@@ -53,16 +65,34 @@ export const Cart = () => {
                                         <CartCard item={item} removeFromCart={removeFromCart} />
                                     </li>
                                 ))}
-                            </ul>                            
+                            </ul>
                             <div className='cart__total'>
                                 <span>Cantidad: {totalQuantity} producto(s)</span>
                                 <strong>Precio Total: ${totalPrice.toFixed(2)}</strong>
-                                <button onClick={handlerClearCart}>Vaciar Carrito</button>
+                                <button className='btn' onClick={handlerClearCart}>Vaciar Carrito</button>
                             </div>
+                            <button className='btn btn-add finish-purchase' onClick={handlerFinishPurchase} style={{ marginLeft: '10px' }}>Finalizar Compra</button>
                         </>
                     )}
                 </div>
             )}
+            <Modal isOpen={isModalOpen} onClosed={handlerCloseModal} title="¡Compra realizada con éxito!">
+                <div className='ticket'>
+                    <h3>Resumen de tu compra:</h3>
+                    <ul className='cart__list'>
+                        {cartItems.map((item) => (
+                            <li key={item.id}>
+                                <CartCard item={item} removeFromCart={removeFromCart} trash={false} />
+                            </li>
+                        ))}
+                    </ul>
+                    <div className='cart__total'>
+                        <span>Cantidad: {totalQuantity} producto(s)</span>
+                        <strong>Precio Total: ${totalPrice.toFixed(2)}</strong>
+                    </div>
+                    <button className='btn btn-add' onClick={handlerCloseModal}>OK</button>
+                </div>
+            </Modal>
         </div>
     )
 }
