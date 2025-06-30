@@ -1,4 +1,5 @@
 import React, { useState } from 'react'
+import { useNavigate } from 'react-router-dom'
 import { faCartShopping, faChevronUp, faChevronDown } from '@fortawesome/free-solid-svg-icons'
 
 import { Icon } from './Icon.jsx'
@@ -6,13 +7,16 @@ import { CartCard } from './CartCard.jsx'
 import { Modal } from './Modal.jsx'
 
 import { useCart } from './../../hooks/useCart.jsx'
+import { useAuth } from './../../hooks/useAuth.jsx'
 
 import './../../styles/components/common/Cart.css'
 
 export const Cart = () => {
-    const { cartItems, removeFromCart, clearCart } = useCart()
     const [isMenuOpen, setIsMenuOpen] = useState(false)
     const [isModalOpen, setIsModalOpen] = useState(false)
+    const { cartItems, removeFromCart, clearCart } = useCart()
+    const { isAuthenticated } = useAuth()
+    const navigate = useNavigate()
     const totalPrice = cartItems.reduce((total, item) => total + item.price * item.quantity, 0)
     const totalQuantity = cartItems.reduce((sum, item) => sum + item.quantity, 0)
 
@@ -30,8 +34,12 @@ export const Cart = () => {
     }
 
     const handlerFinishPurchase = () => {
-        setIsModalOpen(true)
-        setIsMenuOpen(false)
+        if (isAuthenticated) {
+            setIsModalOpen(true)
+            setIsMenuOpen(false)
+        } else {
+            navigate('/login')
+        }
     }
 
     const handlerCloseModal = () => {
@@ -71,7 +79,7 @@ export const Cart = () => {
                                 <strong>Precio Total: ${totalPrice.toFixed(2)}</strong>
                                 <button className='btn' onClick={handlerClearCart}>Vaciar Carrito</button>
                             </div>
-                            <button className='btn btn-add finish-purchase' onClick={handlerFinishPurchase} style={{ marginLeft: '10px' }}>Finalizar Compra</button>
+                            <button className='btn btn-add finish-purchase' onClick={handlerFinishPurchase} >Finalizar Compra</button>
                         </>
                     )}
                 </div>
